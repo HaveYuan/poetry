@@ -1,0 +1,14 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "poetry",
+  "description": "诗歌大全",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "cloudfunctionRoot": "cloudfunctions/",
+  "compileType": "miniprogram"
+}

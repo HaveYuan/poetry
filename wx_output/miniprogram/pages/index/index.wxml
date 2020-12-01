@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="Index">
+        <view class="index-title" style="{{anonymousState__temp}}">诗词大全</view>
+    </view>
+</block>

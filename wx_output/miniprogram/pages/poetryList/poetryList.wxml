@@ -1,0 +1,4 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="poetryList"><text>hello world</text>
+    </view>
+</block>

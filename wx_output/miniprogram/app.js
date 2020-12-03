@@ -55,7 +55,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index'],
+      pages: ['pages/index/index', 'pages/poetryList/poetryList'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
@@ -67,10 +67,9 @@ var _App = function (_BaseComponent) {
   }
 
   _createClass(_App, [{
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {
       {
-        console.log("development");
         _taroWeapp2.default.cloud.init({
           env: 'test-hhh',
           traceUser: true
@@ -78,19 +77,19 @@ var _App = function (_BaseComponent) {
       }
     }
   }, {
-    key: "componentDidShow",
+    key: 'componentDidShow',
     value: function componentDidShow() {}
   }, {
-    key: "componentDidHide",
+    key: 'componentDidHide',
     value: function componentDidHide() {}
   }, {
-    key: "componentDidCatchError",
+    key: 'componentDidCatchError',
     value: function componentDidCatchError() {}
     // 在 App 类中的 render() 函数没有实际作用
     // 请勿修改此函数
 
   }, {
-    key: "_createData",
+    key: '_createData',
     value: function _createData() {}
   }]);
 

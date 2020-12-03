@@ -1,5 +1,14 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="Index">
         <view class="index-title" style="{{anonymousState__temp}}">诗词大全</view>
+        <image src="{{bg}}" mode="widthFix" class="title-bg"></image>
+        <swiper class="all">
+            <swiper-item>
+                <view class="ct-item"></view>
+            </swiper-item>
+            <swiper-item>
+                <view class="ct-item"></view>
+            </swiper-item>
+        </swiper>
     </view>
 </block>

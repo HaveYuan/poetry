@@ -1,4 +1,7 @@
-.index-title {
+.Index .title-bg {
+  width: 100%;
+}
+.Index .index-title {
   color: "#333";
   height: 32Px;
   max-width: 300rpx;
@@ -12,4 +15,15 @@
   margin-left: 50%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
+}
+.Index .all {
+  height: 600rpx;
+}
+.Index .ct-item {
+  width: 80%;
+  height: 600rpx;
+  border-radius: 16rpx;
+  border: 1rpx solid #ccc;
+  box-sizing: border-box;
+  margin: 0 auto;
 }

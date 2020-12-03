@@ -1,15 +1,16 @@
 {
-  "miniprogramRoot": "miniprogram/",
-  "projectname": "poetry",
-  "description": "诗词大全",
-  "appid": "touristappid",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "postcss": false,
-    "minified": false
-  },
-  "appid": "wx7d89fb9bf7c9b9ea",
-  "cloudfunctionRoot": "cloudfunctions/",
-  "compileType": "miniprogram"
+	"miniprogramRoot": "miniprogram/",
+	"projectname": "poetry",
+	"description": "诗词大全",
+	"appid": "wx7d89fb9bf7c9b9ea",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false
+	},
+	"cloudfunctionRoot": "cloudfunctions/",
+	"compileType": "miniprogram",
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"condition": {}
 }

@@ -1,5 +1,6 @@
+const path = require('path');
 
-const outputRoot = process.env.TARO_ENV = 'weapp' ? 'wx_output/miniprogram' : 'dist';
+const outputRoot = process.env.TARO_ENV === 'weapp' ? 'wx_output/miniprogram' : 'dist';
 
 const config = {
   projectName: 'poetry',
@@ -33,6 +34,11 @@ const config = {
   },
   plugins: [],
   defineConstants: {
+  },
+  alias: {
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@/images': path.resolve(__dirname, '..', 'src/images')
   },
   mini: {
     postcss: {

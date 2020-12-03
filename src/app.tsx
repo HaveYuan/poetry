@@ -13,7 +13,6 @@ class App extends Component {
 
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
-      console.log(process.env.NODE_ENV)
       Taro.cloud.init({
         env: process.env.NODE_ENV === 'development' ? 'test-hhh' : '',
         traceUser: true
@@ -36,7 +35,8 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/poetryList/poetryList'
     ],
     window: {
       backgroundTextStyle: 'light',

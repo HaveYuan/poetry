@@ -1,1 +1,1 @@
-{"pages":["pages/index/index","pages/poetryList/poetryList"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"}}
+{"pages":["pages/index/index","pages/poetryList/poetryList","pages/detailPage/detailPage"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"}}

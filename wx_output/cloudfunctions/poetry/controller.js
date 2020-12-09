@@ -17,8 +17,8 @@ class resMsg {
   failMsg(data) {
     return {
       code: -1,
-      msg: '调用失败',
-      data
+      msg: '请求失败',
+      ...data
     }
   }
 }
@@ -31,6 +31,41 @@ class poetry extends resMsg {
     }catch(err) {
       return await this.failMsg(err);
     }
+  }
+
+  async getPoetryList(params) {// 获取诗词
+    const pageSize = params.pageSize || 20;
+    const pageNo = params.pageNo || 1;
+    const skip = (pageNo-1)*pageSize;
+    try {
+      const resTotal = await db.collection(params.tag).count();
+      const total = resTotal.total;
+      const totalPage = Math.ceil(total/pageSize)
+
+      const data = await db.collection(params.tag).field({
+        paragraphs: false
+      })
+      .skip(skip)
+      .limit(pageSize)
+      .get();
+
+      const obj = {
+        total,
+        pageSize,
+        pageNo,
+        totalPage,
+        ...data
+      }
+
+      return await this.success(obj);
+    }catch(err) {
+      return await this.failMsg(err);
+    }
+  }
+
+  async getPoetryDetail(params) {// 获取单条诗词内容
+
+
   }
 }
 

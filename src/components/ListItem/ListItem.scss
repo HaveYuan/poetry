@@ -1,0 +1,33 @@
+@import '../../style/global.scss';
+
+.list-item {
+  @include flex-column;
+  padding: 30px 0;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    border-bottom: 1px solid #c8c7cc;
+    transform: scaleY(.5);
+    transform-origin: 0 0;
+  }
+  .title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 1.5;
+    -webkit-line-clamp:2; 
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+  }
+  .author {
+    color: #afafaf;
+    font-size: 24px;
+  }
+}

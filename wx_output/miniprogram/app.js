@@ -1,4 +1,5 @@
 require("./runtime");
+require("./common");
 require("./vendors");
 
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["app"],{
@@ -55,7 +56,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/poetryList/poetryList'],
+      pages: ['pages/index/index', 'pages/poetryList/poetryList', 'pages/detailPage/detailPage'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',

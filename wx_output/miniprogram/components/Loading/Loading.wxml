@@ -1,0 +1,10 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="Loading">
+        <block wx:if="{{loading}}">
+            <view class="loading-tip"><text class="loading-icon"></text>加载中</view>
+        </block>
+        <block wx:if="{{!loading}}">
+            <view class="loading-tip">我是有底线的~</view>
+        </block>
+    </view>
+</block>

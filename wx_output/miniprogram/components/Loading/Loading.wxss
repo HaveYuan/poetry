@@ -1,0 +1,41 @@
+.Loading {
+  width: 100%;
+  height: 40rpx;
+  font-size: 28rpx;
+  padding: 10rpx 0;
+}
+.Loading .loading-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Loading .loading-icon {
+  width: 32rpx;
+  height: 32rpx;
+  display: inline-block;
+  margin-right: 10rpx;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAJFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACmWAJHAAAAC3RSTlMAVUC/gKsZBbillSbaoi4AAABmSURBVCjPY6AiUFJAE9A2wCfA5gAREIQJlG4BCzDuFoDwgSwHkID0Vrge6S0MygaMuwOATIQSkAIEkASJBhDvauvdu8Hu5t69ewOmANFACmIthsMwnY7LcxVw76MHEIEwxYwG6gEA5D0dE82677wAAAAASUVORK5CYII=) no-repeat;
+  background-size: 100% 100%;
+  -webkit-animation: rotates 4s linear infinite;
+          animation: rotates 4s linear infinite;
+}
+@-webkit-keyframes rotates {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotates {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}

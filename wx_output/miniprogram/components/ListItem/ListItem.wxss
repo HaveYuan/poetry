@@ -1,0 +1,34 @@
+.list-item {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 0;
+  position: relative;
+}
+.list-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1rpx solid #c8c7cc;
+  -webkit-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+.list-item .title {
+  font-weight: bold;
+  font-size: 30rpx;
+  line-height: 1.5;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+}
+.list-item .author {
+  color: #afafaf;
+  font-size: 24rpx;
+}

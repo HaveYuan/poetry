@@ -1,6 +1,14 @@
 @import '../../style/global.scss';
-
+page,.Index {
+  width: 100%;
+  height: 100%;
+}
 .Index{
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
   .title-bg {
     width: 100%;
   }
@@ -19,14 +27,37 @@
     transform: translate(-50%, 0);
   }
   .all {
+    width: 100%;
     height: 600px;
-  }
-  .ct-item {
-    width: 80%;
-    height: 600px;
-    border-radius: $borderRadius;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
     margin: 0 auto;
+    .all-item {
+      .ct-item {
+        width: 95%;
+        height: 600px;
+        background: rgba(255,255,255,.7);
+        border-radius: $borderRadius;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 18px 20px;
+        overflow: hidden;
+        box-shadow: 0 0 4px #ccc;
+        .title {
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 36px;
+          font-weight: bold;
+          text-align: center;
+          margin: 18px auto;
+          @include text-overflow;
+        }
+        .intro {
+          font-size: 28px;
+          text-indent: 2em;
+          line-height: 44px;
+          text-align: justify;
+          padding: 20px 0;
+        }
+      }
+    }
   }
 }

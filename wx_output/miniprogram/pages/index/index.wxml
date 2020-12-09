@@ -1,13 +1,12 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="Index">
-        <view class="index-title" style="{{anonymousState__temp}}">诗词大全</view>
-        <image src="{{bg}}" mode="widthFix" class="title-bg"></image>
-        <swiper class="all">
-            <swiper-item>
-                <view class="ct-item"></view>
-            </swiper-item>
-            <swiper-item>
-                <view class="ct-item"></view>
+    <view class="Index" style="{{anonymousState__temp}}">
+        <view class="index-title" style="{{anonymousState__temp2}}">诗词大全</view>
+        <swiper class="all" previous-margin="30px" next-margin="30px" interval="{{10000}}" autoplay="{{true}}" circular="{{true}}" easing-function="linear">
+            <swiper-item class="all-item" wx:for="{{loopArray7}}" wx:for-item="item" wx:for-index="__index0">
+                <view class="ct-item" wx:key="_id" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <view class="title">{{item.$original.name}}</view>
+                    <view class="intro">{{item.$original.intro}}</view>
+                </view>
             </swiper-item>
         </swiper>
     </view>

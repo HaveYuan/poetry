@@ -1,1 +1,1 @@
-{"usingComponents":{}}
+{"usingComponents":{"list-item":"../../components/ListItem/ListItem","loading":"../../components/Loading/Loading"}}

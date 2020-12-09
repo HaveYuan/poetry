@@ -1,4 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="poetryList"><text>hello world</text>
+    <view class="poetryList">
+        <list-item wx:for="{{loopArray11}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__50}}"></list-item>
+        <loading compid="{{$compid__51}}"></loading>
     </view>
 </block>

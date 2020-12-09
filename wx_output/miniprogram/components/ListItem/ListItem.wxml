@@ -1,0 +1,24 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="list-item" bindtap="anonymousFunc0">
+        <block wx:if="{{tag === 'lunyu'}}">
+            <block><text class="title">{{poetryObj.chapter}}</text>
+            </block>
+        </block>
+        <block wx:if="{{tag === 'yuanqu'}}">
+            <block><text class="title">{{poetryObj.title}}</text><text class="author">{{poetryObj.author}}</text>
+            </block>
+        </block>
+        <block wx:if="{{tag === 'youmengying'}}">
+            <block><text class="title">{{poetryObj.content}}</text>
+            </block>
+        </block>
+        <block wx:if="{{tag === 'sishuwujing'}}">
+            <block><text class="title">{{poetryObj.chapter}}</text><text class="author">{{poetryObj.tags}}</text>
+            </block>
+        </block>
+        <block wx:if="{{tag === 'shijing'}}">
+            <block><text class="title">{{poetryObj.title}}</text><text class="author">{{poetryObj.chapter}}·{{poetryObj.section}}</text>
+            </block>
+        </block>
+    </view>
+</block>

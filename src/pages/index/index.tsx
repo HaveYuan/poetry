@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Swiper, SwiperItem } from '@tarojs/components'
 import { requestCloud } from '@/utils/cloudFn';
-import bg from '@/images/bg.jpg';
+import showToast from '@/utils/showToast';
 import './index.scss'
 
 type PageStateProps = {}
@@ -12,7 +12,8 @@ type PageOwnProps = {}
 
 type PageState = {
   barHeight: number,
-  catalog: Array<catalogItem>
+  catalog: Array<catalogItem>,
+  bgUrl: string
 }
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
@@ -27,12 +28,10 @@ class Index extends Component<PageOwnProps, PageState> {
     super(props)
     this.state = {
       barHeight: 0,
-      catalog: []
+      catalog: [],
+      bgUrl: ''
     }
   }
-  componentWillReceiveProps(nextProps) { }
-
-  componentWillUnmount() { }
 
   componentDidMount() {
     const barStatus = Taro.getMenuButtonBoundingClientRect()
@@ -44,12 +43,19 @@ class Index extends Component<PageOwnProps, PageState> {
       }
     })
 
+    Taro.cloud.downloadFile({
+      fileID: 'cloud://test-hhh.7465-test-hhh-1304398770/poetry/images/bg.jpg',
+      success: res => {
+        if(res.errMsg.indexOf('downloadFile:ok') > -1) {
+          this.setState({
+            bgUrl: res.tempFilePath
+          })
+        }
+      }
+    })
+
     this.getallTags();
   }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
 
   config: Config = {
     navigationStyle: 'custom'
@@ -67,32 +73,45 @@ class Index extends Component<PageOwnProps, PageState> {
         this.setState({
           catalog: res.data
         })
+      }else {
+        showToast(res.errMsg)
       }
-    }).catch(err => {
-
+    }).catch(_ => {
+      showToast('网络异常')
     })
   }
 
+  toListPage(tag, name) {
+    Taro.navigateTo({
+      url: `/pages/poetryList/poetryList?tag=${tag}&name=${name}`
+    });
+  }
+
   render() {
-    const { barHeight, catalog } = this.state;
+    const { bgUrl, barHeight, catalog } = this.state;
     return (
-      <View className='Index'>
+      <View className='Index' style={{backgroundImage: 'url('+bgUrl+')'}}>
         <View className="index-title" style={{top:barHeight+'px'}}>诗词大全</View>
-        <Image src={bg} mode="widthFix" className='title-bg'></Image>
-        {/* {catalog.map(item => {
-          return <View key={item._id} data-name={item.tag} >{item.name}</View>
-        })} */}
-        <Swiper className='all'>
-          <SwiperItem >
-            <View className="ct-item">
-              
-            </View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className="ct-item">
-              
-            </View>
-          </SwiperItem>
+        <Swiper className='all'
+          previousMargin='30px'
+          nextMargin='30px'
+          interval={10000}
+          autoplay={true}
+          circular={true}
+          easingFunction='linear'
+        >
+          {
+            catalog.map(item => {
+              return (
+                <SwiperItem className='all-item'>
+                  <View className="ct-item" key={item._id} onClick={()=>this.toListPage(item.tag, item.name)}>
+                    <View className='title'>{item.name}</View>
+                    <View className='intro'>{item.intro}</View>
+                  </View>
+                </SwiperItem>
+              )
+            })
+          }
         </Swiper>
       </View>
     )

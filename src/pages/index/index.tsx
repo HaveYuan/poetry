@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Swiper, SwiperItem } from '@tarojs/components'
 import { requestCloud } from '@/utils/cloudFn';
 import showToast from '@/utils/showToast';
@@ -19,7 +19,7 @@ type PageState = {
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
 
 interface Index {
-  props: IProps;
+  props: IProps,
   state: PageState
 }
 
@@ -68,16 +68,16 @@ class Index extends Component<PageOwnProps, PageState> {
         controller: 'poetry', 
         action: 'allCategories'
       }
-    ).then(res => {
+    ).then((res:any) => {
       if(res.code === 0) {
         this.setState({
           catalog: res.data
         })
       }else {
-        showToast(res.errMsg)
+        showToast({title:res.errMsg})
       }
     }).catch(_ => {
-      showToast('网络异常')
+      showToast({title:'网络异常'})
     })
   }
 

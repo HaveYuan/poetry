@@ -48,30 +48,16 @@ var Loading = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Loading.__proto__ || Object.getPrototypeOf(Loading)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loading", "name"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Loading.__proto__ || Object.getPrototypeOf(Loading)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loading"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Loading, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Loading.prototype.__proto__ || Object.getPrototypeOf(Loading.prototype), "_constructor", this).call(this, props);
-      this.state = {
-        name: '小红'
-      };
+      this.state = {};
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {}
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {}
-  }, {
-    key: "componentDidShow",
-    value: function componentDidShow() {}
-  }, {
-    key: "componentDidHide",
-    value: function componentDidHide() {}
   }, {
     key: "_createData",
     value: function _createData() {

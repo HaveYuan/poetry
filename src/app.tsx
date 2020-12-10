@@ -1,7 +1,16 @@
 import Taro, { Component, Config } from '@tarojs/taro'
+import {Provider} from '@tarojs/redux'
+import models from './models/index'
+import dva from './utils/dva'
 import Index from './pages/index'
 
 import './app.scss'
+
+const dvaApp = dva.createApp( {
+  initialState: {},
+  models
+});  
+const store = dvaApp.getStore();
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -12,6 +21,9 @@ import './app.scss'
 class App extends Component {
 
   componentDidMount () {
+    setTimeout(() => {
+      console.log('10s后启动')
+    },10000)
     if (process.env.TARO_ENV === 'weapp') {
       Taro.cloud.init({
         env: process.env.NODE_ENV === 'development' ? 'test-hhh' : '',
@@ -51,7 +63,9 @@ class App extends Component {
   // 请勿修改此函数
   render () {
     return (
-      <Index />
+      <Provider store={store} >
+        <Index />
+      </Provider>
     )
   }
 }

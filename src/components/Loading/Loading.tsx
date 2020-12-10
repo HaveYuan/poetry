@@ -11,31 +11,21 @@ type PageDispatchProps = {}
 type PageOwnProps = {}
 
 type PageState = {
-  name: string
+
 }
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
 
 interface Loading {
-  props: IProps;
+  props: IProps,
   state: PageState
 }
 
 class Loading extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      name: '小红'
-    }
-
+    this.state = {}
   }
-  componentWillReceiveProps(nextProps) { }
-
-  componentWillUnmount() { }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
 
   render() {
     const { loading } = this.props;

@@ -1,14 +1,19 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
+import { connect } from '@tarojs/redux'
 import Loading from '@/components/Loading/Loading'
 import ListItem from '@/components/ListItem/ListItem'
 import { requestCloud } from '@/utils/cloudFn'
 import showToast from '@/utils/showToast'
 import './poetryList.scss'
 
-type PageStateProps = {}
+type PageStateProps = {
+	poetryDetail: 诗词详情数据
+}
 
-type PageDispatchProps = {}
+type PageDispatchProps = {
+	dispatch: any
+}
 
 type PageOwnProps = {}
 
@@ -16,16 +21,17 @@ type PageState = {
 	loading: boolean,
 	tag: string,
 	pageNo: number,
-	poetryList: Array<poetryItem>
+	poetryListData: Array<poetryItem>
 }
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
 
 interface poetryList {
-	props: IProps;
+	props: IProps,
 	state: PageState
 }
 
+@connect(({poetryDetail}) => ({poetryDetail}))
 class poetryList extends Component<PageOwnProps, PageState> {
 	constructor(props) {
 		super(props)
@@ -33,7 +39,7 @@ class poetryList extends Component<PageOwnProps, PageState> {
 			loading: true,
 			tag: '',
 			pageNo: 1,
-			poetryList: []
+			poetryListData: []
 		}
 	}
 
@@ -69,12 +75,12 @@ class poetryList extends Component<PageOwnProps, PageState> {
 				pageSize: 20,
 				tag: this.state.tag
 			}
-		}).then(res => {
-			const {poetryList} = this.state;
+		}).then((res:any) => {
+			const {poetryListData} = this.state;
 			if(res.data) {
 				const _pageNo = pageNo + 1;
 				this.setState({
-					poetryList: poetryList.concat(res.data),
+					poetryListData: poetryListData.concat(res.data),
 					pageNo: _pageNo
 				})
 				if(pageNo === res.totalPage) {
@@ -84,27 +90,37 @@ class poetryList extends Component<PageOwnProps, PageState> {
 				}
 			}
 		}).catch(err => {
-			showToast(err.msg)
+			showToast({title:err.msg})
 		})
 	}
 
-	toDetail(id) {
+	toDetail(item) {
 		const { tag } = this.state;
+		const { dispatch } = this.props;
+
+		dispatch({
+			type: 'poetryDetail/save',
+			payload: {
+				tag,
+				poetryInfo: item,
+			}
+		})
 		Taro.navigateTo({
-			url: `/pages/detailPage/detailPage?tag=${tag}&id=${id}`
+			url: '/pages/detailPage/detailPage'
 		});
 	}
 
 	render() {
-		const { loading, poetryList, tag } = this.state;
+		const { loading, poetryListData, tag } = this.state;
 		return (
 			<View className='poetryList'>
-				{poetryList.map(item => {
+				{poetryListData.map(item => {
 					return (
 						<ListItem
+							key={item._id}
 							tag={tag}
 							poetryObj={item}
-							clickFn={()=>this.toDetail(item._id)}
+							clickFn={()=>this.toDetail(item)}
 						/>
 					)
 				})}

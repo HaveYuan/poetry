@@ -1,4 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="detailPage"><text>hello world</text>
+    <view class="detailPage">
+        <block wx:if="{{tag === 'yuanqu'}}">
+            <view></view>
+        </block><text>hello world</text>
     </view>
 </block>

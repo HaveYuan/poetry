@@ -1,8 +1,8 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["common"],{
 
-/***/ "./src/utils/cloudFn.js":
+/***/ "./src/utils/cloudFn.ts":
 /*!******************************!*\
-  !*** ./src/utils/cloudFn.js ***!
+  !*** ./src/utils/cloudFn.ts ***!
   \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -47,9 +47,9 @@ function requestCloud(params) {
 
 /***/ }),
 
-/***/ "./src/utils/showToast.js":
+/***/ "./src/utils/showToast.ts":
 /*!********************************!*\
-  !*** ./src/utils/showToast.js ***!
+  !*** ./src/utils/showToast.ts ***!
   \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

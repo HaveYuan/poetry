@@ -42,9 +42,7 @@ class poetry extends resMsg {
       const total = resTotal.total;
       const totalPage = Math.ceil(total/pageSize)
 
-      const data = await db.collection(params.tag).field({
-        paragraphs: false
-      })
+      const data = await db.collection(params.tag)
       .skip(skip)
       .limit(pageSize)
       .get();

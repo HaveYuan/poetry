@@ -20,9 +20,13 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
+var _tslib = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 __webpack_require__(/*! ./detailPage.scss */ "./src/pages/detailPage/detailPage.scss");
 
@@ -48,21 +52,57 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detailPage.__proto__ || Object.getPrototypeOf(detailPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["name"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detailPage.__proto__ || Object.getPrototypeOf(detailPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tag", "poetryDetail"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(detailPage, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(detailPage.prototype.__proto__ || Object.getPrototypeOf(detailPage.prototype), "_constructor", this).call(this, props);
-      this.state = {
-        name: '小红'
-      };
+      this.state = {};
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      this.switchTag();
+    }
+  }, {
+    key: "switchTag",
+    value: function switchTag() {
+      var _props$poetryDetail = this.props.poetryDetail,
+          poetryInfo = _props$poetryDetail.poetryInfo,
+          tag = _props$poetryDetail.tag;
+
+      switch (tag) {
+        case 'yuanqu':
+          this.setTitle(poetryInfo.title);
+          break;
+        case 'lunyu':
+          this.setTitle(poetryInfo.chapter);
+          break;
+        case 'shijing':
+          var title = poetryInfo.chapter + '·' + poetryInfo.section + '-' + poetryInfo.title;
+          this.setTitle(title);
+          break;
+        case 'youmengying':
+          this.setTitle('幽梦影');
+          break;
+        case 'sishuwujing':
+          this.setTitle(poetryInfo.chapter);
+          break;
+        default:
+          this.setTitle('诗词详情');
+          break;
+      }
+    }
+  }, {
+    key: "setTitle",
+    value: function setTitle(title) {
+      _taroWeapp2.default.setNavigationBarTitle({
+        title: title
+      });
+    }
   }, {
     key: "_createData",
     value: function _createData() {
@@ -71,13 +111,26 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      Object.assign(this.__state, {});
+
+      var _props$poetryDetail2 = this.__props.poetryDetail,
+          poetryInfo = _props$poetryDetail2.poetryInfo,
+          tag = _props$poetryDetail2.tag;
+
+      console.log(poetryInfo);
+      console.log(tag);
+      Object.assign(this.__state, {
+        tag: tag
+      });
       return this.__state;
     }
   }]);
 
   return detailPage;
 }(_taroWeapp.Component), _class.$$events = [], _class.$$componentPath = "pages/detailPage/detailPage", _temp2);
+detailPage = (0, _tslib.__decorate)([(0, _redux.connect)(function (_ref2) {
+  var poetryDetail = _ref2.poetryDetail;
+  return { poetryDetail: poetryDetail };
+})], detailPage);
 exports.default = detailPage;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(detailPage, true));

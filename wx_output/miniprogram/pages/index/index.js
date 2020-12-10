@@ -24,9 +24,9 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
-var _cloudFn = __webpack_require__(/*! ../../utils/cloudFn */ "./src/utils/cloudFn.js");
+var _cloudFn = __webpack_require__(/*! ../../utils/cloudFn */ "./src/utils/cloudFn.ts");
 
-var _showToast = __webpack_require__(/*! ../../utils/showToast */ "./src/utils/showToast.js");
+var _showToast = __webpack_require__(/*! ../../utils/showToast */ "./src/utils/showToast.ts");
 
 var _showToast2 = _interopRequireDefault(_showToast);
 
@@ -54,7 +54,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray7", "catalog", "barHeight", "bgUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray3", "catalog", "barHeight", "bgUrl"], _this.config = {
       navigationStyle: 'custom'
     }, _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -111,10 +111,10 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
             catalog: res.data
           });
         } else {
-          (0, _showToast2.default)(res.errMsg);
+          (0, _showToast2.default)({ title: res.errMsg });
         }
       }).catch(function (_) {
-        (0, _showToast2.default)('网络异常');
+        (0, _showToast2.default)({ title: '网络异常' });
       });
     }
   }, {
@@ -142,12 +142,12 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
 
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)({ backgroundImage: 'url(' + bgUrl + ')' });
       var anonymousState__temp2 = (0, _taroWeapp.internal_inline_style)({ top: barHeight + 'px' });
-      var loopArray7 = catalog.map(function (item, __index0) {
+      var loopArray3 = catalog.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "hzzzz" + __index0;
+        var _$indexKey = "dzzzz" + __index0;
 
         _this4.anonymousFunc0Map[_$indexKey] = function () {
           return _this4.toListPage(item.$original.tag, item.$original.name);
@@ -161,7 +161,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
-        loopArray7: loopArray7
+        loopArray3: loopArray3
       });
       return this.__state;
     }

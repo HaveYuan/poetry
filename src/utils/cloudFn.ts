@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-export function requestCloud(params) {
+export function requestCloud(params:requestCloudParams) {
   return new Promise((resolve, reject) => {
     const {clounFnName, controller, action, data} = params;
     Taro.cloud.callFunction({

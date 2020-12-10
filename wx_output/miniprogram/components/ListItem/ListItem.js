@@ -61,21 +61,12 @@ var ListItem = (_temp2 = _class = function (_BaseComponent) {
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {}
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       _taroWeapp2.default.setNavigationBarTitle({
         title: this.$router.params.name
       });
     }
-  }, {
-    key: "componentDidShow",
-    value: function componentDidShow() {}
-  }, {
-    key: "componentDidHide",
-    value: function componentDidHide() {}
   }, {
     key: "_createData",
     value: function _createData() {
@@ -90,10 +81,9 @@ var ListItem = (_temp2 = _class = function (_BaseComponent) {
           clickFn = _props.clickFn,
           tag = _props.tag;
 
-      console.log(tag);
 
       this.anonymousFunc0 = function () {
-        return clickFn(poetryObj._id);
+        return clickFn(poetryObj);
       };
 
       Object.assign(this.__state, {

@@ -4,8 +4,9 @@
 	"description": "诗词大全",
 	"appid": "wx7d89fb9bf7c9b9ea",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
+		"enhance": false,
 		"postcss": false,
 		"preloadBackgroundData": false,
 		"minified": false,

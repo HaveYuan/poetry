@@ -4,7 +4,7 @@ import './ListItem.scss'
 
 type PageStateProps = {
   poetryObj: poetryItem,
-	clickFn: (id: string) => void,
+	clickFn: (item: poetryItem) => void,
 	tag: string
 }
 
@@ -19,7 +19,7 @@ type PageState = {
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
 
 interface ListItem {
-	props: IProps;
+	props: IProps,
 	state: PageState
 }
 
@@ -30,7 +30,6 @@ class ListItem extends Component<PageOwnProps, PageState> {
 			loading: true
 		}
 	}
-	componentWillReceiveProps(nextProps) { }
 
 	componentDidMount() {
 		Taro.setNavigationBarTitle({
@@ -38,15 +37,10 @@ class ListItem extends Component<PageOwnProps, PageState> {
 		});
 	}
 
-	componentDidShow() { }
-
-	componentDidHide() { }
-
 	render() {
 		const { poetryObj, clickFn, tag } = this.props;
-		console.log(tag)
 		return (
-			<View className='list-item' onClick={()=>clickFn(poetryObj._id)}>
+			<View className='list-item' onClick={()=>clickFn(poetryObj)}>
 				{tag === 'lunyu' && (
 					<Block>
 						<Text className='title'>{poetryObj.chapter}</Text>

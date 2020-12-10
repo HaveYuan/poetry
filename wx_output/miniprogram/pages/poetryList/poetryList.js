@@ -22,13 +22,17 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
+var _tslib = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
-var _cloudFn = __webpack_require__(/*! ../../utils/cloudFn */ "./src/utils/cloudFn.js");
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _showToast = __webpack_require__(/*! ../../utils/showToast */ "./src/utils/showToast.js");
+var _cloudFn = __webpack_require__(/*! ../../utils/cloudFn */ "./src/utils/cloudFn.ts");
+
+var _showToast = __webpack_require__(/*! ../../utils/showToast */ "./src/utils/showToast.ts");
 
 var _showToast2 = _interopRequireDefault(_showToast);
 
@@ -56,7 +60,7 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = poetryList.__proto__ || Object.getPrototypeOf(poetryList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray11", "$compid__51", "poetryList", "loading", "tag", "pageNo"], _this.customComponents = ["ListItem", "Loading"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = poetryList.__proto__ || Object.getPrototypeOf(poetryList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray2", "$compid__3", "poetryListData", "loading", "tag", "pageNo", "dispatch"], _this.customComponents = ["ListItem", "Loading"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(poetryList, [{
@@ -67,7 +71,7 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
         loading: true,
         tag: '',
         pageNo: 1,
-        poetryList: []
+        poetryListData: []
       };
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
@@ -116,12 +120,12 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
           tag: this.state.tag
         }
       }).then(function (res) {
-        var poetryList = _this3.state.poetryList;
+        var poetryListData = _this3.state.poetryListData;
 
         if (res.data) {
           var _pageNo = pageNo + 1;
           _this3.setState({
-            poetryList: poetryList.concat(res.data),
+            poetryListData: poetryListData.concat(res.data),
             pageNo: _pageNo
           });
           if (pageNo === res.totalPage) {
@@ -131,16 +135,24 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
           }
         }
       }).catch(function (err) {
-        (0, _showToast2.default)(err.msg);
+        (0, _showToast2.default)({ title: err.msg });
       });
     }
   }, {
     key: "toDetail",
-    value: function toDetail(id) {
+    value: function toDetail(item) {
       var tag = this.state.tag;
+      var dispatch = this.props.dispatch;
 
+      dispatch({
+        type: 'poetryDetail/save',
+        payload: {
+          tag: tag,
+          poetryInfo: item
+        }
+      });
       _taroWeapp2.default.navigateTo({
-        url: "/pages/detailPage/detailPage?tag=" + tag + "&id=" + id
+        url: '/pages/detailPage/detailPage'
       });
     }
   }, {
@@ -154,47 +166,47 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__51"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__3"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__51 = _genCompid2[0],
-          $compid__51 = _genCompid2[1];
+          $prevCompid__3 = _genCompid2[0],
+          $compid__3 = _genCompid2[1];
 
       var _state2 = this.__state,
           loading = _state2.loading,
-          poetryList = _state2.poetryList,
+          poetryListData = _state2.poetryListData,
           tag = _state2.tag;
 
-      var loopArray11 = poetryList.map(function (item, _anonIdx) {
+      var loopArray2 = poetryListData.map(function (item, _anonIdx) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
         var $loopState__temp2 = function $loopState__temp2() {
-          return _this4.toDetail(item.$original._id);
+          return _this4.toDetail(item.$original);
         };
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "bbzzzzzzzz" + _anonIdx, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "czzzzzzzzz" + _anonIdx, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__50 = _genCompid4[0],
-            $compid__50 = _genCompid4[1];
+            $prevCompid__2 = _genCompid4[0],
+            $compid__2 = _genCompid4[1];
 
         _taroWeapp.propsManager.set({
           "tag": tag,
           "poetryObj": item.$original,
           "clickFn": $loopState__temp2
-        }, $compid__50, $prevCompid__50);
+        }, $compid__2, $prevCompid__2);
         return {
           $loopState__temp2: $loopState__temp2,
-          $compid__50: $compid__50,
+          $compid__2: $compid__2,
           $original: item.$original
         };
       });
       _taroWeapp.propsManager.set({
         "loading": loading
-      }, $compid__51, $prevCompid__51);
+      }, $compid__3, $prevCompid__3);
       Object.assign(this.__state, {
-        loopArray11: loopArray11,
-        $compid__51: $compid__51
+        loopArray2: loopArray2,
+        $compid__3: $compid__3
       });
       return this.__state;
     }
@@ -202,6 +214,10 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
 
   return poetryList;
 }(_taroWeapp.Component), _class.$$events = [], _class.$$componentPath = "pages/poetryList/poetryList", _temp2);
+poetryList = (0, _tslib.__decorate)([(0, _redux.connect)(function (_ref2) {
+  var poetryDetail = _ref2.poetryDetail;
+  return { poetryDetail: poetryDetail };
+})], poetryList);
 exports.default = poetryList;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(poetryList, true));

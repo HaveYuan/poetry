@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import './detailPage.scss'
@@ -37,7 +37,7 @@ class detailPage extends Component<PageOwnProps, PageState> {
     this.switchTag();
   }
 
-  switchTag() {
+  switchTag = () => {
     const { poetryDetail:{poetryInfo, tag} } = this.props;
     switch(tag) {
       case 'yuanqu':
@@ -63,10 +63,15 @@ class detailPage extends Component<PageOwnProps, PageState> {
     
   }
 
-  setTitle(title) {// 设置标题
+  setTitle = (title) => {// 设置标题
     Taro.setNavigationBarTitle({
       title
     });
+  }
+
+  config: Config = {
+    navigationBarBackgroundColor: '#D9C1A5',
+    // navigationBarTextStyle: 'white'
   }
 
   render() {
@@ -76,11 +81,78 @@ class detailPage extends Component<PageOwnProps, PageState> {
     return (
       <View className='detailPage'>
         {tag === 'yuanqu' && (
-          <View>
-            
+          <View className='wrap'>
+            <View className='title'>{poetryInfo.title}</View>
+            <View className='author'>{poetryInfo.author}</View>
+            <View className='content'>
+              {poetryInfo.paragraphs.map(item => {
+                return (
+                  <View>{item}</View>
+                )
+              })}
+            </View>
           </View>
         )}
-        <Text>hello world</Text>
+
+        {tag === 'lunyu' && (
+          <View className='wrap'>
+            <View className='title'>{poetryInfo.chapter}</View>
+            <View className='content'>
+              {poetryInfo.paragraphs.map(item => {
+                return (
+                  <View className='paragraphs'>{item}</View>
+                )
+              })}
+            </View>
+          </View>
+        )}
+
+        {tag === 'shijing' && (
+          <View className='wrap'>
+            <View className='title'>{poetryInfo.title}</View>
+            <View className='author'>{poetryInfo.chapter}·{poetryInfo.section}</View>
+            <View className='content'>
+              {poetryInfo.content.map(item => {
+                return (
+                  <View>{item}</View>
+                )
+              })}
+            </View>
+          </View>
+        )}
+
+        {tag === 'sishuwujing' && (
+          <View className='wrap'>
+            <View className='title'>{poetryInfo.chapter}</View>
+            <View className='author'>{poetryInfo.tags}</View>
+            <View className='content'>
+              {poetryInfo.paragraphs.map(item => {
+                return (
+                  <View className='paragraphs'>{item}</View>
+                )
+              })}
+            </View>
+          </View>
+        )}
+
+        {tag === 'youmengying' && (
+          <View className='wrap'>
+            <View className='content'>
+              {poetryInfo.content}
+            </View>
+            <View className='comment'>
+              <Text style={{fontWeight:'bold'}}>名人评析：</Text>
+              <View>
+                {poetryInfo.comment.map(item => {
+                  return (
+                    <View className='paragraphs'>{item}</View>
+                  )
+                })
+                }
+              </View>
+            </View>
+          </View>
+        )}
       </View>
     )
   }

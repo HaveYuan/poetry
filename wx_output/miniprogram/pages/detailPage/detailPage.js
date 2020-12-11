@@ -52,13 +52,46 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detailPage.__proto__ || Object.getPrototypeOf(detailPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tag", "poetryDetail"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detailPage.__proto__ || Object.getPrototypeOf(detailPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "poetryInfo", "tag", "poetryDetail"], _this.switchTag = function () {
+      var _this$props$poetryDet = _this.props.poetryDetail,
+          poetryInfo = _this$props$poetryDet.poetryInfo,
+          tag = _this$props$poetryDet.tag;
+
+      switch (tag) {
+        case 'yuanqu':
+          _this.setTitle(poetryInfo.title);
+          break;
+        case 'lunyu':
+          _this.setTitle(poetryInfo.chapter);
+          break;
+        case 'shijing':
+          var title = poetryInfo.chapter + '·' + poetryInfo.section + '-' + poetryInfo.title;
+          _this.setTitle(title);
+          break;
+        case 'youmengying':
+          _this.setTitle('幽梦影');
+          break;
+        case 'sishuwujing':
+          _this.setTitle(poetryInfo.chapter);
+          break;
+        default:
+          _this.setTitle('诗词详情');
+          break;
+      }
+    }, _this.setTitle = function (title) {
+      _taroWeapp2.default.setNavigationBarTitle({
+        title: title
+      });
+    }, _this.config = {
+      navigationBarBackgroundColor: '#D9C1A5'
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(detailPage, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(detailPage.prototype.__proto__ || Object.getPrototypeOf(detailPage.prototype), "_constructor", this).call(this, props);
+
       this.state = {};
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
@@ -66,42 +99,6 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.switchTag();
-    }
-  }, {
-    key: "switchTag",
-    value: function switchTag() {
-      var _props$poetryDetail = this.props.poetryDetail,
-          poetryInfo = _props$poetryDetail.poetryInfo,
-          tag = _props$poetryDetail.tag;
-
-      switch (tag) {
-        case 'yuanqu':
-          this.setTitle(poetryInfo.title);
-          break;
-        case 'lunyu':
-          this.setTitle(poetryInfo.chapter);
-          break;
-        case 'shijing':
-          var title = poetryInfo.chapter + '·' + poetryInfo.section + '-' + poetryInfo.title;
-          this.setTitle(title);
-          break;
-        case 'youmengying':
-          this.setTitle('幽梦影');
-          break;
-        case 'sishuwujing':
-          this.setTitle(poetryInfo.chapter);
-          break;
-        default:
-          this.setTitle('诗词详情');
-          break;
-      }
-    }
-  }, {
-    key: "setTitle",
-    value: function setTitle(title) {
-      _taroWeapp2.default.setNavigationBarTitle({
-        title: title
-      });
     }
   }, {
     key: "_createData",
@@ -112,13 +109,16 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _props$poetryDetail2 = this.__props.poetryDetail,
-          poetryInfo = _props$poetryDetail2.poetryInfo,
-          tag = _props$poetryDetail2.tag;
+      var _props$poetryDetail = this.__props.poetryDetail,
+          poetryInfo = _props$poetryDetail.poetryInfo,
+          tag = _props$poetryDetail.tag;
 
       console.log(poetryInfo);
       console.log(tag);
+      var anonymousState__temp = tag === 'youmengying' ? (0, _taroWeapp.internal_inline_style)({ fontWeight: 'bold' }) : null;
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        poetryInfo: poetryInfo,
         tag: tag
       });
       return this.__state;

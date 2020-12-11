@@ -1,0 +1,6 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="Tools">
+        <view class="{{menuShow ? 'tool-box' : 'tool-box rotate'}}" bindtap="openMenu"></view>
+        <view class="{{menuShow ? 'tools-item move' : 'tools-item'}}" bindtap="toAuthorIndex">作者</view>
+    </view>
+</block>

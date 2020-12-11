@@ -1,3 +1,39 @@
+page {
+  background: #D9C1A5;
+}
 .detailPage {
   padding: 0 30rpx;
+}
+.detailPage .wrap {
+  padding: 40rpx 0;
+}
+.detailPage .wrap .title {
+  font-weight: bold;
+  line-height: 1.5;
+  font-size: 32rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.detailPage .wrap .author {
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 50rpx;
+  margin: 20rpx 0;
+}
+.detailPage .wrap .content {
+  font-size: 32rpx;
+  line-height: 60rpx;
+  width: 90%;
+  margin: 0 auto;
+  text-align: justify;
+}
+.detailPage .wrap .paragraphs {
+  margin: 20rpx 0;
+}
+.detailPage .wrap .comment {
+  width: 90%;
+  font-size: 28rpx;
+  margin: 60rpx auto 0;
+  color: #5b4a42;
+  text-align: justify;
 }

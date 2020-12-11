@@ -54,9 +54,29 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray3", "catalog", "barHeight", "bgUrl"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray51", "catalog", "barHeight", "bgUrl"], _this.config = {
       navigationStyle: 'custom'
-    }, _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.getallTags = function () {
+      (0, _cloudFn.requestCloud)({
+        clounFnName: 'poetry',
+        controller: 'poetry',
+        action: 'allCategories'
+      }).then(function (res) {
+        if (res.code === 0) {
+          _this.setState({
+            catalog: res.data
+          });
+        } else {
+          (0, _showToast2.default)({ title: res.errMsg });
+        }
+      }).catch(function (_) {
+        (0, _showToast2.default)({ title: '网络异常' });
+      });
+    }, _this.toListPage = function (tag, name) {
+      _taroWeapp2.default.navigateTo({
+        url: "/pages/poetryList/poetryList?tag=" + tag + "&name=" + name
+      });
+    }, _this.anonymousFunc0Map = {}, _this.customComponents = ["Tools"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -97,37 +117,9 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       this.getallTags();
     }
   }, {
-    key: "getallTags",
-    value: function getallTags() {
-      var _this3 = this;
-
-      (0, _cloudFn.requestCloud)({
-        clounFnName: 'poetry',
-        controller: 'poetry',
-        action: 'allCategories'
-      }).then(function (res) {
-        if (res.code === 0) {
-          _this3.setState({
-            catalog: res.data
-          });
-        } else {
-          (0, _showToast2.default)({ title: res.errMsg });
-        }
-      }).catch(function (_) {
-        (0, _showToast2.default)({ title: '网络异常' });
-      });
-    }
-  }, {
-    key: "toListPage",
-    value: function toListPage(tag, name) {
-      _taroWeapp2.default.navigateTo({
-        url: "/pages/poetryList/poetryList?tag=" + tag + "&name=" + name
-      });
-    }
-  }, {
     key: "_createData",
     value: function _createData() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
@@ -142,15 +134,15 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
 
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)({ backgroundImage: 'url(' + bgUrl + ')' });
       var anonymousState__temp2 = (0, _taroWeapp.internal_inline_style)({ top: barHeight + 'px' });
-      var loopArray3 = catalog.map(function (item, __index0) {
+      var loopArray51 = catalog.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "dzzzz" + __index0;
+        var _$indexKey = "edzzz" + __index0;
 
-        _this4.anonymousFunc0Map[_$indexKey] = function () {
-          return _this4.toListPage(item.$original.tag, item.$original.name);
+        _this3.anonymousFunc0Map[_$indexKey] = function () {
+          return _this3.toListPage(item.$original.tag, item.$original.name);
         };
 
         return {
@@ -161,7 +153,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
-        loopArray3: loopArray3
+        loopArray51: loopArray51
       });
       return this.__state;
     }

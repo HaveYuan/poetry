@@ -1,0 +1,38 @@
+.Search {
+  padding: 20px 0;
+  height: 80px;
+  position: relative;
+  .search-icon  {
+    display: inline-block;
+    width: 26px;
+    box-sizing: content-box;
+    height: 26px;
+    border: 4px solid #efefef;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    margin-top: -22px;
+    border-radius: 50%;
+    &::before{
+      content: "";
+      display: inline-block;
+      position: absolute;
+      right: -10px;
+      bottom: -6px;
+      border-width: 0;
+      background: #efefef;
+      width: 14px;
+      height: 4px;
+      transform: rotate(45deg);
+    }
+  }
+  .search-input {
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    border: 1px solid #efefef;
+    padding: 0 30px 0 70px;
+    box-sizing: border-box;
+    font-size: 28px;
+  }
+}

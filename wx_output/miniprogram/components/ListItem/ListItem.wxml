@@ -9,7 +9,7 @@
             </block>
         </block>
         <block wx:if="{{tag === 'youmengying'}}">
-            <block><text class="title">{{poetryObj.content}}</text>
+            <block><text class="title">{{word}}</text>
             </block>
         </block>
         <block wx:if="{{tag === 'sishuwujing'}}">

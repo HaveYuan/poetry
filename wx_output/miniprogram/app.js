@@ -543,7 +543,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/poetryList/poetryList', 'pages/detailPage/detailPage'],
+      pages: ['pages/index/index', 'pages/poetryList/poetryList', 'pages/detailPage/detailPage', 'pages/author/authorIndex/authorIndex', 'pages/author/authorInfo/authorInfo'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
@@ -557,9 +557,6 @@ var _App = function (_BaseComponent) {
   _createClass(_App, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      setTimeout(function () {
-        console.log('10s后启动');
-      }, 10000);
       {
         _taroWeapp2.default.cloud.init({
           env: 'test-hhh',

@@ -1,0 +1,81 @@
+
+@import '../../style/global.scss';
+
+.Tools {
+  width: 96px;
+  height: 48px;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  margin-left: -50px;
+  .tool-box {
+    width: 48Px;
+    height: 24Px;
+    background: #fff;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1Px 1Px 26Px 1Px;
+    border-radius: 100%;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background: #fff;
+      border: 8Px solid #000;
+      border-radius: 100%;
+      width: 8Px;
+      height: 8Px;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 24Px;
+      background: #000;
+      border: 8Px solid #fff;
+      border-radius:100%;
+      width: 8Px;
+      height: 8Px;
+    }
+  }
+  .rotate {
+    animation: rotates 1.5s linear infinite;
+  }
+  .tools-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    position: absolute;
+    @include flex-center;
+    font-size: 24px;
+    visibility: hidden;
+  }
+  .move{
+    animation: move 1s forwards;
+    visibility: visible;
+  }
+}
+
+@keyframes move {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -120px;
+    top: 0;
+  }
+}
+
+@keyframes rotates {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

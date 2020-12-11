@@ -1,0 +1,16 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="authorIndex">
+        <search compid="{{$compid__75}}"></search>
+        <block wx:if="{{searchAuthorInfo.length > 0}}">
+            <view class="author-grid search-content">
+                <author wx:key="_id" wx:for="{{loopArray48}}" wx:for-item="item" wx:for-index="_anonIdx2" compid="{{item.$compid__73}}"></author>
+            </view>
+        </block>
+        <view class="hot-wrap">
+            <view class="tips">著名诗人</view>
+            <view class="author-grid">
+                <author wx:key="_id" wx:for="{{loopArray49}}" wx:for-item="item" wx:for-index="_anonIdx4" compid="{{item.$compid__74}}"></author>
+            </view>
+        </view>
+    </view>
+</block>

@@ -65,6 +65,45 @@ class poetry extends resMsg {
 
 
   }
+
+  async getHotAuthor(params) {// 获取热门作者
+    try {
+      const _ = db.command;
+      const data = await db.collection('author').where(
+        {
+          name: _.or([
+            _.eq('李白'),
+            _.eq('杜甫'),
+            _.eq('王安石'),
+            _.eq('苏轼'),
+            _.eq('李清照'),
+            _.eq('欧阳修'),
+            _.eq('陆游'),
+            _.eq('杜牧'),
+            _.eq('柳永'),
+            _.eq('李煜'),
+          ])
+        }
+      ).get();
+      return await this.success(data);
+    }catch(err) {
+      return await this.failMsg(err);
+    }
+  }
+
+  async searchAuthor(params) {// 搜索作者
+    try {
+      const _ = db.command;
+      const data = await db.collection('author').where(
+        {
+          name: _.eq(params.author)
+        }
+      ).get();
+      return await this.success(data);
+    }catch(err) {
+      return await this.failMsg(err);
+    }
+  }
 }
 
 module.exports = poetry;

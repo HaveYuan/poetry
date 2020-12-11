@@ -48,7 +48,7 @@ var ListItem = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ListItem.__proto__ || Object.getPrototypeOf(ListItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tag", "poetryObj", "loading", "clickFn"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ListItem.__proto__ || Object.getPrototypeOf(ListItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tag", "poetryObj", "word", "loading", "clickFn"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ListItem, [{
@@ -81,6 +81,11 @@ var ListItem = (_temp2 = _class = function (_BaseComponent) {
           clickFn = _props.clickFn,
           tag = _props.tag;
 
+      var word = '';
+      if (tag === 'youmengying') {
+        word = poetryObj.content;
+        word = word.split('，')[0];
+      }
 
       this.anonymousFunc0 = function () {
         return clickFn(poetryObj);
@@ -88,7 +93,8 @@ var ListItem = (_temp2 = _class = function (_BaseComponent) {
 
       Object.assign(this.__state, {
         tag: tag,
-        poetryObj: poetryObj
+        poetryObj: poetryObj,
+        word: word
       });
       return this.__state;
     }

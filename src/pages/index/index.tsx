@@ -2,6 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Swiper, SwiperItem } from '@tarojs/components'
 import { requestCloud } from '@/utils/cloudFn';
 import showToast from '@/utils/showToast';
+import Tools from '@/components/Tools/Tools';
 import './index.scss'
 
 type PageStateProps = {}
@@ -61,7 +62,7 @@ class Index extends Component<PageOwnProps, PageState> {
     navigationStyle: 'custom'
   }
 
-  getallTags() {
+  getallTags = () => {
     requestCloud(
       {
         clounFnName: 'poetry', 
@@ -81,7 +82,7 @@ class Index extends Component<PageOwnProps, PageState> {
     })
   }
 
-  toListPage(tag, name) {
+  toListPage = (tag, name) => {
     Taro.navigateTo({
       url: `/pages/poetryList/poetryList?tag=${tag}&name=${name}`
     });
@@ -113,6 +114,7 @@ class Index extends Component<PageOwnProps, PageState> {
             })
           }
         </Swiper>
+        <Tools />
       </View>
     )
   }

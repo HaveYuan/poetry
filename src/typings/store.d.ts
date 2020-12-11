@@ -39,3 +39,11 @@ interface 诗词详情数据 {
   poetryInfo: poetryItem,
   tag: string
 }
+
+interface 作者数据 {
+  _id: string,
+  description: string,
+  name: string,
+  short_description: string,
+  imgUrl?: string
+}

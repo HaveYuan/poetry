@@ -21,9 +21,6 @@ const store = dvaApp.getStore();
 class App extends Component {
 
   componentDidMount () {
-    setTimeout(() => {
-      console.log('10s后启动')
-    },10000)
     if (process.env.TARO_ENV === 'weapp') {
       Taro.cloud.init({
         env: process.env.NODE_ENV === 'development' ? 'test-hhh' : '',
@@ -49,7 +46,9 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/poetryList/poetryList',
-      'pages/detailPage/detailPage'
+      'pages/detailPage/detailPage',
+      'pages/author/authorIndex/authorIndex',
+      'pages/author/authorInfo/authorInfo',
     ],
     window: {
       backgroundTextStyle: 'light',

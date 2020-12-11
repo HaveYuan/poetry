@@ -60,13 +60,59 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = poetryList.__proto__ || Object.getPrototypeOf(poetryList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray2", "$compid__3", "poetryListData", "loading", "tag", "pageNo", "dispatch"], _this.customComponents = ["ListItem", "Loading"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = poetryList.__proto__ || Object.getPrototypeOf(poetryList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray73", "$compid__79", "poetryListData", "loading", "tag", "pageNo", "dispatch"], _this.getpoetryList = function (pageNo) {
+      (0, _cloudFn.requestCloud)({
+        clounFnName: 'poetry',
+        controller: 'poetry',
+        action: 'getPoetryList',
+        data: {
+          pageNo: pageNo,
+          pageSize: 20,
+          tag: _this.state.tag
+        }
+      }).then(function (res) {
+        var poetryListData = _this.state.poetryListData;
+
+        if (res.data) {
+          var _pageNo = pageNo + 1;
+          _this.setState({
+            poetryListData: poetryListData.concat(res.data),
+            pageNo: _pageNo
+          });
+          if (pageNo === res.totalPage) {
+            _this.setState({
+              loading: false
+            });
+          }
+        }
+      }).catch(function (err) {
+        (0, _showToast2.default)({ title: err.msg });
+      });
+    }, _this.toDetail = function (item) {
+      var tag = _this.state.tag;
+      var dispatch = _this.props.dispatch;
+
+      dispatch({
+        type: 'poetryDetail/save',
+        payload: {
+          tag: tag,
+          poetryInfo: item
+        }
+      });
+      _taroWeapp2.default.navigateTo({
+        url: '/pages/detailPage/detailPage'
+      });
+    }, _this.customComponents = ["ListItem", "Loading"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(poetryList, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(poetryList.prototype.__proto__ || Object.getPrototypeOf(poetryList.prototype), "_constructor", this).call(this, props);
+      /**
+       * 获取诗词列表
+       */
+
       this.state = {
         loading: true,
         tag: '',
@@ -101,64 +147,10 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
         this.getpoetryList(pageNo);
       }
     }
-    /**
-     * 获取诗词列表
-     */
-
-  }, {
-    key: "getpoetryList",
-    value: function getpoetryList(pageNo) {
-      var _this3 = this;
-
-      (0, _cloudFn.requestCloud)({
-        clounFnName: 'poetry',
-        controller: 'poetry',
-        action: 'getPoetryList',
-        data: {
-          pageNo: pageNo,
-          pageSize: 20,
-          tag: this.state.tag
-        }
-      }).then(function (res) {
-        var poetryListData = _this3.state.poetryListData;
-
-        if (res.data) {
-          var _pageNo = pageNo + 1;
-          _this3.setState({
-            poetryListData: poetryListData.concat(res.data),
-            pageNo: _pageNo
-          });
-          if (pageNo === res.totalPage) {
-            _this3.setState({
-              loading: false
-            });
-          }
-        }
-      }).catch(function (err) {
-        (0, _showToast2.default)({ title: err.msg });
-      });
-    }
-  }, {
-    key: "toDetail",
-    value: function toDetail(item) {
-      var tag = this.state.tag;
-      var dispatch = this.props.dispatch;
-
-      dispatch({
-        type: 'poetryDetail/save',
-        payload: {
-          tag: tag,
-          poetryInfo: item
-        }
-      });
-      _taroWeapp2.default.navigateTo({
-        url: '/pages/detailPage/detailPage'
-      });
-    }
   }, {
     key: "_createData",
     value: function _createData() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
@@ -166,47 +158,47 @@ var poetryList = (_temp2 = _class = function (_BaseComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__3"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__79"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__3 = _genCompid2[0],
-          $compid__3 = _genCompid2[1];
+          $prevCompid__79 = _genCompid2[0],
+          $compid__79 = _genCompid2[1];
 
       var _state2 = this.__state,
           loading = _state2.loading,
           poetryListData = _state2.poetryListData,
           tag = _state2.tag;
 
-      var loopArray2 = poetryListData.map(function (item, _anonIdx) {
+      var loopArray73 = poetryListData.map(function (item, _anonIdx) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
         var $loopState__temp2 = function $loopState__temp2() {
-          return _this4.toDetail(item.$original);
+          return _this3.toDetail(item.$original);
         };
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "czzzzzzzzz" + _anonIdx, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "efzzzzzzzz" + _anonIdx, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__2 = _genCompid4[0],
-            $compid__2 = _genCompid4[1];
+            $prevCompid__78 = _genCompid4[0],
+            $compid__78 = _genCompid4[1];
 
         _taroWeapp.propsManager.set({
           "tag": tag,
           "poetryObj": item.$original,
           "clickFn": $loopState__temp2
-        }, $compid__2, $prevCompid__2);
+        }, $compid__78, $prevCompid__78);
         return {
           $loopState__temp2: $loopState__temp2,
-          $compid__2: $compid__2,
+          $compid__78: $compid__78,
           $original: item.$original
         };
       });
       _taroWeapp.propsManager.set({
         "loading": loading
-      }, $compid__3, $prevCompid__3);
+      }, $compid__79, $prevCompid__79);
       Object.assign(this.__state, {
-        loopArray2: loopArray2,
-        $compid__3: $compid__3
+        loopArray73: loopArray73,
+        $compid__79: $compid__79
       });
       return this.__state;
     }

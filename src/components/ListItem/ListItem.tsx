@@ -39,6 +39,11 @@ class ListItem extends Component<PageOwnProps, PageState> {
 
 	render() {
 		const { poetryObj, clickFn, tag } = this.props;
+		let word:string|undefined = '';
+		if(tag === 'youmengying') {
+			word = poetryObj.content;
+			word = word.split('，')[0];
+		}
 		return (
 			<View className='list-item' onClick={()=>clickFn(poetryObj)}>
 				{tag === 'lunyu' && (
@@ -56,7 +61,7 @@ class ListItem extends Component<PageOwnProps, PageState> {
 
 				{tag === 'youmengying' && (
 					<Block>
-						<Text className='title'>{poetryObj.content}</Text>
+						<Text className='title'>{word}</Text>
 					</Block>
 				)}
 

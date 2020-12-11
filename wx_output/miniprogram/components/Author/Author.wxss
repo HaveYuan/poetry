@@ -1,0 +1,18 @@
+.Author {
+  display: flex;
+  flex-direction: column;
+  width: 120rpx;
+}
+.Author .header-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.Author .name {
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 12rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

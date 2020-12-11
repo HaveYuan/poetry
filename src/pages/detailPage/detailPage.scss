@@ -1,5 +1,41 @@
 @import '../../style/global.scss';
 
+page {
+  background: #D9C1A5;
+}
 .detailPage {
   padding: 0 $padding30;
+  .wrap {
+    padding: 40px 0;
+    .title {
+      font-weight: bold;
+      line-height: 1.5;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .author {
+      font-size: 28px;
+      text-align: center;
+      line-height: 50px;
+      margin: 20px 0;
+    }
+    .content {
+      font-size: 32px;
+      line-height: 60px;
+      width: 90%;
+      margin: 0 auto;
+      text-align: justify;
+    }
+    .paragraphs {
+      margin: 20px 0;
+    }
+    .comment {
+      width: 90%;
+      font-size: 28px;
+      margin: 60px auto 0;
+      color: rgb(91, 74, 66);
+      text-align: justify;
+    }
+  }
 }

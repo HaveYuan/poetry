@@ -35,14 +35,14 @@ page, .Index {
 .Index .all .all-item .ct-item {
   width: 95%;
   height: 600rpx;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(217, 193, 165, 0.7);
   border-radius: 16rpx;
-  border: 1rpx solid #ccc;
+  border: 1rpx solid #d9c1a5;
   box-sizing: border-box;
   margin: 0 auto;
   padding: 18rpx 20rpx;
   overflow: hidden;
-  box-shadow: 0 0 4rpx #ccc;
+  box-shadow: 0 0 4rpx #d9c1a5;
 }
 .Index .all .all-item .ct-item .title {
   font-family: 'Times New Roman', Times, serif;

@@ -65,7 +65,7 @@ class poetryList extends Component<PageOwnProps, PageState> {
 	/**
 	 * 获取诗词列表
 	 */
-	getpoetryList(pageNo) {
+	getpoetryList = (pageNo) => {
 		requestCloud({
 			clounFnName: 'poetry', 
 			controller: 'poetry', 
@@ -94,7 +94,7 @@ class poetryList extends Component<PageOwnProps, PageState> {
 		})
 	}
 
-	toDetail(item) {
+	toDetail = (item) => {
 		const { tag } = this.state;
 		const { dispatch } = this.props;
 

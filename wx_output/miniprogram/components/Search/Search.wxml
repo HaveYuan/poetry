@@ -1,0 +1,6 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="Search">
+        <view class="search-icon"></view>
+        <input class="search-input" confirm-type="search" placeholder="{{placeholder}}" bindblur="searchContent" />
+    </view>
+</block>

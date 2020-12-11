@@ -1,0 +1,19 @@
+@import '../../style/global.scss';
+
+.Author {
+  @include flex-column;
+  width: 120px;
+  .header-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+  .name {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

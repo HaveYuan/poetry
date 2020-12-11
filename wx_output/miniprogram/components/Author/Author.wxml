@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="Author">
+        <image class="header-icon" src="{{authorInfo.imgUrl || 'https://cdn.jsdelivr.net/gh/haveyuan/blog_img/comic/cike.webp'}}"></image><text class="name">{{authorInfo.name}}</text>
+    </view>
+</block>

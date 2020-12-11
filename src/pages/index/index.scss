@@ -34,14 +34,14 @@ page,.Index {
       .ct-item {
         width: 95%;
         height: 600px;
-        background: rgba(255,255,255,.7);
+        background: rgba(217,193,165,.7);
         border-radius: $borderRadius;
-        border: 1px solid #ccc;
+        border: 1px solid rgb(217,193,165);
         box-sizing: border-box;
         margin: 0 auto;
         padding: 18px 20px;
         overflow: hidden;
-        box-shadow: 0 0 4px #ccc;
+        box-shadow: 0 0 4px rgb(217,193,165);;
         .title {
           font-family: 'Times New Roman', Times, serif;
           font-size: 36px;

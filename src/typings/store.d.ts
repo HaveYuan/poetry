@@ -37,6 +37,7 @@ interface ToastParams {
 
 interface 诗词详情数据 {
   poetryInfo: poetryItem,
+  authorInfo: 作者数据,
   tag: string
 }
 

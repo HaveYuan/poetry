@@ -76,8 +76,6 @@ class detailPage extends Component<PageOwnProps, PageState> {
 
   render() {
     const { poetryDetail:{poetryInfo, tag} } = this.props;
-    console.log(poetryInfo)
-    console.log(tag)
     return (
       <View className='detailPage'>
         {tag === 'yuanqu' && (

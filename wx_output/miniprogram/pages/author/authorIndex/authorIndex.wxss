@@ -2,7 +2,7 @@
   padding: 0 30rpx;
 }
 .authorIndex .search-content {
-  margin-top: 10%;
+  margin-top: 8%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,7 @@
   position: absolute;
   top: 50%;
   left: 0;
-  margin-top: -15rpx;
+  margin-top: -14rpx;
 }
 .authorIndex .hot-wrap .author-grid {
   display: grid;

@@ -4,9 +4,8 @@ export default {
   namespace: 'poetryDetail',
 
   state: {
-    poetryInfo: {
-
-    },
+    poetryInfo: {},
+    authorInfo: {},
     tag: ''
   },
 

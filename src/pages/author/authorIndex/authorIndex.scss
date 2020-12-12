@@ -3,7 +3,7 @@
 .authorIndex {
   padding: 0 $padding30;
   .search-content {
-    margin-top: 10%;
+    margin-top: 8%;
     @include flex-center
   }
   .hot-wrap {
@@ -20,7 +20,7 @@
         position: absolute;
         top: 50%;
         left: 0;
-        margin-top: -15px;
+        margin-top: -14px;
       }
     }
     .author-grid {

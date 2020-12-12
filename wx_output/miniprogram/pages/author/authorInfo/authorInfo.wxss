@@ -1,0 +1,22 @@
+page {
+  background: #D9C1A5;
+}
+.authorInfo {
+  padding: 30rpx 40rpx 50rpx;
+}
+.authorInfo .head-img {
+  width: 240rpx;
+  float: left;
+  margin-right: 30rpx;
+  border: 8rpx solid #fff;
+  border-radius: 10rpx;
+}
+.authorInfo .name {
+  font-weight: bold;
+  line-height: 2;
+}
+.authorInfo .desc {
+  line-height: 2;
+  text-align: justify;
+  font-size: 28rpx;
+}

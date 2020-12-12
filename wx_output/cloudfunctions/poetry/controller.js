@@ -82,6 +82,8 @@ class poetry extends resMsg {
             _.eq('杜牧'),
             _.eq('柳永'),
             _.eq('李煜'),
+            _.eq('辛弃疾'),
+            _.eq('范仲淹')
           ])
         }
       ).get();

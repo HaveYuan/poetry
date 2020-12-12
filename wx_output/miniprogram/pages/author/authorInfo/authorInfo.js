@@ -20,9 +20,13 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
+var _tslib = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 __webpack_require__(/*! ./authorInfo.scss */ "./src/pages/author/authorInfo/authorInfo.scss");
 
@@ -48,8 +52,9 @@ var authorInfo = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = authorInfo.__proto__ || Object.getPrototypeOf(authorInfo)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["name"], _this.config = {
-      navigationBarTitleText: '作者'
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = authorInfo.__proto__ || Object.getPrototypeOf(authorInfo)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["authorInfo", "poetryDetail"], _this.config = {
+      navigationBarTitleText: '作者介绍',
+      navigationBarBackgroundColor: '#D9C1A5'
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -58,23 +63,9 @@ var authorInfo = (_temp2 = _class = function (_BaseComponent) {
     value: function _constructor(props) {
       _get(authorInfo.prototype.__proto__ || Object.getPrototypeOf(authorInfo.prototype), "_constructor", this).call(this, props);
 
-      this.state = {
-        name: '小红'
-      };
+      this.state = {};
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {}
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {}
-  }, {
-    key: "componentDidShow",
-    value: function componentDidShow() {}
-  }, {
-    key: "componentDidHide",
-    value: function componentDidHide() {}
   }, {
     key: "_createData",
     value: function _createData() {
@@ -83,13 +74,22 @@ var authorInfo = (_temp2 = _class = function (_BaseComponent) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      Object.assign(this.__state, {});
+
+      var authorInfo = this.__props.poetryDetail.authorInfo;
+
+      Object.assign(this.__state, {
+        authorInfo: authorInfo
+      });
       return this.__state;
     }
   }]);
 
   return authorInfo;
 }(_taroWeapp.Component), _class.$$events = [], _class.$$componentPath = "pages/author/authorInfo/authorInfo", _temp2);
+authorInfo = (0, _tslib.__decorate)([(0, _redux.connect)(function (_ref2) {
+  var poetryDetail = _ref2.poetryDetail;
+  return { poetryDetail: poetryDetail };
+})], authorInfo);
 exports.default = authorInfo;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(authorInfo, true));

@@ -113,8 +113,6 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
           poetryInfo = _props$poetryDetail.poetryInfo,
           tag = _props$poetryDetail.tag;
 
-      console.log(poetryInfo);
-      console.log(tag);
       var anonymousState__temp = tag === 'youmengying' ? (0, _taroWeapp.internal_inline_style)({ fontWeight: 'bold' }) : null;
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,

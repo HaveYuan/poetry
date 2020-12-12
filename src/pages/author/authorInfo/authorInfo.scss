@@ -1,0 +1,25 @@
+@import '../../../style/global.scss';
+
+page {
+  background: $backgroundBook;
+}
+
+.authorInfo {
+  padding: $padding30 40px 50px;
+  .head-img {
+    width: 240px;
+    float: left;
+    margin-right: 30px;
+    border: 8px solid #fff;
+    border-radius: 10px;
+  }
+  .name {
+    font-weight: bold;
+    line-height: 2;
+  }
+  .desc {
+    line-height: 2;
+    text-align: justify;
+    font-size: 28px;
+  }
+}

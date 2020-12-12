@@ -1,4 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="authorInfo"><text>hello world</text>
+    <view class="authorInfo">
+        <image class="head-img" lazy-load="{{true}}" mode="widthFix" src="{{authorInfo.imgUrl ? authorInfo.imgUrl : 'https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/head/default.jpg'}}"></image>
+        <view class="name">{{authorInfo.name}}</view>
+        <view class="desc">{{authorInfo.description}}</view>
     </view>
 </block>

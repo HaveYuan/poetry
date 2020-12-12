@@ -22,9 +22,13 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
+var _tslib = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _cloudFn = __webpack_require__(/*! ../../../utils/cloudFn */ "./src/utils/cloudFn.ts");
 
@@ -56,16 +60,16 @@ var authorIndex = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = authorIndex.__proto__ || Object.getPrototypeOf(authorIndex)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray48", "loopArray49", "$compid__75", "searchAuthorInfo", "hotAuthor"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = authorIndex.__proto__ || Object.getPrototypeOf(authorIndex)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__217", "$compid__218", "$compid__219", "searchAuthorInfo", "hotAuthor", "dispatch"], _this.config = {
       navigationBarTitleText: '作者'
     }, _this.searchContent = function (e) {
       console.log(e);
       var value = e.detail.value.replace(" ", "");
-      _taroWeapp2.default.showLoading({
-        title: '正在搜索',
-        mask: true
-      });
       if (value) {
+        _taroWeapp2.default.showLoading({
+          title: '正在搜索',
+          mask: true
+        });
         (0, _cloudFn.requestCloud)({
           clounFnName: 'poetry',
           controller: 'poetry',
@@ -81,12 +85,26 @@ var authorIndex = (_temp2 = _class = function (_BaseComponent) {
             });
           } else {
             (0, _showToast2.default)({ title: '查无此人' });
+            _this.setState({
+              searchAuthorInfo: []
+            });
           }
         }).catch(function (_) {
-          console.log(_);
           (0, _showToast2.default)({ title: '网络异常' });
         });
       }
+    }, _this.getAuthorInfo = function (item) {
+      var dispatch = _this.props.dispatch;
+
+      dispatch({
+        type: 'poetryDetail/save',
+        payload: {
+          authorInfo: item
+        }
+      });
+      _taroWeapp2.default.navigateTo({
+        url: '/pages/author/authorInfo/authorInfo'
+      });
     }, _this.customComponents = ["Search", "Author"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -130,59 +148,41 @@ var authorIndex = (_temp2 = _class = function (_BaseComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__75"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__217"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__75 = _genCompid2[0],
-          $compid__75 = _genCompid2[1];
+          $prevCompid__217 = _genCompid2[0],
+          $compid__217 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__218"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__218 = _genCompid4[0],
+          $compid__218 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__219"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__219 = _genCompid6[0],
+          $compid__219 = _genCompid6[1];
 
       var _state = this.__state,
           hotAuthor = _state.hotAuthor,
           searchAuthorInfo = _state.searchAuthorInfo;
 
-      var loopArray48 = searchAuthorInfo.length > 0 ? searchAuthorInfo.map(function (item, _anonIdx) {
-        item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
-        };
-
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "eazzzzzzzz" + _anonIdx, true),
-            _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__73 = _genCompid4[0],
-            $compid__73 = _genCompid4[1];
-
-        searchAuthorInfo.length > 0 && _taroWeapp.propsManager.set({
-          "authorInfo": item.$original
-        }, $compid__73, $prevCompid__73);
-        return {
-          $compid__73: $compid__73,
-          $original: item.$original
-        };
-      }) : [];
-      var loopArray49 = hotAuthor.map(function (item, _anonIdx3) {
-        item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
-        };
-
-        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "ebzzzzzzzz" + _anonIdx3, true),
-            _genCompid6 = _slicedToArray(_genCompid5, 2),
-            $prevCompid__74 = _genCompid6[0],
-            $compid__74 = _genCompid6[1];
-
-        _taroWeapp.propsManager.set({
-          "authorInfo": item.$original
-        }, $compid__74, $prevCompid__74);
-        return {
-          $compid__74: $compid__74,
-          $original: item.$original
-        };
-      });
       _taroWeapp.propsManager.set({
         "searchFn": this.searchContent,
         "placeholder": "\u8BF7\u8F93\u5165\u4F5C\u8005\u540D\u79F0"
-      }, $compid__75, $prevCompid__75);
+      }, $compid__217, $prevCompid__217);
+      searchAuthorInfo.length > 0 && _taroWeapp.propsManager.set({
+        "authorInfo": searchAuthorInfo,
+        "getAuthorInfo": this.getAuthorInfo
+      }, $compid__218, $prevCompid__218);
+      _taroWeapp.propsManager.set({
+        "authorInfo": hotAuthor,
+        "getAuthorInfo": this.getAuthorInfo
+      }, $compid__219, $prevCompid__219);
       Object.assign(this.__state, {
-        loopArray48: loopArray48,
-        loopArray49: loopArray49,
-        $compid__75: $compid__75
+        $compid__217: $compid__217,
+        $compid__218: $compid__218,
+        $compid__219: $compid__219
       });
       return this.__state;
     }
@@ -190,6 +190,10 @@ var authorIndex = (_temp2 = _class = function (_BaseComponent) {
 
   return authorIndex;
 }(_taroWeapp.Component), _class.$$events = [], _class.$$componentPath = "pages/author/authorIndex/authorIndex", _temp2);
+authorIndex = (0, _tslib.__decorate)([(0, _redux.connect)(function (_ref2) {
+  var poetryDetail = _ref2.poetryDetail;
+  return { poetryDetail: poetryDetail };
+})], authorIndex);
 exports.default = authorIndex;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(authorIndex, true));

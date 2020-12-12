@@ -1,19 +1,50 @@
 @import '../../style/global.scss';
 
-.Author {
-  @include flex-column;
-  width: 120px;
-  .header-icon {
+.author-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 120px);
+  grid-column-gap: 70px;
+  grid-row-gap: 30px;
+  margin-top: 40px;
+  .Author {
+    @include flex-column;
     width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    .header-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 87% 91% 98% 100%;
+      border: 4px solid deepskyblue;
+    }
+    .name {
+      font-size: 28px;
+      text-align: center;
+      margin-top: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
-  .name {
-    font-size: 28px;
-    text-align: center;
-    margin-top: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+.Author {
+  &:nth-child(2n+1) .header-icon{
+    border-radius: 59% 52% 56% 59%;
+    transform: rotate(-6deg);
+  }
+  &:nth-child(3n+2) .header-icon{
+    border-radius: 84% 94% 83% 72%;
+    transform: rotate(5deg);
+  }
+  &:nth-child(5n+3) .header-icon{
+    border-radius: 73% 100% 82% 100%;
+    transform: rotate(7deg);
+  }
+  &:nth-child(7n+5) .header-icon{
+    border-radius: 93% 90% 85% 78%;
+    transform: rotate(-2deg);
+  }
+  &:nth-child(11n+7) .header-icon{
+    border-radius: 68% 68% 83% 53%;
+    transform: rotate(-2deg);
   }
 }

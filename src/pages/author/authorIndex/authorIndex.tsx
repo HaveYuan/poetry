@@ -1,4 +1,5 @@
 import Taro, { Component, Config } from '@tarojs/taro'
+import { connect } from '@tarojs/redux'
 import { View, Text } from '@tarojs/components'
 import Search from '@/components/Search/Search'
 import Author from '@/components/Author/Author'
@@ -9,7 +10,10 @@ import './authorIndex.scss'
 
 type PageStateProps = {}
 
-type PageDispatchProps = {}
+type PageDispatchProps = {
+  dispatch: (object)=>void
+  poetryDetail: 诗词详情数据
+}
 
 type PageOwnProps = {}
 
@@ -25,6 +29,9 @@ interface authorIndex {
   state: PageState
 }
 
+@connect(
+  ({poetryDetail}) => ({poetryDetail})
+)
 class authorIndex extends Component<IProps, PageState> {
   constructor(props) {
     super(props)
@@ -60,11 +67,12 @@ class authorIndex extends Component<IProps, PageState> {
   searchContent = (e) => {
     console.log(e)
     const value = e.detail.value.replace(" ", "");
-    Taro.showLoading({
-      title: '正在搜索',
-      mask: true
-    });
+
     if(value) {
+      Taro.showLoading({
+        title: '正在搜索',
+        mask: true
+      });
       requestCloud({
         clounFnName: 'poetry', 
         controller: 'poetry', 
@@ -80,12 +88,27 @@ class authorIndex extends Component<IProps, PageState> {
           })
         }else {
           showToast({title:'查无此人'})
+          this.setState({
+            searchAuthorInfo: []
+          })
         }
       }).catch(_ => {
-        console.log(_)
         showToast({title:'网络异常'})
       })
     }
+  }
+
+  getAuthorInfo = (item) => { // 获取作者详情
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'poetryDetail/save',
+      payload: {
+        authorInfo: item
+      }
+    })
+    Taro.navigateTo({
+      url: '/pages/author/authorInfo/authorInfo'
+    })
   }
 
   render() {
@@ -97,28 +120,12 @@ class authorIndex extends Component<IProps, PageState> {
           searchFn={this.searchContent}
           placeholder='请输入作者名称'
         />
-        {searchAuthorInfo.length > 0 &&(<View className='author-grid search-content'>
-          {searchAuthorInfo.map(item => {
-            return (
-              <Author
-                key={item._id}
-                authorInfo={item}
-              />
-            )
-          })}
-        </View>)}
+        {searchAuthorInfo.length > 0 && (
+          <Author authorInfo={searchAuthorInfo} search-content='search-content' getAuthorInfo={this.getAuthorInfo} />
+        )}
         <View className='hot-wrap'>
-          <View className='tips'>著名诗人</View>
-          <View className='author-grid'>
-            {hotAuthor.map(item => {
-              return (
-                <Author
-                  key={item._id}
-                  authorInfo={item}
-                />
-              )
-            })}
-          </View>
+          {hotAuthor.length>0 && (<View className='tips'>著名作者</View>)}
+          <Author authorInfo={hotAuthor} getAuthorInfo={this.getAuthorInfo}/>
         </View>
       </View>
     )

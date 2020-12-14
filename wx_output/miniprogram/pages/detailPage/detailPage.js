@@ -52,7 +52,7 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detailPage.__proto__ || Object.getPrototypeOf(detailPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "poetryInfo", "tag", "poetryDetail"], _this.switchTag = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detailPage.__proto__ || Object.getPrototypeOf(detailPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "poetryInfo", "tag", "poetryDetail"], _this.switchTag = function () {
       var _this$props$poetryDet = _this.props.poetryDetail,
           poetryInfo = _this$props$poetryDet.poetryInfo,
           tag = _this$props$poetryDet.tag;
@@ -113,9 +113,12 @@ var detailPage = (_temp2 = _class = function (_BaseComponent) {
           poetryInfo = _props$poetryDetail.poetryInfo,
           tag = _props$poetryDetail.tag;
 
-      var anonymousState__temp = tag === 'youmengying' ? (0, _taroWeapp.internal_inline_style)({ fontWeight: 'bold' }) : null;
+      console.log(poetryInfo);
+      var anonymousState__temp = poetryInfo.notes.length > 0 ? (0, _taroWeapp.internal_inline_style)({ fontWeight: 'bold' }) : null;
+      var anonymousState__temp2 = tag === 'youmengying' ? (0, _taroWeapp.internal_inline_style)({ fontWeight: 'bold' }) : null;
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
         poetryInfo: poetryInfo,
         tag: tag
       });

@@ -14,7 +14,8 @@ interface poetryItem {
   tags?: string,
   section?: string,
   paragraphs?: Array<string>,
-  comment?: Array<string>
+  comment?: Array<string>,
+  notes?: Array<string>
 }
 
 interface requestCloudParams {

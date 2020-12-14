@@ -52,7 +52,7 @@ class ListItem extends Component<PageOwnProps, PageState> {
 					</Block>
 				)}
 
-				{tag === 'yuanqu' && (
+				{(tag === 'yuanqu' || tag === 'nantang') && (
 					<Block>
 						<Text className='title'>{poetryObj.title}</Text>
 						<Text className='author'>{poetryObj.author}</Text>

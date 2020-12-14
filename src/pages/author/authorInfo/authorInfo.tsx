@@ -1,5 +1,5 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { View, Image, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import './authorInfo.scss'
 
@@ -41,7 +41,7 @@ class authorInfo extends Component<IProps, PageState> {
       <View className='authorInfo'>
         <Image className='head-img' lazyLoad mode='widthFix' src={authorInfo.imgUrl ? authorInfo.imgUrl : 'https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/head/default.jpg'}></Image>
         <View className='name'>{authorInfo.name}</View>
-        <View className='desc'>{authorInfo.description}</View>
+        <Text className='desc'>{authorInfo.description}</Text>
       </View>
     )
   }

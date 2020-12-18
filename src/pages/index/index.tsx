@@ -1,13 +1,16 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Swiper, SwiperItem, ScrollView, Text, Button, Image } from '@tarojs/components'
-import { requestCloud } from '@/utils/cloudFn';
-import showToast from '@/utils/showToast';
+import { connect } from '@tarojs/redux'
 import Tools from '@/components/Tools/Tools';
 import './index.scss'
 
-type PageStateProps = {}
+type PageStateProps = {
+	poetryDetail: 诗词详情数据
+}
 
-type PageDispatchProps = {}
+type PageDispatchProps = {
+  dispatch: any
+}
 
 type PageOwnProps = {}
 
@@ -24,7 +27,7 @@ interface Index {
   props: IProps,
   state: PageState
 }
-
+@connect(({poetryDetail}) => ({poetryDetail}))
 class Index extends Component<PageOwnProps, PageState> {
   constructor(props) {
     super(props)
@@ -47,7 +50,7 @@ class Index extends Component<PageOwnProps, PageState> {
     })
 
     Taro.cloud.downloadFile({
-      fileID: 'cloud://test-hhh.7465-test-hhh-1304398770/poetry/images/bg.jpg',
+      fileID: 'cloud://test-hhh.7465-test-hhh-1304398770/poetry/images/bg.webp',
       success: res => {
         if(res.errMsg.indexOf('downloadFile:ok') > -1) {
           this.setState({
@@ -73,22 +76,17 @@ class Index extends Component<PageOwnProps, PageState> {
   }
 
   getallTags = () => {
-    requestCloud(
-      {
-        clounFnName: 'poetry', 
-        controller: 'poetry', 
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'poetryDetail/poetryApi',
+      payload: {
         action: 'allCategories'
-      }
-    ).then((res:any) => {
-      if(res.code === 0) {
+      },
+      callback: res => {
         this.setState({
           catalog: res.data
         })
-      }else {
-        showToast({title:res.errMsg})
       }
-    }).catch(_ => {
-      showToast({title:'网络异常'})
     })
   }
 
@@ -99,16 +97,17 @@ class Index extends Component<PageOwnProps, PageState> {
   }
 
   getCode=()=> {
-    requestCloud({
-      clounFnName: 'poetry', 
-      controller: 'poetry', 
-      action: 'getCode',
-      data: {
-        scene: encodeURIComponent('from=code'),
-        page: 'pages/index/index'
-      }
-    }).then((res:any) => {
-      if(res.code === 0) {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'poetryDetail/poetryApi',
+      payload: {
+        action: 'getCode',
+        data: {
+          scene: encodeURIComponent('from=code'),
+          page: 'pages/index/index'
+        }
+      },
+      callback: res => {
         console.log(res)
         const arrayBuffer = new Uint8Array(res.buffer.data)
         const base64 = "data:image/png;base64,"+Taro.arrayBufferToBase64(arrayBuffer)
@@ -116,11 +115,7 @@ class Index extends Component<PageOwnProps, PageState> {
         this.setState({
           imgUrl: base64
         })
-      }else {
-        showToast({title:res.errMsg})
       }
-    }).catch(_ => {
-      showToast({title:'网络异常'})
     })
   }
 

@@ -1,0 +1,9 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="my">
+        <view class="head-box">
+            <open-data type="userAvatarUrl" class="user-avatar"></open-data>
+            <open-data type="userNickName" class="user-name"></open-data>
+        </view>
+        <view class="tips">更多功能，敬请期待~</view>
+    </view>
+</block>

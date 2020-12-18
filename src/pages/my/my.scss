@@ -1,0 +1,28 @@
+@import '../../style/global.scss';
+
+.my {
+  // padding: 0 $padding30;
+  .head-box {
+    height: 300px;
+    @include flex-column;
+    @include flex-center;
+    background: #161823;
+    .user-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .user-name {
+      font-size: 28px;
+      margin-top: 12px;
+      color: #fff;
+    }
+  }
+  .tips {
+    text-align: center;
+    font-size: 34px;
+    line-height: 2;
+    margin-top: 100px;
+  }
+}

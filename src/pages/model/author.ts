@@ -1,17 +1,16 @@
 
 import { requestCloud }  from '@/utils/cloudFn'
-import showToast from '@/utils/showToast';
-
 
 export default {
-  namespace: 'poetryDetail',
+  namespace: 'author',
 
   state: {
-    poetryInfo: {},
+    authorInfo: {},
+    hasAuthor: false, // 是否有该作者信息
   },
 
   effects: {
-    *poetryApi({payload, callback}, {call, put}) {
+    *authorApi({payload, callback}, {call, put}) {
       requestCloud({
 				clounFnName: 'poetry',
 				controller: 'poetry',

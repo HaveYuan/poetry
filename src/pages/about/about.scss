@@ -1,0 +1,15 @@
+@import '../../style/global.scss';
+
+.about {
+  padding: 0 $padding30;
+  line-height: 2;
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .link {
+    color: deepskyblue;
+  }
+}
+

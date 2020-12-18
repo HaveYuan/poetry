@@ -1,56 +1,58 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="detailPage">
-        <block wx:if="{{tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji'}}">
-            <view class="wrap">
-                <view class="title">{{poetryInfo.title}}</view>
-                <view class="author">{{poetryInfo.author}}</view>
-                <view class="content">
-                    <view wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx2">{{item}}</view>
+    <view class="detailPage" style="{{anonymousState__temp}}">
+        <scroll-view scroll-y="{{true}}" class="pageScroll">
+            <block wx:if="{{tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji'}}">
+                <view class="wrap">
+                    <view class="title">{{poetryInfo.title}}</view>
+                    <view class="{{hasAuthor ? 'author txt-line' : 'author'}}" bindtap="toAuthorInfo">{{poetryInfo.author}}</view>
+                    <view class="content">
+                        <view wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx2">{{item}}</view>
+                    </view>
+                    <block wx:if="{{poetryInfo.notes && poetryInfo.notes.length > 0}}">
+                        <view class="comment"><text style="{{anonymousState__temp2}}">解析：</text>
+                            <view>
+                                <view class="paragraphs" wx:for="{{poetryInfo.notes}}" wx:for-item="item" wx:for-index="_anonIdx4">{{item}}</view>
+                            </view>
+                        </view>
+                    </block>
                 </view>
-                <block wx:if="{{poetryInfo.notes && poetryInfo.notes.length > 0}}">
-                    <view class="comment"><text style="{{anonymousState__temp}}">解析：</text>
+            </block>
+            <block wx:if="{{tag === 'lunyu'}}">
+                <view class="wrap">
+                    <view class="title">{{poetryInfo.chapter}}</view>
+                    <view class="content">
+                        <view class="paragraphs" wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx6">{{item}}</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{tag === 'shijing'}}">
+                <view class="wrap">
+                    <view class="title">{{poetryInfo.title}}</view>
+                    <view class="author">{{poetryInfo.chapter}}·{{poetryInfo.section}}</view>
+                    <view class="content">
+                        <view wx:for="{{poetryInfo.content}}" wx:for-item="item" wx:for-index="_anonIdx8">{{item}}</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{tag === 'sishuwujing'}}">
+                <view class="wrap">
+                    <view class="title">{{poetryInfo.chapter}}</view>
+                    <view class="author">{{poetryInfo.tags}}</view>
+                    <view class="content">
+                        <view class="paragraphs" wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx10">{{item}}</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:if="{{tag === 'youmengying'}}">
+                <view class="wrap">
+                    <view class="content">{{poetryInfo.content}}</view>
+                    <view class="comment"><text style="{{anonymousState__temp3}}">名人评析：</text>
                         <view>
-                            <view class="paragraphs" wx:for="{{poetryInfo.notes}}" wx:for-item="item" wx:for-index="_anonIdx4">{{item}}</view>
+                            <view class="paragraphs" wx:for="{{poetryInfo.comment}}" wx:for-item="item" wx:for-index="_anonIdx12">{{item}}</view>
                         </view>
                     </view>
-                </block>
-            </view>
-        </block>
-        <block wx:if="{{tag === 'lunyu'}}">
-            <view class="wrap">
-                <view class="title">{{poetryInfo.chapter}}</view>
-                <view class="content">
-                    <view class="paragraphs" wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx6">{{item}}</view>
                 </view>
-            </view>
-        </block>
-        <block wx:if="{{tag === 'shijing'}}">
-            <view class="wrap">
-                <view class="title">{{poetryInfo.title}}</view>
-                <view class="author">{{poetryInfo.chapter}}·{{poetryInfo.section}}</view>
-                <view class="content">
-                    <view wx:for="{{poetryInfo.content}}" wx:for-item="item" wx:for-index="_anonIdx8">{{item}}</view>
-                </view>
-            </view>
-        </block>
-        <block wx:if="{{tag === 'sishuwujing'}}">
-            <view class="wrap">
-                <view class="title">{{poetryInfo.chapter}}</view>
-                <view class="author">{{poetryInfo.tags}}</view>
-                <view class="content">
-                    <view class="paragraphs" wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx10">{{item}}</view>
-                </view>
-            </view>
-        </block>
-        <block wx:if="{{tag === 'youmengying'}}">
-            <view class="wrap">
-                <view class="content">{{poetryInfo.content}}</view>
-                <view class="comment"><text style="{{anonymousState__temp2}}">名人评析：</text>
-                    <view>
-                        <view class="paragraphs" wx:for="{{poetryInfo.comment}}" wx:for-item="item" wx:for-index="_anonIdx12">{{item}}</view>
-                    </view>
-                </view>
-            </view>
-        </block>
+            </block>
+        </scroll-view>
     </view>
 </block>

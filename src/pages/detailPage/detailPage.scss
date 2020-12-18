@@ -1,10 +1,31 @@
 @import '../../style/global.scss';
 
 page {
-  background: $backgroundBook;
+  height: 100%;
 }
 .detailPage {
-  padding: 0 $padding30;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  &::after {
+    content: "";
+    background: #fff;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+  }
+  .pageScroll {
+    width: 100%;
+    height: 100%;
+    padding: 0 $padding30;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+  }
   .wrap {
     padding: 40px 0;
     .title {
@@ -19,6 +40,9 @@ page {
       text-align: center;
       line-height: 50px;
       margin: 20px 0;
+    }
+    .txt-line {
+      text-decoration: underline;
     }
     .content {
       text-indent: 2em;

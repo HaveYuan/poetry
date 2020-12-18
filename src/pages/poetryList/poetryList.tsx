@@ -4,11 +4,11 @@ import { connect } from '@tarojs/redux'
 import Loading from '@/components/Loading/Loading'
 import ListItem from '@/components/ListItem/ListItem'
 import { requestCloud } from '@/utils/cloudFn'
-import showToast from '@/utils/showToast'
 import './poetryList.scss'
 
 type PageStateProps = {
 	poetryDetail: 诗词详情数据
+	author: 作者相关
 }
 
 type PageDispatchProps = {
@@ -31,7 +31,7 @@ interface poetryList {
 	state: PageState
 }
 
-@connect(({poetryDetail}) => ({poetryDetail}))
+@connect(({poetryDetail,author}) => ({poetryDetail,author}))
 class poetryList extends Component<PageOwnProps, PageState> {
 	constructor(props) {
 		super(props)
@@ -70,37 +70,73 @@ class poetryList extends Component<PageOwnProps, PageState> {
 	 * 获取诗词列表
 	 */
 	getpoetryList = (pageNo) => {
-		requestCloud({
-			clounFnName: 'poetry', 
-			controller: 'poetry', 
-			action: 'getPoetryList',
-			data: {
-				pageNo,
-				pageSize: 20,
-				tag: this.state.tag
-			}
-		}).then((res:any) => {
-			const {poetryListData} = this.state;
-			if(res.data) {
-				const _pageNo = pageNo + 1;
-				this.setState({
-					poetryListData: poetryListData.concat(res.data),
-					pageNo: _pageNo
-				})
-				if(pageNo === res.totalPage) {
-					this.setState({
-						loading: false
-					})
+		const { dispatch } = this.props;
+
+		dispatch({
+			type: 'poetryDetail/poetryApi',
+			payload: {
+				action: 'getPoetryList',
+				data: {
+					pageNo,
+					pageSize: 20,
+					tag: this.state.tag
 				}
-			}
-		}).catch(err => {
-			showToast({title:err.msg})
+			},
+			callback: res => {
+				const {poetryListData} = this.state;
+				if(res.data) {
+					const _pageNo = pageNo + 1;
+					this.setState({
+						poetryListData: poetryListData.concat(res.data),
+						pageNo: _pageNo
+					})
+					if(pageNo === res.totalPage) {
+						this.setState({
+							loading: false
+						})
+					}
+				}
+			}	
 		})
 	}
 
 	toDetail = (item) => {
 		const { tag } = this.state;
-		const { dispatch } = this.props;
+		const { dispatch, author:{authorInfo} } = this.props;
+		if(item.author && (item.author === authorInfo.name)) {
+			dispatch({
+				type: 'author/save',
+				payload: {
+					hasAuthor: true
+				}
+			})
+		}
+
+		if(item.author && (item.author !== authorInfo.name)) {
+			// 查询作者相关信息
+			dispatch({
+				type: 'author/authorApi',
+				payload: {
+					action: 'searchAuthor',
+					data: {
+						author: item.author,
+						isReg: false
+					}
+				},
+				callback: res => {
+					if(res.data.length>0) {
+						// 保存作者信息
+						dispatch({
+							type: 'author/save',
+							payload: {
+								authorInfo: res.data[0],
+								hasAuthor: true
+							}
+						})
+					}
+				}
+			})
+		}
 
 		dispatch({
 			type: 'poetryDetail/save',
@@ -109,6 +145,7 @@ class poetryList extends Component<PageOwnProps, PageState> {
 				poetryInfo: item,
 			}
 		})
+
 		Taro.navigateTo({
 			url: '/pages/detailPage/detailPage'
 		});

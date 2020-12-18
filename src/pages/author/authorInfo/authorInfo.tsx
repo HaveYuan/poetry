@@ -4,7 +4,7 @@ import { connect } from '@tarojs/redux'
 import './authorInfo.scss'
 
 type PageStateProps = {
-  poetryDetail: 诗词详情数据
+  author: 作者相关
 }
 
 type PageDispatchProps = {}
@@ -21,7 +21,7 @@ interface authorInfo {
 }
 
 @connect(
-  ({poetryDetail}) => ({poetryDetail})
+  ({author}) => ({author})
 )
 class authorInfo extends Component<IProps, PageState> {
   constructor(props) {
@@ -36,7 +36,7 @@ class authorInfo extends Component<IProps, PageState> {
   }
 
   render() {
-    const { poetryDetail:{authorInfo} } = this.props;
+    const { author:{authorInfo} } = this.props;
     return (
       <View className='authorInfo'>
         <Image className='head-img' lazyLoad mode='widthFix' src={authorInfo.imgUrl ? authorInfo.imgUrl : 'https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/head/default.jpg'}></Image>

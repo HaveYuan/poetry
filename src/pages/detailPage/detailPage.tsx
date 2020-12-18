@@ -1,18 +1,21 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import './detailPage.scss'
 
 type PageStateProps = {
-  poetryDetail: 诗词详情数据
+  poetryDetail: 诗词详情数据,
+  author: 作者相关
 }
 
-type PageDispatchProps = {}
+type PageDispatchProps = {
+  dispatch: any
+}
 
 type PageOwnProps = {}
 
 type PageState = {
-
+  num: Number
 }
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
@@ -23,18 +26,32 @@ interface detailPage {
 }
 
 @connect(
-  ({poetryDetail}) => ({poetryDetail})
+  ({poetryDetail,author}) => ({poetryDetail,author})
 )
 class detailPage extends Component<PageOwnProps, PageState> {
   constructor(props) {
     super(props)
     this.state = {
-
+      num: -1
     }
   }
 
   componentDidMount() {
     this.switchTag();
+    const num = Math.floor(Math.random()*(5-1+1))+1;
+    this.setState({
+      num
+    })
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'author/save',
+      payload: {
+        hasAuthor: false
+      }
+    })
   }
 
   switchTag = () => {
@@ -69,20 +86,30 @@ class detailPage extends Component<PageOwnProps, PageState> {
     });
   }
 
+  toAuthorInfo = () => {
+    const { author:{hasAuthor} } = this.props;
+    if(hasAuthor) {
+      Taro.navigateTo({
+        url: '/pages/author/authorInfo/authorInfo'
+      });
+    }
+  }
+
   config: Config = {
-    navigationBarBackgroundColor: '#D9C1A5',
-    // navigationBarTextStyle: 'white'
+    navigationBarBackgroundColor: '#fff',
   }
 
   render() {
-    const { poetryDetail:{poetryInfo, tag} } = this.props;
+    const { poetryDetail:{poetryInfo, tag}, author:{hasAuthor} } = this.props;
     console.log(poetryInfo)
+    const {num} = this.state;
     return (
-      <View className='detailPage'>
+      <View className='detailPage' style={{backgroundImage: `url(https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/bg/bg${num}.webp)`}}>
+        <ScrollView scrollY className='pageScroll'>
         {(tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji') && (
           <View className='wrap'>
             <View className='title'>{poetryInfo.title}</View>
-            <View className='author'>{poetryInfo.author}</View>
+            <View className={hasAuthor ? 'author txt-line' : 'author'} onClick={this.toAuthorInfo}>{poetryInfo.author}</View>
             <View className='content'>
               {poetryInfo.paragraphs.map(item => {
                 return (
@@ -164,6 +191,7 @@ class detailPage extends Component<PageOwnProps, PageState> {
             </View>
           </View>
         )}
+        </ScrollView>
       </View>
     )
   }

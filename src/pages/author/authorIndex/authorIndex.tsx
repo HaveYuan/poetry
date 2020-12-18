@@ -13,6 +13,7 @@ type PageStateProps = {}
 type PageDispatchProps = {
   dispatch: (object)=>void
   poetryDetail: 诗词详情数据
+  author: 作者相关
 }
 
 type PageOwnProps = {}
@@ -30,7 +31,7 @@ interface authorIndex {
 }
 
 @connect(
-  ({poetryDetail}) => ({poetryDetail})
+  ({poetryDetail,author}) => ({poetryDetail,author})
 )
 class authorIndex extends Component<IProps, PageState> {
   constructor(props) {
@@ -43,19 +44,19 @@ class authorIndex extends Component<IProps, PageState> {
 
 
   componentDidMount() { 
-    requestCloud({
-      clounFnName: 'poetry', 
-      controller: 'poetry',
-      action: 'getHotAuthor'
-    }).then((res:any) => {
-      console.log(res)
-      if(res.data.length > 0) {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'author/authorApi',
+      payload: {
+        clounFnName: 'poetry', 
+        controller: 'poetry',
+        action: 'getHotAuthor',
+      },
+      callback: res => {
         this.setState({
           hotAuthor: res.data
         })
       }
-    }).catch(err => {
-      showToast({title:'网络异常'})
     })
   }
 
@@ -65,7 +66,7 @@ class authorIndex extends Component<IProps, PageState> {
   }
 
   searchContent = (e) => {
-    console.log(e)
+    const { dispatch } = this.props;
     const value = e.detail.value.replace(" ", "");
 
     if(value) {
@@ -73,27 +74,28 @@ class authorIndex extends Component<IProps, PageState> {
         title: '正在搜索',
         mask: true
       });
-      requestCloud({
-        clounFnName: 'poetry', 
-        controller: 'poetry', 
-        action: 'searchAuthor',
-        data: {
-          author: value
+
+      dispatch({
+        type: 'author/authorApi',
+        payload: {
+          action: 'searchAuthor',
+          data: {
+            author: value
+          }
+        },
+        callback: res => {
+          if(res.data.length > 0) {
+            Taro.hideLoading();
+            this.setState({
+              searchAuthorInfo: res.data
+            })
+          }else {
+            showToast({title:'查无此人'})
+            this.setState({
+              searchAuthorInfo: []
+            })
+          }
         }
-      }).then((res:any) => {
-        if(res.data.length > 0) {
-          Taro.hideLoading();
-          this.setState({
-            searchAuthorInfo: res.data
-          })
-        }else {
-          showToast({title:'查无此人'})
-          this.setState({
-            searchAuthorInfo: []
-          })
-        }
-      }).catch(_ => {
-        showToast({title:'网络异常'})
       })
     }
   }
@@ -101,7 +103,7 @@ class authorIndex extends Component<IProps, PageState> {
   getAuthorInfo = (item) => { // 获取作者详情
     const { dispatch } = this.props;
     dispatch({
-      type: 'poetryDetail/save',
+      type: 'author/save',
       payload: {
         authorInfo: item
       }

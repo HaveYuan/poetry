@@ -38,8 +38,12 @@ interface ToastParams {
 
 interface 诗词详情数据 {
   poetryInfo: poetryItem,
-  authorInfo: 作者数据,
   tag: string
+}
+
+interface 作者相关 {
+  authorInfo: 作者数据,
+  hasAuthor: boolean
 }
 
 interface 作者数据 {
@@ -48,4 +52,11 @@ interface 作者数据 {
   name: string,
   short_description: string,
   imgUrl?: string
+}
+
+interface result {
+  code: number,
+  data: any,
+  errMsg: string,
+  msg: string
 }

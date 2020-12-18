@@ -4,7 +4,7 @@
   padding: 0 $padding30;
   .search-content {
     margin-top: 8%;
-    @include flex-center
+    display: grid;
   }
   .hot-wrap {
     margin-top: 15%;

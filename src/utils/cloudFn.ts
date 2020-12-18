@@ -1,7 +1,8 @@
 import Taro from '@tarojs/taro'
+import showToast from '@/utils/showToast';
 
 export function requestCloud(params:requestCloudParams) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const {clounFnName, controller, action, data} = params;
     Taro.cloud.callFunction({
       name: clounFnName,
@@ -9,13 +10,15 @@ export function requestCloud(params:requestCloudParams) {
         controller,
         action,
         data
-      },
-      success: res => {
-        resolve(res.result);
-      },
-      fail: err => {
-        reject(err);
       }
+    }).then((res:any) => {
+      if(res.result.code === 0) {
+        resolve(res.result);
+      }else {
+        showToast({title:res.result.msg})
+      }
+    }).catch(err => {
+      showToast({title: err.message});
     })
   })
 }

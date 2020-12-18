@@ -14,11 +14,10 @@ class resMsg {
     return obj;
   }
 
-  failMsg(data) {
+  failMsg() {
     return {
       code: -1,
-      msg: '请求失败',
-      ...data
+      msg: '请求失败'
     }
   }
 }
@@ -101,8 +100,21 @@ class poetry extends resMsg {
           name: _.eq(params.author)
         }
       ).get();
+      const isReg = params.isReg || true; // 是否模糊搜索，默认是
+      if(data.data.length === 0 && isReg) {
+        const _data = await db.collection('author').where(
+          {
+            name: db.RegExp({
+              regexp: params.author,
+              options: 'i',
+            })
+          }
+        ).get();
+        return await this.success(_data);
+      }
       return await this.success(data);
     }catch(err) {
+      console.log(err)
       return await this.failMsg(err);
     }
   }
@@ -120,7 +132,8 @@ class poetry extends resMsg {
       })
       return this.success(result);
     } catch (err) {
-      return await this.failMsg(err);
+      console.log(err)
+      return await this.failMsg();
     }
   }
 }

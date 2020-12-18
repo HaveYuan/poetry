@@ -1,0 +1,352 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20201218.150841.10772.0.001.json",
+    "dumpEventTime": "2020-12-18T15:08:41Z",
+    "dumpEventTimeStamp": "1608275321752",
+    "processId": 10772,
+    "cwd": "W:\\lyy\\pro\\taroPro\\songs\\poetry\\wx_output\\cloudfunctions\\poetry",
+    "commandLine": [
+      "D:\\Program Files (x86)\\Tencent\\微信web开发者工具\\node.exe",
+      "D:\\Program Files (x86)\\Tencent\\微信web开发者工具\\code\\package.nw\\js\\common\\cloud-functions-debugger-server\\worker\\node.js"
+    ],
+    "nodejsVersion": "v12.6.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.6.0",
+      "v8": "7.5.288.22-node.14",
+      "uv": "1.30.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.38.0",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.6.0/node-v12.6.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.6.0/node-v12.6.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.6.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.18363",
+    "osVersion": "Windows 10 Enterprise",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-9400 CPU @ 2.90GHz",
+        "speed": 2904,
+        "user": 17913843,
+        "nice": 0,
+        "sys": 91542953,
+        "idle": 647962687,
+        "irq": 67332234
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-9400 CPU @ 2.90GHz",
+        "speed": 2904,
+        "user": 17913843,
+        "nice": 0,
+        "sys": 91542953,
+        "idle": 647962687,
+        "irq": 67332234
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-9400 CPU @ 2.90GHz",
+        "speed": 2904,
+        "user": 17913843,
+        "nice": 0,
+        "sys": 91542953,
+        "idle": 647962687,
+        "irq": 67332234
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-9400 CPU @ 2.90GHz",
+        "speed": 2904,
+        "user": 17913843,
+        "nice": 0,
+        "sys": 91542953,
+        "idle": 647962687,
+        "irq": 67332234
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-9400 CPU @ 2.90GHz",
+        "speed": 2904,
+        "user": 17913843,
+        "nice": 0,
+        "sys": 91542953,
+        "idle": 647962687,
+        "irq": 67332234
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-9400 CPU @ 2.90GHz",
+        "speed": 2904,
+        "user": 17913843,
+        "nice": 0,
+        "sys": 91542953,
+        "idle": 647962687,
+        "irq": 67332234
+      }
+    ],
+    "host": "DESKTOP-81BBFAF"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff635166db9",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff63516a72c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6351696d8",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff63525300b",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635a38a1e",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635a20d6a",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6358b256c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6358ba49f",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6358b0733",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6358aefc4",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6358cdaa5",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635683e0d",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635ae170d",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635b3abcd",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635a55bbc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635aff640",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635a55bbc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635a55bbc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff635a55bbc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x0000016549bcd239",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 95342592,
+    "totalCommittedMemory": 95342592,
+    "usedMemory": 91533944,
+    "availableMemory": 2107357784,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261832,
+        "used": 31960,
+        "available": 229872
+      },
+      "new_space": {
+        "memorySize": 2097152,
+        "committedMemory": 2097152,
+        "capacity": 2094656,
+        "used": 2094632,
+        "available": 24
+      },
+      "old_space": {
+        "memorySize": 79048704,
+        "committedMemory": 79048704,
+        "capacity": 78683264,
+        "used": 76371328,
+        "available": 2311936
+      },
+      "code_space": {
+        "memorySize": 1736704,
+        "committedMemory": 1736704,
+        "capacity": 1467968,
+        "used": 1370144,
+        "available": 97824
+      },
+      "map_space": {
+        "memorySize": 1576960,
+        "committedMemory": 1576960,
+        "capacity": 1557424,
+        "used": 1149040,
+        "available": 408384
+      },
+      "large_object_space": {
+        "memorySize": 10313728,
+        "committedMemory": 10313728,
+        "capacity": 10255768,
+        "used": 10255768,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3456,
+        "used": 3456,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 258048,
+        "committedMemory": 258048,
+        "capacity": 2094656,
+        "used": 257616,
+        "available": 1837040
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 3.609,
+    "kernelCpuSeconds": 0.687,
+    "cpuConsumptionPercent": 0.00480478,
+    "maxRss": 134963200,
+    "pageFaults": {
+      "IORequired": 123202,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 6433,
+      "writes": 939
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=C:": "C:\\",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\lyy",
+    "HTTP_PROXY": "http://127.0.0.1:54786",
+    "LOGONSERVER": "\\\\DESKTOP-81BBFAF",
+    "NODE_PATH": "W:\\lyy\\pro\\taroPro\\songs\\poetry\\wx_output\\cloudfunctions\\poetry",
+    "PATH": "C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\IDM Computer Solutions\\UltraEdit;D:\\Program Files\\Git\\bin;D:\\software\\jdk1.8.0_162\\bin;D:\\software\\apache-maven-3.6.1\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;D:\\software\\apache-ant-1.9.14\\bin;C:\\Users\\lyy\\AppData\\Roaming\\npm;C:\\Windows\\System32;D:\\nvm\\nvm;D:\\nodejs;D:\\nodejs\\;C:\\Users\\lyy\\AppData\\Local\\Microsoft\\WindowsApps;;D:\\Program Files\\Microsoft VS Code\\bin;C:\\Users\\lyy\\AppData\\Roaming\\npm",
+    "SYSTEMDRIVE": "C:",
+    "SYSTEMROOT": "C:\\WINDOWS",
+    "TCB_CONTEXT_KEYS": "TCB_ENV",
+    "TCB_ENV": "local",
+    "TCB_SOURCE": "wx_client",
+    "TEMP": "C:\\Users\\lyy\\AppData\\Local\\Temp",
+    "TENCENTCLOUD_RUNENV": "WX_LOCAL_SCF",
+    "TENCENTCLOUD_SECRETID": "AKIDzAHGwW-67bK8SHkF8dgjQTroDyAlevOAaPwCo0pRvQL5hqnF-wHqipK1R9k5cCzT",
+    "TENCENTCLOUD_SECRETKEY=Zz31lcjRf0TD1EygGpplatSLnzbZRd/WW4lIYd2D2go": "",
+    "TENCENTCLOUD_SESSIONTOKEN": "9UKRj0HOwj9AUWYyZGP5i05NlDE5pLva320d2e3f365ffb4af136a8ec9ddf2820B-znS0tLEfydfPCPib0IwSmRsoEqPzmAQww5A5gA0yZgPW1eENdILqQsmrAaaGbMv4G73s6ejSuozsy2IVv1wk_BF4O-eDFYNddIZheANHEDuMZLbG-aGE_yBjDtAe5zCIoUshf50IWeuMABlnjWtKPTzVMLT196lGydluqfiAHCYmol4iqu2e8KqPEEXxnqOB1YNIfV9skrCKuKz_DPIcT_ndzYwZwA1jK5WvHdqBGEWtQLAc93eETphG7Zf4lSsWDAxE1te-iIYS5qXmJgIicbuZRL4xiGmNofL8OdBvIrmB3ehIXmiMS3U92CbsEiD4O5ZA0SzZdwBRYDytYAjZ8OpIVo-6dfgBd3rEF3AOQ",
+    "USERDOMAIN": "DESKTOP-81BBFAF",
+    "USERNAME": "lyy",
+    "USERPROFILE": "C:\\Users\\lyy",
+    "WINDIR": "C:\\WINDOWS",
+    "WX_API_TOKEN=eyJWZXJzaW9uIjoxLCAiS2V5VmVyc2lvbiI6MTMzLCAiZXZlbnRJZCI6IkhCcVA2bTY2Y1pOMXRBSW9rUlhFSVBFN05zdXJ4NVhIbUZ6d1pDLTdYME5zMjhFSnZJd2tLUEFZRjlSbmI2RC1yRVREaWRsZyIsICJ0aWNrZXQiOiJDSGtTZ0FJcFFMMVRiY2VtOWpOMHNGdzMzY2dWYU1YRHZHZXB4MTRQVjZGQmhXVStsODl6VDM1WXl0VVdQM0pjaHJ1cUh5VWJpRi91bVB2SnVYSVlQc1p1blZBQTN3VzF2ME1sT09yaUhuSFp3T083ZitjTFg4QTNSVlZ4Qll5L011LzBFL0hTa24xZTNPZnA4Z1hYV3FaQkNDWUIwNHdzZGg5c1pVa1QxRWthUTNVNFJPVWtNbWRPeExFRDQ1eFB6UHBlWTBVUHhWYk5GN3hNWkdFbEdKd3A5QVJnV2pZYlhTdU55dVREM3ZnKyt4QXRzNHhrbGdRWGdRY0JNTUhCZmtKU3l0YTRZVWtSMGFwTXU4UTRnUXFDclRuS1VKM0VDeEJJdUhHV0Y3UExvc1dQNkcrQ0Q5QzZCYmVvT0w4TEFidkpYVmpkamlFYkdPTzBCN2pOQ2xVd1RHRkNJQUE9In0": "",
+    "WX_APPID": "wx7d89fb9bf7c9b9ea",
+    "WX_CLIENTIP": "113.68.152.62",
+    "WX_CLIENTIPV6": "::ffff:113.68.152.62",
+    "WX_CONTEXT_KEYS": "WX_APPID",
+    "WX_OPENID": "oPSEW0Wu0B-4PeCJK_c_WmUizch4",
+    "__CF_ENV_INIT_TIME": "Thu Dec 17 2020 14:18:28 GMT+0800 (中国标准时间)",
+    "__CF_ENV_REFRESH_TIME": "Fri Dec 18 2020 15:08:30 GMT+0800 (GMT+08:00)"
+  },
+  "sharedObjects": [
+    "D:\\Program Files (x86)\\Tencent\\微信web开发者工具\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMMBASE.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\System32\\UMPDC.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll"
+  ]
+}

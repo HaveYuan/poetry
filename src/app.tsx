@@ -55,6 +55,8 @@ class App extends Component {
       'pages/index/index',
       'pages/poetryList/poetryList',
       'pages/detailPage/detailPage',
+      'pages/about/about',
+      'pages/my/my',
       'pages/author/authorIndex/authorIndex',
       'pages/author/authorInfo/authorInfo',
     ],

@@ -1,0 +1,14 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="about">
+        <view class="title">声明</view>
+        <view>本小程序数据及相关图片均来源于互联网，遵循开源协议，如有疑问，请联系本人邮箱处理或者在github上提交issue</view>
+        <view>email：<text class="link" selectable="{{true}}">rory_lin@163.com</text>
+        </view>
+        <view>github：<text class="link" selectable="{{true}}">https://github.com/HaveYuan</text>
+        </view>
+        <view>博客：<text class="link" selectable="{{true}}">https://haveyuan.github.io/</text>
+        </view>
+        <view>博客（备用）：<text class="link" selectable="{{true}}">https://haveyuan.gitee.io/</text>
+        </view>
+    </view>
+</block>

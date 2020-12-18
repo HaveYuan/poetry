@@ -1,6 +1,8 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="Tools">
-        <view class="{{menuShow ? 'tool-box' : 'tool-box rotate'}}" bindtap="openMenu"></view>
-        <view class="{{menuShow ? 'tools-item move' : 'tools-item'}}" bindtap="toAuthorIndex">作者</view>
+        <image src="{{roteteUrl}}" class="{{menuShow ? 'tool-box' : 'tool-box rotate'}}" bindtap="openMenu"></image>
+        <view class="{{menuShow ? 'tools-item white-fonts move' : 'tools-item'}}" bindtap="toAuthorIndex">作者</view>
+        <view class="{{menuShow ? 'tools-item blank-fonts move2' : 'tools-item'}}" bindtap="toAbout">关于</view>
+        <view class="{{menuShow ? 'tools-item gray-fonts move3' : 'tools-item'}}" bindtap="toMy">我的</view>
     </view>
 </block>

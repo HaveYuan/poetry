@@ -79,7 +79,7 @@ class detailPage extends Component<PageOwnProps, PageState> {
     console.log(poetryInfo)
     return (
       <View className='detailPage'>
-        {(tag === 'yuanqu' || tag === 'nantang') && (
+        {(tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji') && (
           <View className='wrap'>
             <View className='title'>{poetryInfo.title}</View>
             <View className='author'>{poetryInfo.author}</View>
@@ -90,7 +90,7 @@ class detailPage extends Component<PageOwnProps, PageState> {
                 )
               })}
             </View>
-            {poetryInfo.notes.length>0 && <View className='comment'>
+            {poetryInfo.notes && poetryInfo.notes.length>0 && <View className='comment'>
               <Text style={{fontWeight:'bold'}}>解析：</Text>
               <View>
                 {poetryInfo.notes.map(item => {

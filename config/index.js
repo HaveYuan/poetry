@@ -40,6 +40,12 @@ const config = {
     '@/utils': path.resolve(__dirname, '..', 'src/utils'),
     '@/images': path.resolve(__dirname, '..', 'src/images')
   },
+  copy: {
+    patterns: [{
+      from: 'src/images/',
+      to: 'wx_output/miniprogram/images'
+  }]
+  },
   mini: {
     postcss: {
       pxtransform: {

@@ -1,10 +1,8 @@
 @import '../../style/global.scss';
 
 page {
-  background:url(https://api.66mz8.com/api/bg.img.php?format=jpg);
-
+  background: $backgroundBook;
 }
 .poetryList {
   padding: 0 $padding30;
-
 }

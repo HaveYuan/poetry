@@ -10,7 +10,7 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    border-bottom: 1px solid #c8c7cc;
+    border-bottom: 1px solid gray;
     transform: scaleY(.5);
     transform-origin: 0 0;
   }
@@ -27,7 +27,7 @@
     /* autoprefixer: on */
   }
   .author {
-    color: #afafaf;
+    color: $borderColor;
     font-size: 24px;
   }
 }

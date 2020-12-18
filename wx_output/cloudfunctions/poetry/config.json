@@ -1,6 +1,8 @@
 {
   "permissions": {
     "openapi": [
+      "wxacode.getUnlimited",
+      "templateMessage.send"
     ]
   }
 }

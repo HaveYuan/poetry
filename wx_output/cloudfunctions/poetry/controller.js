@@ -106,6 +106,23 @@ class poetry extends resMsg {
       return await this.failMsg(err);
     }
   }
+
+  async getCode(params) {// 获取小程序码
+    console.log(params)
+    try {
+      const result = await cloud.openapi.wxacode.getUnlimited({
+          scene: params.scene,
+          page: params.pgae,
+          width: params.width || 100,
+          autoColor: params.autoColor || false,
+          lineColor: params.lineColor || {"r":0,"g":0,"b":0},
+          isHyaline: params.isHyaline || false
+      })
+      return this.success(result);
+    } catch (err) {
+      return await this.failMsg(err);
+    }
+  }
 }
 
 module.exports = poetry;

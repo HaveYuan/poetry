@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import Loading from '@/components/Loading/Loading'
@@ -41,6 +41,10 @@ class poetryList extends Component<PageOwnProps, PageState> {
 			pageNo: 1,
 			poetryListData: []
 		}
+	}
+
+	config: Config = {
+		navigationBarBackgroundColor: '#D9C1A5'
 	}
 
 	componentDidMount() {

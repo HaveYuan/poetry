@@ -4,7 +4,7 @@
 	"description": "诗词大全",
 	"appid": "wx7d89fb9bf7c9b9ea",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"enhance": false,
 		"postcss": false,

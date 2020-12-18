@@ -1,14 +1,14 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="authorIndex">
-        <search compid="{{$compid__217}}"></search>
+        <search compid="{{$compid__7}}"></search>
         <block wx:if="{{searchAuthorInfo.length > 0}}">
-            <author search-content="search-content" compid="{{$compid__218}}"></author>
+            <author search-content="search-content" compid="{{$compid__8}}"></author>
         </block>
         <view class="hot-wrap">
             <block wx:if="{{hotAuthor.length > 0}}">
                 <view class="tips">著名作者</view>
             </block>
-            <author compid="{{$compid__219}}"></author>
+            <author compid="{{$compid__9}}"></author>
         </view>
     </view>
 </block>

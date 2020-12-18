@@ -4,7 +4,7 @@
             <block><text class="title">{{poetryObj.chapter}}</text>
             </block>
         </block>
-        <block wx:if="{{tag === 'yuanqu' || tag === 'nantang'}}">
+        <block wx:if="{{tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji'}}">
             <block><text class="title">{{poetryObj.title}}</text><text class="author">{{poetryObj.author}}</text>
             </block>
         </block>

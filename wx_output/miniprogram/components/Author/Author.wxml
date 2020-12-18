@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="author-grid search-content">
         <block wx:if="{{authorInfo}}">
-            <view class="Author" bindtap="anonymousFunc0" wx:for="{{loopArray165}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="Author" bindtap="anonymousFunc0" wx:for="{{loopArray17}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <image class="header-icon" src="{{item.$original.imgUrl || 'https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/head/default.jpg'}}" mode="aspectFill"></image><text class="name">{{item.$original.name}}</text>
             </view>
         </block>

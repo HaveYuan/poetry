@@ -1,13 +1,13 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="detailPage">
-        <block wx:if="{{tag === 'yuanqu' || tag === 'nantang'}}">
+        <block wx:if="{{tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji'}}">
             <view class="wrap">
                 <view class="title">{{poetryInfo.title}}</view>
                 <view class="author">{{poetryInfo.author}}</view>
                 <view class="content">
                     <view wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx2">{{item}}</view>
                 </view>
-                <block wx:if="{{poetryInfo.notes.length > 0}}">
+                <block wx:if="{{poetryInfo.notes && poetryInfo.notes.length > 0}}">
                     <view class="comment"><text style="{{anonymousState__temp}}">解析：</text>
                         <view>
                             <view class="paragraphs" wx:for="{{poetryInfo.notes}}" wx:for-item="item" wx:for-index="_anonIdx4">{{item}}</view>

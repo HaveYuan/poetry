@@ -26,7 +26,15 @@ class App extends Component {
         env: process.env.NODE_ENV === 'development' ? 'test-hhh' : '',
         traceUser: true
       })
+
+      Taro.cloud.callFunction({
+        name: 'login',
+        complete: res => {
+          console.log('callFunction test result: ', res)
+        }
+      })
     }
+    console.log(this.$router.params)
   }
 
   componentDidShow () {}

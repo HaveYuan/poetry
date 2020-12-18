@@ -51,11 +51,13 @@ page,.Index {
           @include text-overflow;
         }
         .intro {
+          height: 480px;
           font-size: 28px;
           text-indent: 2em;
           line-height: 44px;
           text-align: justify;
           padding: 20px 0;
+          box-sizing: border-box;
         }
       }
     }

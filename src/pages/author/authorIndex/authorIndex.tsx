@@ -3,7 +3,7 @@ import { connect } from '@tarojs/redux'
 import { View, Text } from '@tarojs/components'
 import Search from '@/components/Search/Search'
 import Author from '@/components/Author/Author'
-import { requestCloud }  from '@/utils/cloudFn'
+import logApi from '@/utils/log'
 import showToast from '@/utils/showToast';
 
 import './authorIndex.scss'
@@ -75,6 +75,11 @@ class authorIndex extends Component<IProps, PageState> {
         mask: true
       });
 
+      logApi('author_index', {
+        action: '搜索作者',
+        author_name: value
+      })
+
       dispatch({
         type: 'author/authorApi',
         payload: {
@@ -110,6 +115,10 @@ class authorIndex extends Component<IProps, PageState> {
     })
     Taro.navigateTo({
       url: '/pages/author/authorInfo/authorInfo'
+    })
+    logApi('author_index', {
+      action: '点击作者头像',
+      author_name: item.name
     })
   }
 

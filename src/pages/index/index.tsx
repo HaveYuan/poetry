@@ -2,6 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Swiper, SwiperItem, ScrollView, Text, Button, Image } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import Tools from '@/components/Tools/Tools';
+import logApi from '@/utils/log';
 import './index.scss'
 
 type PageStateProps = {
@@ -91,6 +92,10 @@ class Index extends Component<PageOwnProps, PageState> {
   }
 
   toListPage = (tag, name) => {
+    logApi('index_page', {
+      action: '点击诗词分类',
+      catalog: name
+    })
     Taro.navigateTo({
       url: `/pages/poetryList/poetryList?tag=${tag}&name=${name}`
     });

@@ -58,7 +58,7 @@
 					"id": 0,
 					"name": "列表",
 					"pathName": "pages/poetryList/poetryList",
-					"query": "tag=yuanqu&__key_=16074952907251&name=元曲",
+					"query": "tag=yuanqu&__key_=16074952907251&name=元曲&is_share=1",
 					"scene": null
 				},
 				{

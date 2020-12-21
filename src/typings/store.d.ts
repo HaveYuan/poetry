@@ -60,3 +60,21 @@ interface result {
   errMsg: string,
   msg: string
 }
+
+interface logObj {
+  action: string,
+  catalog?: string,
+  poetry?: string,
+  author_name?: string
+}
+
+interface params {
+  scene?: string | number | undefined;
+  query?: string | {
+      [key: string]: string;
+  } | undefined;
+  shareTicket?: string | undefined;
+  referrerInfo?: string | {
+      [key: string]: any;
+  } | undefined;
+}

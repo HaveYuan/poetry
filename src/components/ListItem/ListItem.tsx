@@ -31,15 +31,11 @@ class ListItem extends Component<PageOwnProps, PageState> {
 		}
 	}
 
-	componentDidMount() {
-		Taro.setNavigationBarTitle({
-			title: this.$router.params.name
-		});
-	}
+	componentDidMount() {}
 
 	render() {
 		const { poetryObj, clickFn, tag } = this.props;
-		let word:string|undefined = '';
+		let word:string|Array<string>|undefined = '';
 		if(tag === 'youmengying') {
 			word = poetryObj.content;
 			word = word.split('，')[0];

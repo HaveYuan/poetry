@@ -3,6 +3,7 @@ import {Provider} from '@tarojs/redux'
 import models from './models/index'
 import dva from './utils/dva'
 import Index from './pages/index'
+import logApi from '@/utils/log'
 
 import './app.scss'
 
@@ -23,18 +24,42 @@ class App extends Component {
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
       Taro.cloud.init({
-        env: process.env.NODE_ENV === 'development' ? 'test-hhh' : '',
+        // env: process.env.NODE_ENV === 'development' ? 'test-hhh' : '',
+        env: 'test-hhh',
         traceUser: true
       })
 
       Taro.cloud.callFunction({
         name: 'login',
-        complete: res => {
+        complete: (res:any) => {
           console.log('callFunction test result: ', res)
+          if(res.result.openid) {
+            Taro.setStorageSync('openid', res.result.openid)
+          }
         }
       })
     }
-    console.log(this.$router.params)
+
+    const params:params = this.$router.params;
+    const scene = params.query!['scene'];
+    let action = '自主进入';
+
+    if(params.query!['from'] === 'code') {
+      action = '小程序码进入'
+    }
+
+    if(params.query!['is_share']) {
+      action = '分享页面进入'
+    }
+
+    if(scene) {
+      action = '分享海报进入'
+    }
+
+    // api上报
+    logApi('load_page', {
+      action: action
+    })
   }
 
   componentDidShow () {}

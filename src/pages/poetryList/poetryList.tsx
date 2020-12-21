@@ -3,7 +3,7 @@ import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import Loading from '@/components/Loading/Loading'
 import ListItem from '@/components/ListItem/ListItem'
-import { requestCloud } from '@/utils/cloudFn'
+import logApi from '@/utils/log'
 import './poetryList.scss'
 
 type PageStateProps = {
@@ -149,6 +149,11 @@ class poetryList extends Component<PageOwnProps, PageState> {
 		Taro.navigateTo({
 			url: '/pages/detailPage/detailPage'
 		});
+
+		logApi('poetry_list', {
+      action: '点击诗词详情',
+      poetry: JSON.stringify(item)
+    })
 	}
 
 	render() {

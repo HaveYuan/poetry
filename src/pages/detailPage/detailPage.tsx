@@ -1,6 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text, Image, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
+import logApi from '@/utils/log'
 import './detailPage.scss'
 
 type PageStateProps = {
@@ -87,8 +88,12 @@ class detailPage extends Component<PageOwnProps, PageState> {
   }
 
   toAuthorInfo = () => {
-    const { author:{hasAuthor} } = this.props;
+    const { author:{hasAuthor, authorInfo} } = this.props;
     if(hasAuthor) {
+      logApi('detail_page', {
+        action: '点击查看作者详情',
+        author_name: authorInfo.name
+      })
       Taro.navigateTo({
         url: '/pages/author/authorInfo/authorInfo'
       });

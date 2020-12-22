@@ -4,7 +4,7 @@
 	"description": "诗词大全",
 	"appid": "wx7d89fb9bf7c9b9ea",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
 		"enhance": false,
 		"postcss": false,
@@ -23,6 +23,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"bundle": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
@@ -31,6 +32,7 @@
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"libVersion": "2.14.1",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -73,6 +75,20 @@
 					"name": "我的",
 					"pathName": "pages/my/my",
 					"query": "tag=yuanqu&__key_=16074952907251&name=元曲",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "诗词详情",
+					"pathName": "pages/detailPage/detailPage",
+					"query": "tag=yuanqu&_id=bbccc59f5fc61d1e000b3df11b00dc6b",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "作者详情",
+					"pathName": "pages/author/authorInfo/authorInfo",
+					"query": "author=李白&is_share=1",
 					"scene": null
 				}
 			]

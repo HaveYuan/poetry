@@ -115,24 +115,11 @@ class poetryList extends Component<PageOwnProps, PageState> {
 		if(item.author && (item.author !== authorInfo.name)) {
 			// 查询作者相关信息
 			dispatch({
-				type: 'author/authorApi',
+				type: 'author/searchAuthor',
 				payload: {
-					action: 'searchAuthor',
 					data: {
 						author: item.author,
 						isReg: false
-					}
-				},
-				callback: res => {
-					if(res.data.length>0) {
-						// 保存作者信息
-						dispatch({
-							type: 'author/save',
-							payload: {
-								authorInfo: res.data[0],
-								hasAuthor: true
-							}
-						})
 					}
 				}
 			})

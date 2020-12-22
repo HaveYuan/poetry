@@ -68,7 +68,7 @@ class Index extends Component<PageOwnProps, PageState> {
     return {
       title: '这里有最全的诗词种类，快来看看吧！',
       imageUrl: '../../images/share.jpg',
-      path: '/pages/index/index',
+      path: '/pages/index/index?is_share=1',
     }
   }
 

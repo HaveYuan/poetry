@@ -61,7 +61,19 @@ class poetry extends resMsg {
   }
 
   async getPoetryDetail(params) {// 获取单条诗词内容
-
+    try {
+      const _ = db.command;
+      const data = await db.collection(params.tag).where(
+        {
+          _id: _.eq(params._id)
+        }
+      ).get();
+      const poetryInfo = {poetryInfo: data.data[0]};
+      return await this.success(poetryInfo);
+    }catch(err) {
+      console.log(err)
+      return await this.failMsg(err);
+    }
 
   }
 

@@ -2,7 +2,7 @@
     <view class="Index" style="{{anonymousState__temp}}">
         <view class="index-title" style="{{anonymousState__temp2}}">诗词大全</view>
         <swiper class="all" previous-margin="30px" next-margin="30px" interval="{{10000}}" autoplay="{{true}}" circular="{{true}}" easing-function="linear">
-            <swiper-item class="all-item" wx:for="{{loopArray10}}" wx:for-item="item" wx:for-index="__index0">
+            <swiper-item class="all-item" wx:for="{{loopArray9}}" wx:for-item="item" wx:for-index="__index0">
                 <view class="ct-item" wx:key="_id" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                     <view class="title">{{item.$original.name}}</view>
                     <scroll-view scroll-y="{{true}}" class="intro"><text style="{{item.$loopState__temp4}}">{{item.$original.intro}}</text>

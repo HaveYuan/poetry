@@ -7,7 +7,9 @@ type PageStateProps = {
   author: 作者相关
 }
 
-type PageDispatchProps = {}
+type PageDispatchProps = {
+  dispatch: any
+}
 
 type PageOwnProps = {}
 
@@ -27,6 +29,30 @@ class authorInfo extends Component<IProps, PageState> {
   constructor(props) {
     super(props)
     this.state = {
+    }
+  }
+
+  componentDidMount() {
+    const author = this.$router.params['author'];
+    if(author) {
+      const { dispatch } = this.props;
+      dispatch({
+        type: 'author/searchAuthor',
+        payload: {
+          data: {
+            author,
+						isReg: false
+          }
+        }
+      })
+    }
+  }
+
+  onShareAppMessage() {
+    const {author:{authorInfo}} = this.props;
+    return {
+      path: `pages/author/authorInfo/authorInfo?author=${authorInfo.name}&is_share=1`,
+      title: authorInfo.name
     }
   }
 

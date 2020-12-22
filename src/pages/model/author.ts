@@ -19,6 +19,30 @@ export default {
       }).then((res:any) => {
         callback(res)
       })
+    },
+
+    *searchAuthor({payload, callback}, {call, put}) {// 查询作者相关信息
+      const getGuthorFn = function() {
+        return requestCloud({
+          clounFnName: 'poetry',
+          controller: 'poetry',
+          action: 'searchAuthor',
+          data: payload.data
+        })
+      }
+
+      const res = yield call(getGuthorFn, payload.data)
+
+      if(res.data.length>0) {
+        // 保存作者信息
+        yield put({
+          type: 'save',
+          payload: {
+            authorInfo: res.data[0],
+            hasAuthor: true
+          }
+        });
+      }
     }
   },
 

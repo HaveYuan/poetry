@@ -3,6 +3,7 @@ import { View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import Loading from '@/components/Loading/Loading'
 import ListItem from '@/components/ListItem/ListItem'
+import Search from '@/components/Search/Search'
 import logApi from '@/utils/log'
 import './poetryList.scss'
 
@@ -21,7 +22,8 @@ type PageState = {
 	loading: boolean,
 	tag: string,
 	pageNo: number,
-	poetryListData: Array<poetryItem>
+	poetryListData: Array<poetryItem>,
+	inputVal: string
 }
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
@@ -39,7 +41,8 @@ class poetryList extends Component<PageOwnProps, PageState> {
 			loading: true,
 			tag: '',
 			pageNo: 1,
-			poetryListData: []
+			poetryListData: [],
+			inputVal: ''
 		}
 	}
 
@@ -71,7 +74,7 @@ class poetryList extends Component<PageOwnProps, PageState> {
 	 */
 	getpoetryList = (pageNo) => {
 		const { dispatch } = this.props;
-
+		const { inputVal } = this.state;
 		dispatch({
 			type: 'poetryDetail/poetryApi',
 			payload: {
@@ -79,20 +82,34 @@ class poetryList extends Component<PageOwnProps, PageState> {
 				data: {
 					pageNo,
 					pageSize: 20,
-					tag: this.state.tag
+					tag: this.state.tag,
+					value: inputVal
 				}
 			},
 			callback: res => {
 				const {poetryListData} = this.state;
 				if(res.data) {
-					const _pageNo = pageNo + 1;
-					this.setState({
-						poetryListData: poetryListData.concat(res.data),
-						pageNo: _pageNo
-					})
-					if(pageNo === res.totalPage) {
+					if(pageNo == 1) {
+						const _pageNo = pageNo + 1;
+						this.setState({
+							poetryListData: res.data,
+							pageNo: _pageNo
+						})
+					}else {
+						const _pageNo = pageNo + 1;
+						this.setState({
+							poetryListData: poetryListData.concat(res.data),
+							pageNo: _pageNo
+						})
+					}
+
+					if(pageNo === res.totalPage || res.totalPage === 0) {
 						this.setState({
 							loading: false
+						})
+					}else {
+						this.setState({
+							loading: true
 						})
 					}
 				}
@@ -143,10 +160,30 @@ class poetryList extends Component<PageOwnProps, PageState> {
     })
 	}
 
+	searchInput = (e) => {
+		this.setState({
+			inputVal: e.detail.value
+		},()=> {
+			this.getpoetryList(1);
+			if(e.detail.value!== '') {
+				logApi('poetry_list', {
+					action: '搜索诗词内容',
+					inputVal: JSON.stringify(e.detail.value)
+				})
+			}
+		})
+	}
+
 	render() {
 		const { loading, poetryListData, tag } = this.state;
 		return (
 			<View className='poetryList'>
+				<View className='search-area'>
+					<Search
+						placeholder='请输入关键字搜索'
+						searchInput={this.searchInput}
+					/>
+				</View>
 				{poetryListData.map(item => {
 					return (
 						<ListItem
@@ -157,7 +194,10 @@ class poetryList extends Component<PageOwnProps, PageState> {
 						/>
 					)
 				})}
-				<Loading loading={loading}/>
+				<Loading 
+					len={poetryListData.length}
+					loading={loading}
+				/>
 			</View>
 		)
 	}

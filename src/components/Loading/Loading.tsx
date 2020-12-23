@@ -1,9 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Block } from '@tarojs/components'
 import './Loading.scss'
 
 type PageStateProps = {
-  loading: boolean
+  loading: boolean,
+  len: number
 }
 
 type PageDispatchProps = {}
@@ -28,13 +29,18 @@ class Loading extends Component {
   }
 
   render() {
-    const { loading } = this.props;
+    const { loading, len } = this.props;
     return (
       <View className='Loading'>
-        {loading && (<View className='loading-tip'>
-          <Text className='loading-icon'></Text>加载中
-        </View>)}
-        {!loading && (<View className='loading-tip'>我是有底线的~</View>)}
+        {(len === 0 && !loading) && (<View className='loading-tip'>好像没有您要找的内容，试试换个关键字吧~</View>)}
+        {len > 0 && (
+          <Block>
+            {loading && (<View className='loading-tip'>
+            <Text className='loading-icon'></Text>加载中
+            </View>)}
+            {(!loading && len > 10) && (<View className='loading-tip'>我是有底线的~</View>)}
+          </Block>
+        )}
       </View>
     )
   }

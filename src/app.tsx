@@ -91,6 +91,12 @@ class App extends Component {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
+    plugins: {
+      'WechatSI': {
+        'version': '0.3.3',
+        'provider': 'wx069ba97219f66d99'
+        }
+    }
   }
 
   // 在 App 类中的 render() 函数没有实际作用

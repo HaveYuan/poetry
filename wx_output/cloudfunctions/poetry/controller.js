@@ -35,26 +35,100 @@ class poetry extends resMsg {
   async getPoetryList(params) {// 获取诗词
     const pageSize = params.pageSize || 20;
     const pageNo = params.pageNo || 1;
+    const val = params.value;
     const skip = (pageNo-1)*pageSize;
     try {
-      const resTotal = await db.collection(params.tag).count();
-      const total = resTotal.total;
-      const totalPage = Math.ceil(total/pageSize)
-
-      const data = await db.collection(params.tag)
-      .skip(skip)
-      .limit(pageSize)
-      .get();
-
-      const obj = {
-        total,
-        pageSize,
-        pageNo,
-        totalPage,
-        ...data
+      if(val !== '') {
+        const _ = db.command;
+        const resTotal = await db.collection(params.tag).where(_.or([
+          {
+            paragraphs: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          },
+          {
+            title: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          },
+          {
+            content: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          },
+          {
+            author: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          }
+        ])).count();
+        const total = resTotal.total;
+        const totalPage = Math.ceil(total/pageSize)
+  
+        const data = await db.collection(params.tag).where(_.or([
+          {
+            paragraphs: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          },
+          {
+            title: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          },
+          {
+            content: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          },
+          {
+            author: db.RegExp({
+              regexp: val,
+              options: 'i',
+            })
+          }
+        ]))
+        .skip(skip)
+        .limit(pageSize)
+        .get();
+  
+        const obj = {
+          total,
+          pageSize,
+          pageNo,
+          totalPage,
+          ...data
+        }
+  
+        return await this.success(obj);
+      } else {
+        const resTotal = await db.collection(params.tag).count();
+        const total = resTotal.total;
+        const totalPage = Math.ceil(total/pageSize)
+  
+        const data = await db.collection(params.tag)
+        .skip(skip)
+        .limit(pageSize)
+        .get();
+  
+        const obj = {
+          total,
+          pageSize,
+          pageNo,
+          totalPage,
+          ...data
+        }
+  
+        return await this.success(obj);
       }
 
-      return await this.success(obj);
     }catch(err) {
       return await this.failMsg(err);
     }

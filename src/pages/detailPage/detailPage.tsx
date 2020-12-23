@@ -2,6 +2,7 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import logApi from '@/utils/log'
+import Play from '@/components/Play/Play'
 import './detailPage.scss'
 
 type PageStateProps = {
@@ -26,6 +27,8 @@ interface detailPage {
   props: IProps,
   state: PageState
 }
+
+
 
 @connect(
   ({poetryDetail,author}) => ({poetryDetail,author})
@@ -170,11 +173,12 @@ class detailPage extends Component<PageOwnProps, PageState> {
     const {num} = this.state;
     return (
       <View className='detailPage' style={{backgroundImage: `url(https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/bg/bg${num}.webp)`}}>
+        
         <ScrollView scrollY className='pageScroll'>
           {(tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji') && (
             <View className='wrap'>
               <View className='title'>{poetryInfo.title}</View>
-              <View className={hasAuthor ? 'author txt-line' : 'author'} onClick={this.toAuthorInfo}>{poetryInfo.author}</View>
+              <View className={hasAuthor ? 'author txt-line' : 'author'} ><Text onClick={this.toAuthorInfo}>{poetryInfo.author}</Text></View>
               <View className='content'>
                 {poetryInfo.paragraphs.map(item => {
                   return (
@@ -194,19 +198,7 @@ class detailPage extends Component<PageOwnProps, PageState> {
                 </View>
               </View>
               }
-            </View>
-          )}
-
-          {tag === 'lunyu' && (
-            <View className='wrap'>
-              <View className='title'>{poetryInfo.chapter}</View>
-              <View className='content'>
-                {poetryInfo.paragraphs.map(item => {
-                  return (
-                    <View className='paragraphs'>{item}</View>
-                  )
-                })}
-              </View>
+              <Play content={poetryInfo.paragraphs} />
             </View>
           )}
 
@@ -221,20 +213,7 @@ class detailPage extends Component<PageOwnProps, PageState> {
                   )
                 })}
               </View>
-            </View>
-          )}
-
-          {tag === 'sishuwujing' && (
-            <View className='wrap'>
-              <View className='title'>{poetryInfo.chapter}</View>
-              <View className='author'>{poetryInfo.tags}</View>
-              <View className='content'>
-                {poetryInfo.paragraphs.map(item => {
-                  return (
-                    <View className='paragraphs'>{item}</View>
-                  )
-                })}
-              </View>
+              <Play content={poetryInfo.content} />
             </View>
           )}
 
@@ -254,8 +233,37 @@ class detailPage extends Component<PageOwnProps, PageState> {
                   }
                 </View>
               </View>
+              <Play content={poetryInfo.content} />
             </View>
           )}
+
+          {tag === 'sishuwujing' && (
+            <View className='wrap'>
+              <View className='title'>{poetryInfo.chapter}</View>
+              <View className='author'>{poetryInfo.tags}</View>
+              <View className='content'>
+                {poetryInfo.paragraphs.map(item => {
+                  return (
+                    <View className='paragraphs'>{item}</View>
+                  )
+                })}
+              </View>
+            </View>
+          )}
+
+          {tag === 'lunyu' && (
+            <View className='wrap'>
+              <View className='title'>{poetryInfo.chapter}</View>
+              <View className='content'>
+                {poetryInfo.paragraphs.map(item => {
+                  return (
+                    <View className='paragraphs'>{item}</View>
+                  )
+                })}
+              </View>
+            </View>
+          )}
+
         </ScrollView>
       </View>
     )

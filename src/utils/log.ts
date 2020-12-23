@@ -15,7 +15,8 @@ export default function logApi(name:string, logObj:logObj) {
     action: logObj.action,
     catalog: logObj.catalog,
     poetry: logObj.poetry,
-    author_name: logObj.author_name
+    author_name: logObj.author_name,
+    inputVal: logObj.inputVal
   });
 }
 

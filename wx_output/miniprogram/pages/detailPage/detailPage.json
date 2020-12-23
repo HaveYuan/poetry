@@ -1,1 +1,1 @@
-{"usingComponents":{},"navigationBarBackgroundColor":"#fff"}
+{"usingComponents":{"play":"../../components/Play/Play"},"navigationBarBackgroundColor":"#fff"}

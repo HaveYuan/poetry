@@ -1,0 +1,3 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="Play" bindtap="anonymousFunc0"></view>
+</block>

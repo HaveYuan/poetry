@@ -6,3 +6,9 @@ page {
 .poetryList {
   padding: 0 $padding30;
 }
+.search-area {
+  position: sticky;
+  top: 0;
+  background: $backgroundBook;
+  z-index: 2;
+}

@@ -65,7 +65,8 @@ interface logObj {
   action: string,
   catalog?: string,
   poetry?: string,
-  author_name?: string
+  author_name?: string,
+  inputVal?: string
 }
 
 interface params {

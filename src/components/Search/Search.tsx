@@ -1,11 +1,10 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Input } from '@tarojs/components'
-import { requestCloud } from '@/utils/cloudFn'
-import showToast from '@/utils/showToast';
 import './Search.scss'
 
 type PageStateProps = {
-  searchFn: (e:object)=>void,
+  searchFn?: (e:object)=>void,
+  searchInput?: (e:object)=>void,
   placeholder: string
 }
 
@@ -23,7 +22,7 @@ interface Search {
   props: IProps;
   state: PageState
 }
-
+ let time:ReturnType<typeof setTimeout>;
 class Search extends Component<IProps, PageState> {
   constructor(props) {
     super(props)
@@ -45,7 +44,25 @@ class Search extends Component<IProps, PageState> {
 
   searchContent(e) {
     const { searchFn } = this.props;
-    searchFn(e)
+    searchFn && searchFn(e)
+  }
+
+  searchContentInput(e) {
+    const { searchInput } = this.props;
+    
+
+    if(time) {
+      clearTimeout(time);
+      time = setTimeout(_ => {
+        searchInput && searchInput(e);
+      }, 500)
+    }else {
+      time = setTimeout(_ => {
+        searchInput && searchInput(e);
+      }, 500)
+    }
+
+
   }
 
   render() {
@@ -53,7 +70,7 @@ class Search extends Component<IProps, PageState> {
     return (
       <View className='Search'>
         <View className='search-icon'></View>
-        <Input className='search-input' confirmType='search' placeholder={placeholder} onBlur={this.searchContent} />
+        <Input className='search-input' confirmType='search' placeholder={placeholder} onBlur={this.searchContent} onInput={this.searchContentInput} />
       </View>
     )
   }

@@ -1,10 +1,17 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="Loading">
-        <block wx:if="{{loading}}">
-            <view class="loading-tip"><text class="loading-icon"></text>加载中</view>
+        <block wx:if="{{len === 0 && !loading}}">
+            <view class="loading-tip">好像没有您要找的内容，试试换个关键字吧~</view>
         </block>
-        <block wx:if="{{!loading}}">
-            <view class="loading-tip">我是有底线的~</view>
+        <block wx:if="{{len > 0}}">
+            <block>
+                <block wx:if="{{loading}}">
+                    <view class="loading-tip"><text class="loading-icon"></text>加载中</view>
+                </block>
+                <block wx:if="{{!loading && len > 10}}">
+                    <view class="loading-tip">我是有底线的~</view>
+                </block>
+            </block>
         </block>
     </view>
 </block>

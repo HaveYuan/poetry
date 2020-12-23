@@ -4,7 +4,8 @@
             <block wx:if="{{tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji'}}">
                 <view class="wrap">
                     <view class="title">{{poetryInfo.title}}</view>
-                    <view class="{{hasAuthor ? 'author txt-line' : 'author'}}" bindtap="toAuthorInfo">{{poetryInfo.author}}</view>
+                    <view class="{{hasAuthor ? 'author txt-line' : 'author'}}"><text bindtap="toAuthorInfo">{{poetryInfo.author}}</text>
+                    </view>
                     <view class="content">
                         <view wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx2">{{item}}</view>
                     </view>
@@ -15,14 +16,7 @@
                             </view>
                         </view>
                     </block>
-                </view>
-            </block>
-            <block wx:if="{{tag === 'lunyu'}}">
-                <view class="wrap">
-                    <view class="title">{{poetryInfo.chapter}}</view>
-                    <view class="content">
-                        <view class="paragraphs" wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx6">{{item}}</view>
-                    </view>
+                    <play compid="{{$compid__12}}"></play>
                 </view>
             </block>
             <block wx:if="{{tag === 'shijing'}}">
@@ -30,8 +24,20 @@
                     <view class="title">{{poetryInfo.title}}</view>
                     <view class="author">{{poetryInfo.chapter}}·{{poetryInfo.section}}</view>
                     <view class="content">
-                        <view wx:for="{{poetryInfo.content}}" wx:for-item="item" wx:for-index="_anonIdx8">{{item}}</view>
+                        <view wx:for="{{poetryInfo.content}}" wx:for-item="item" wx:for-index="_anonIdx6">{{item}}</view>
                     </view>
+                    <play compid="{{$compid__13}}"></play>
+                </view>
+            </block>
+            <block wx:if="{{tag === 'youmengying'}}">
+                <view class="wrap">
+                    <view class="content">{{poetryInfo.content}}</view>
+                    <view class="comment"><text style="{{anonymousState__temp3}}">名人评析：</text>
+                        <view>
+                            <view class="paragraphs" wx:for="{{poetryInfo.comment}}" wx:for-item="item" wx:for-index="_anonIdx8">{{item}}</view>
+                        </view>
+                    </view>
+                    <play compid="{{$compid__14}}"></play>
                 </view>
             </block>
             <block wx:if="{{tag === 'sishuwujing'}}">
@@ -43,13 +49,11 @@
                     </view>
                 </view>
             </block>
-            <block wx:if="{{tag === 'youmengying'}}">
+            <block wx:if="{{tag === 'lunyu'}}">
                 <view class="wrap">
-                    <view class="content">{{poetryInfo.content}}</view>
-                    <view class="comment"><text style="{{anonymousState__temp3}}">名人评析：</text>
-                        <view>
-                            <view class="paragraphs" wx:for="{{poetryInfo.comment}}" wx:for-item="item" wx:for-index="_anonIdx12">{{item}}</view>
-                        </view>
+                    <view class="title">{{poetryInfo.chapter}}</view>
+                    <view class="content">
+                        <view class="paragraphs" wx:for="{{poetryInfo.paragraphs}}" wx:for-item="item" wx:for-index="_anonIdx12">{{item}}</view>
                     </view>
                 </view>
             </block>

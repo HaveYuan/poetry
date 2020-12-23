@@ -29,6 +29,12 @@ class Tools extends Component<IProps, PageState> {
     }
   }
 
+  componentDidHide() {
+    this.setState({
+      menuShow: false
+    })
+  }
+
   openMenu() {
     const { menuShow } = this.state;
     if(menuShow) {

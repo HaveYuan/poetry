@@ -1,0 +1,30 @@
+@import '../../style/global.scss';
+
+.SearchContent {
+  width: 100%;
+  background: #fff;
+  font-size: 28px;
+  box-sizing: border-box;
+  padding: 0 $padding30;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  .content-list {
+    position: relative;
+    padding: 20px 0;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      border-bottom: 1px solid gray;
+      transform: scaleY(.5);
+      transform-origin: 0 0;
+    }
+    &:last-child {
+      &::after {
+        border-bottom: none;
+      }
+    }
+  }
+}

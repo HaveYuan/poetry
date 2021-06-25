@@ -1,1 +1,132 @@
-@-webkit-keyframes move{0%{left:0;top:0}to{left:-120rpx;top:0}}@keyframes move{0%{left:0;top:0}to{left:-120rpx;top:0}}@-webkit-keyframes move2{0%{right:0;top:0}to{right:-120rpx;top:0}}@keyframes move2{0%{right:0;top:0}to{right:-120rpx;top:0}}@-webkit-keyframes move3{0%{left:0;top:0}to{top:-120rpx}}@keyframes move3{0%{left:0;top:0}to{top:-120rpx}}@-webkit-keyframes rotates{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes rotates{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.Tools{position:absolute;bottom:50rpx;left:50%;margin-left:-60rpx}.Tools,.Tools .tool-box{width:120rpx;height:120rpx}.Tools .rotate{-webkit-animation:rotates 2s linear infinite;animation:rotates 2s linear infinite}.Tools .tools-item{width:100rpx;height:100rpx;border-radius:50%;position:absolute;display:flex;align-items:center;justify-content:center;font-size:24rpx;visibility:hidden}.Tools .white-fonts{background:#000;color:#fff}.Tools .blank-fonts{background:#fff;color:#000}.Tools .gray-fonts{background:#161823;color:#fff}.Tools .move{-webkit-animation:move 1s forwards;animation:move 1s forwards;visibility:visible}.Tools .move2,.Tools .move3{-webkit-animation:move2 1s forwards;animation:move2 1s forwards;visibility:visible}.Tools .move3{-webkit-animation:move3 1s forwards;animation:move3 1s forwards}
+.Tools {
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  bottom: 50rpx;
+  left: 50%;
+  margin-left: -60rpx;
+}
+.Tools .tool-box {
+  width: 120rpx;
+  height: 120rpx;
+}
+.Tools .rotate {
+  -webkit-animation: rotates 2s linear infinite;
+          animation: rotates 2s linear infinite;
+}
+.Tools .tools-item {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  visibility: hidden;
+}
+.Tools .white-fonts {
+  background: #000;
+  color: #fff;
+}
+.Tools .blank-fonts {
+  background: #fff;
+  color: #000;
+}
+.Tools .gray-fonts {
+  background: #161823;
+  color: #fff;
+}
+.Tools .move {
+  -webkit-animation: move 1s forwards;
+          animation: move 1s forwards;
+  visibility: visible;
+}
+.Tools .move2 {
+  -webkit-animation: move2 1s forwards;
+          animation: move2 1s forwards;
+  visibility: visible;
+}
+.Tools .move3 {
+  -webkit-animation: move3 1s forwards;
+          animation: move3 1s forwards;
+  visibility: visible;
+}
+@-webkit-keyframes move {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -120rpx;
+    top: 0;
+  }
+}
+@keyframes move {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -120rpx;
+    top: 0;
+  }
+}
+@-webkit-keyframes move2 {
+  from {
+    right: 0;
+    top: 0;
+  }
+  to {
+    right: -120rpx;
+    top: 0;
+  }
+}
+@keyframes move2 {
+  from {
+    right: 0;
+    top: 0;
+  }
+  to {
+    right: -120rpx;
+    top: 0;
+  }
+}
+@-webkit-keyframes move3 {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    top: -120rpx;
+  }
+}
+@keyframes move3 {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    top: -120rpx;
+  }
+}
+@-webkit-keyframes rotates {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotates {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}

@@ -1,1 +1,342 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[13],{"111":function(t,e,o){"use strict";o.r(e);o(112);var a,n=o(28);for(a in n)"default"!==a&&function(t){o.d(e,t,function(){return n[t]})}(a)},"112":function(t,e,o){"use strict";o(55)},"113":function(t,e,o){},"12":function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var f=function(t,e){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return function sliceIterator(t,e){var o=[],a=!0,n=!1,r=void 0;try{for(var i,u=t[Symbol.iterator]();!(a=(i=u.next()).done)&&(o.push(i.value),!e||o.length!==e);a=!0);}catch(t){n=!0,r=t}finally{try{!a&&u.return&&u.return()}finally{if(n)throw r}}return o}(t,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},a=function(t,e,o){return e&&defineProperties(t.prototype,e),o&&defineProperties(t,o),t};function defineProperties(t,e){for(var o=0;o<e.length;o++){var a=e[o];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(t,a.key,a)}}function u(t,e,o){null===t&&(t=Function.prototype);var a=Object.getOwnPropertyDescriptor(t,e);if(void 0!==a){if("value"in a)return a.value;a=a.get;return void 0!==a?a.call(o):void 0}if(t=Object.getPrototypeOf(t),null!==t)return u(t,e,o)}var n,r=o(6),h=o(0),i=_interopRequireDefault(h),s=o(4),p=_interopRequireDefault(o(3));function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}o(113);(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)})(detailPage,h.Component),a(detailPage,[{"key":"_constructor","value":function _constructor(t){u(detailPage.prototype.__proto__||Object.getPrototypeOf(detailPage.prototype),"_constructor",this).call(this,t),this.state={"num":1,"_id":""},this.$$refs=new i.default.RefsArray}},{"key":"componentDidMount","value":function componentDidMount(){var e=this;this.switchTag();var t=Math.floor(5*Math.random())+1;this.setState({"num":t});var o,a=this.$router.params.tag,n=this.$router.params._id;a&&n&&(o=this.props.dispatch)({"type":"poetryDetail/poetryApi","payload":{"action":"getPoetryDetail","data":{"tag":a,"_id":n}},"callback":function callback(t){t.poetryInfo.author&&o({"type":"author/searchAuthor","payload":{"data":{"author":t.poetryInfo.author,"isReg":!1}}}),o({"type":"poetryDetail/save","payload":{"tag":a,"poetryInfo":t.poetryInfo}}),e.setState({"_id":n}),e.switchTag()}})}},{"key":"componentWillUnmount","value":function componentWillUnmount(){(0,this.props.dispatch)({"type":"author/save","payload":{"hasAuthor":!1}})}},{"key":"onShareAppMessage","value":function onShareAppMessage(){var t=this.state._id;return{"title":"诗词鉴赏","path":"/pages/detailPage/detailPage?tag="+this.props.poetryDetail.tag+"&_id="+t+"&is_share=1"}}},{"key":"_createData","value":function _createData(t,e,o){this.__state=t||this.state||{},this.__props=e||this.props||{};var a=this.$prefix,n=(0,h.genCompid)(a+"$compid__12"),r=f(n,2),i=r[0],u=r[1],s=(0,h.genCompid)(a+"$compid__13"),p=f(s,2),l=p[0],c=p[1],t=(0,h.genCompid)(a+"$compid__14"),e=f(t,2),o=e[0],n=e[1],r=this.__props,s=r.poetryDetail,p=s.poetryInfo,a=s.tag,t=r.author.hasAuthor,e=this.__state.num,s=(0,h.internal_inline_style)({"backgroundImage":"url(https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/bg/bg"+e+".webp)"}),r=p.notes&&0<p.notes.length?(0,h.internal_inline_style)({"fontWeight":"bold"}):null,e="youmengying"===a?(0,h.internal_inline_style)({"fontWeight":"bold"}):null;return"yuanqu"!==a&&"nantang"!==a&&"huajianji"!==a||h.propsManager.set({"content":p.paragraphs},u,i),"shijing"===a&&h.propsManager.set({"content":p.content},c,l),"youmengying"===a&&h.propsManager.set({"content":p.content},n,o),Object.assign(this.__state,{"anonymousState__temp":s,"anonymousState__temp2":r,"anonymousState__temp3":e,"poetryInfo":p,"$compid__12":u,"$compid__13":c,"$compid__14":n,"tag":a,"hasAuthor":t}),this.__state}}]),a=n=detailPage,n.$$events=["toAuthorInfo"],n.$$componentPath="pages/detailPage/detailPage";function detailPage(){var t,a;!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,detailPage);for(var e=arguments.length,o=Array(e),n=0;n<e;n++)o[n]=arguments[n];return(t=a=_possibleConstructorReturn(this,(t=detailPage.__proto__||Object.getPrototypeOf(detailPage)).call.apply(t,[this].concat(o)))).$usedState=["anonymousState__temp","anonymousState__temp2","anonymousState__temp3","poetryInfo","$compid__12","$compid__13","$compid__14","tag","hasAuthor","num","_id","dispatch","poetryDetail","author"],a.switchTag=function(){var t=a.props.poetryDetail,e=t.poetryInfo;switch(t.tag){case"yuanqu":a.setTitle(e.title);break;case"lunyu":a.setTitle(e.chapter);break;case"shijing":var o=e.chapter+"·"+e.section+"-"+e.title;a.setTitle(o);break;case"youmengying":a.setTitle("幽梦影");break;case"sishuwujing":a.setTitle(e.chapter);break;default:a.setTitle("诗词详情")}},a.setTitle=function(t){i.default.setNavigationBarTitle({"title":t})},a.toAuthorInfo=function(){var t=a.props.author,e=t.hasAuthor,t=t.authorInfo;e&&((0,p.default)("detail_page",{"action":"点击查看作者详情","author_name":t.name}),i.default.navigateTo({"url":"/pages/author/authorInfo/authorInfo"}))},a.config={"navigationBarBackgroundColor":"#fff"},a.customComponents=["Play"],_possibleConstructorReturn(a,t)}a=(0,r.__decorate)([(0,s.connect)(function(t){return{"poetryDetail":t.poetryDetail,"author":t.author}})],a),e.default=a,Component(o(0).default.createComponent(a,!0))},"28":function(t,e,o){"use strict";o.r(e);var a,n=o(12),r=o.n(n);for(a in n)"default"!==a&&function(t){o.d(e,t,function(){return n[t]})}(a);e.default=r.a},"55":function(t,e,o){t.exports=o.p+"pages/detailPage/detailPage.wxml"}},[[111,0,1,2]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/detailPage/detailPage"],{
+
+/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/detailPage/detailPage.tsx?taro&type=script&parse=PAGE&":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/detailPage/detailPage.tsx?taro&type=script&parse=PAGE& ***!
+  \***********************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _class, _temp2;
+
+var _tslib = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _log = __webpack_require__(/*! ../../utils/log */ "./src/utils/log.ts");
+
+var _log2 = _interopRequireDefault(_log);
+
+__webpack_require__(/*! ./detailPage.scss */ "./src/pages/detailPage/detailPage.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var detailPage = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(detailPage, _BaseComponent);
+
+  function detailPage() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, detailPage);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = detailPage.__proto__ || Object.getPrototypeOf(detailPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "poetryInfo", "$compid__12", "$compid__13", "$compid__14", "tag", "hasAuthor", "num", "_id", "dispatch", "poetryDetail", "author"], _this.switchTag = function () {
+      var _this$props$poetryDet = _this.props.poetryDetail,
+          poetryInfo = _this$props$poetryDet.poetryInfo,
+          tag = _this$props$poetryDet.tag;
+
+      switch (tag) {
+        case 'yuanqu':
+          _this.setTitle(poetryInfo.title);
+          break;
+        case 'lunyu':
+          _this.setTitle(poetryInfo.chapter);
+          break;
+        case 'shijing':
+          var title = poetryInfo.chapter + '·' + poetryInfo.section + '-' + poetryInfo.title;
+          _this.setTitle(title);
+          break;
+        case 'youmengying':
+          _this.setTitle('幽梦影');
+          break;
+        case 'sishuwujing':
+          _this.setTitle(poetryInfo.chapter);
+          break;
+        default:
+          _this.setTitle('诗词详情');
+          break;
+      }
+    }, _this.setTitle = function (title) {
+      _taroWeapp2.default.setNavigationBarTitle({
+        title: title
+      });
+    }, _this.toAuthorInfo = function () {
+      var _this$props$author = _this.props.author,
+          hasAuthor = _this$props$author.hasAuthor,
+          authorInfo = _this$props$author.authorInfo;
+
+      if (hasAuthor) {
+        (0, _log2.default)('detail_page', {
+          action: '点击查看作者详情',
+          author_name: authorInfo.name
+        });
+        _taroWeapp2.default.navigateTo({
+          url: '/pages/author/authorInfo/authorInfo'
+        });
+      }
+    }, _this.config = {
+      navigationBarBackgroundColor: '#fff'
+    }, _this.customComponents = ["Play"], _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(detailPage, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(detailPage.prototype.__proto__ || Object.getPrototypeOf(detailPage.prototype), "_constructor", this).call(this, props);
+
+      this.state = {
+        num: 1,
+        _id: ''
+      };
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.switchTag();
+      // 获取随机数设置背景
+      var num = Math.floor(Math.random() * 5) + 1;
+      this.setState({
+        num: num
+      });
+      // 有参数时
+      var tag = this.$router.params['tag'];
+      var _id = this.$router.params['_id'];
+      if (tag && _id) {
+        var dispatch = this.props.dispatch;
+
+        dispatch({
+          type: 'poetryDetail/poetryApi',
+          payload: {
+            action: 'getPoetryDetail',
+            data: {
+              tag: tag,
+              _id: _id
+            }
+          },
+          callback: function callback(poetryRes) {
+            // 查询作者相关信息
+            if (poetryRes.poetryInfo.author) {
+              dispatch({
+                type: 'author/searchAuthor',
+                payload: {
+                  data: {
+                    author: poetryRes.poetryInfo.author,
+                    isReg: false
+                  }
+                }
+              });
+            }
+            // 诗词详情
+            dispatch({
+              type: 'poetryDetail/save',
+              payload: {
+                tag: tag,
+                poetryInfo: poetryRes.poetryInfo
+              }
+            });
+            _this2.setState({
+              _id: _id
+            });
+            _this2.switchTag();
+          }
+        });
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      var dispatch = this.props.dispatch;
+
+      dispatch({
+        type: 'author/save',
+        payload: {
+          hasAuthor: false
+        }
+      });
+    }
+  }, {
+    key: "onShareAppMessage",
+    value: function onShareAppMessage() {
+      var _id = this.state._id;
+      var tag = this.props.poetryDetail.tag;
+
+      return {
+        title: '诗词鉴赏',
+        path: "/pages/detailPage/detailPage?tag=" + tag + "&_id=" + _id + "&is_share=1"
+      };
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__12"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__12 = _genCompid2[0],
+          $compid__12 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__13"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__13 = _genCompid4[0],
+          $compid__13 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__14"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__14 = _genCompid6[0],
+          $compid__14 = _genCompid6[1];
+
+      var _props = this.__props,
+          _props$poetryDetail = _props.poetryDetail,
+          poetryInfo = _props$poetryDetail.poetryInfo,
+          tag = _props$poetryDetail.tag,
+          hasAuthor = _props.author.hasAuthor;
+      var num = this.__state.num;
+
+      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)({ backgroundImage: "url(https://cdn.jsdelivr.net/gh/haveyuan/poetry_img/bg/bg" + num + ".webp)" });
+      var anonymousState__temp2 = poetryInfo.notes && poetryInfo.notes.length > 0 ? (0, _taroWeapp.internal_inline_style)({ fontWeight: 'bold' }) : null;
+      var anonymousState__temp3 = tag === 'youmengying' ? (0, _taroWeapp.internal_inline_style)({ fontWeight: 'bold' }) : null;
+      (tag === 'yuanqu' || tag === 'nantang' || tag === 'huajianji') && _taroWeapp.propsManager.set({
+        "content": poetryInfo.paragraphs
+      }, $compid__12, $prevCompid__12);
+      tag === 'shijing' && _taroWeapp.propsManager.set({
+        "content": poetryInfo.content
+      }, $compid__13, $prevCompid__13);
+      tag === 'youmengying' && _taroWeapp.propsManager.set({
+        "content": poetryInfo.content
+      }, $compid__14, $prevCompid__14);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
+        anonymousState__temp3: anonymousState__temp3,
+        poetryInfo: poetryInfo,
+        $compid__12: $compid__12,
+        $compid__13: $compid__13,
+        $compid__14: $compid__14,
+        tag: tag,
+        hasAuthor: hasAuthor
+      });
+      return this.__state;
+    }
+  }]);
+
+  return detailPage;
+}(_taroWeapp.Component), _class.$$events = ["toAuthorInfo"], _class.$$componentPath = "pages/detailPage/detailPage", _temp2);
+detailPage = (0, _tslib.__decorate)([(0, _redux.connect)(function (_ref2) {
+  var poetryDetail = _ref2.poetryDetail,
+      author = _ref2.author;
+  return { poetryDetail: poetryDetail, author: author };
+})], detailPage);
+exports.default = detailPage;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(detailPage, true));
+
+/***/ }),
+
+/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=W:\\lyy\\pro\\taroPro\\songs\\poetry\\src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/detailPage/detailPage.tsx?taro&type=template&parse=PAGE&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=W:/lyy/pro/taroPro/songs/poetry/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/detailPage/detailPage.tsx?taro&type=template&parse=PAGE& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "pages/detailPage/detailPage.wxml";
+
+/***/ }),
+
+/***/ "./src/pages/detailPage/detailPage.scss":
+/*!**********************************************!*\
+  !*** ./src/pages/detailPage/detailPage.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/detailPage/detailPage.tsx":
+/*!*********************************************!*\
+  !*** ./src/pages/detailPage/detailPage.tsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _detailPage_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./detailPage.tsx?taro&type=template&parse=PAGE& */ "./src/pages/detailPage/detailPage.tsx?taro&type=template&parse=PAGE&");
+/* harmony import */ var _detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detailPage.tsx?taro&type=script&parse=PAGE& */ "./src/pages/detailPage/detailPage.tsx?taro&type=script&parse=PAGE&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+
+
+/***/ }),
+
+/***/ "./src/pages/detailPage/detailPage.tsx?taro&type=script&parse=PAGE&":
+/*!**************************************************************************!*\
+  !*** ./src/pages/detailPage/detailPage.tsx?taro&type=script&parse=PAGE& ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./detailPage.tsx?taro&type=script&parse=PAGE& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/detailPage/detailPage.tsx?taro&type=script&parse=PAGE&");
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./src/pages/detailPage/detailPage.tsx?taro&type=template&parse=PAGE&":
+/*!****************************************************************************!*\
+  !*** ./src/pages/detailPage/detailPage.tsx?taro&type=template&parse=PAGE& ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=W:/lyy/pro/taroPro/songs/poetry/src!../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./detailPage.tsx?taro&type=template&parse=PAGE& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=W:\\lyy\\pro\\taroPro\\songs\\poetry\\src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/detailPage/detailPage.tsx?taro&type=template&parse=PAGE&");
+/* harmony import */ var _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_detailPage_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ })
+
+},[["./src/pages/detailPage/detailPage.tsx","runtime","vendors","common"]]]);

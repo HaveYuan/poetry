@@ -1,1 +1,216 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[7],{"139":function(t,e,n){"use strict";n.r(e);n(140);var o,r=n(37);for(o in r)"default"!==o&&function(t){n.d(e,t,function(){return r[t]})}(o)},"140":function(t,e,n){"use strict";n(64)},"141":function(t,e,n){},"21":function(e,n,o){"use strict";Object.defineProperty(n,"__esModule",{"value":!0});var r=function(t,e,n){return e&&defineProperties(t.prototype,e),n&&defineProperties(t,n),t};function defineProperties(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}function t(e,n,o){null===e&&(e=Function.prototype);var r=Object.getOwnPropertyDescriptor(e,n);if(void 0!==r){if("value"in r)return r.value;r=r.get;return void 0!==r?r.call(o):void 0}if(e=Object.getPrototypeOf(e),null!==e)return t(e,n,o)}var i=o(0),u=_interopRequireDefault(i),a=_interopRequireDefault(o(24)),c=_interopRequireDefault(o(3));function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}o(141);var s=requirePlugin("WechatSI"),l=u.default.createInnerAudioContext(),r=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(Play,i.Component),r(Play,[{"key":"_constructor","value":function _constructor(e){t(Play.prototype.__proto__||Object.getPrototypeOf(Play.prototype),"_constructor",this).call(this,e),this.state={},this.$$refs=new u.default.RefsArray}},{"key":"componentWillReceiveProps","value":function componentWillReceiveProps(){}},{"key":"componentWillUnmount","value":function componentWillUnmount(){l.stop()}},{"key":"_createData","value":function _createData(t,e){var n=this;this.__state=t||this.state||{},this.__props=e||this.props||{};this.$prefix;var o=this.__props.content;return this.anonymousFunc0=function(){return n.playPoetry(o)},Object.assign(this.__state,{}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}}]),r=i=Play,i.$$events=["anonymousFunc0"],i.$$componentPath="components/Play/Play",r);function Play(){var t,e;!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,Play);for(var n=arguments.length,o=Array(n),r=0;r<n;r++)o[r]=arguments[r];return(t=e=_possibleConstructorReturn(this,(t=Play.__proto__||Object.getPrototypeOf(Play)).call.apply(t,[this].concat(o)))).$usedState=["content"],e.playPoetry=function(t){var e="";"string"==typeof t?e=t:t.map(function(t){e+=t}),s.textToSpeech({"lang":"zh_CN","tts":!0,"content":e,"success":function success(t){console.log("succ tts",t.filename),(0,a.default)({"title":"读音为合成音，仅作参考"}),l.src=t.filename,l.play(),(0,c.default)("detail_page",{"action":"点击朗读","poetry":e})},"fail":function fail(t){console.log("fail tts",t),(0,a.default)({"title":"朗读失败"})}})},e.customComponents=[],_possibleConstructorReturn(e,t)}n.default=r,Component(o(0).default.createComponent(r))},"37":function(t,e,n){"use strict";n.r(e);var o,r=n(21),i=n.n(r);for(o in r)"default"!==o&&function(t){n.d(e,t,function(){return r[t]})}(o);e.default=i.a},"64":function(t,e,n){t.exports=n.p+"components/Play/Play.wxml"}},[[139,0,1,2]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/Play/Play"],{
+
+/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/Play/Play.tsx?taro&type=script&parse=COMPONENT&":
+/*!*********************************************************************************************************************************************************!*\
+  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/components/Play/Play.tsx?taro&type=script&parse=COMPONENT& ***!
+  \*********************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _class, _temp2;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _showToast = __webpack_require__(/*! ../../utils/showToast */ "./src/utils/showToast.ts");
+
+var _showToast2 = _interopRequireDefault(_showToast);
+
+var _log = __webpack_require__(/*! ../../utils/log */ "./src/utils/log.ts");
+
+var _log2 = _interopRequireDefault(_log);
+
+__webpack_require__(/*! ./Play.scss */ "./src/components/Play/Play.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var plugin = requirePlugin("WechatSI"); // 微信同声传译插件
+var innerAudioContext = _taroWeapp2.default.createInnerAudioContext();
+var Play = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(Play, _BaseComponent);
+
+  function Play() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Play);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Play.__proto__ || Object.getPrototypeOf(Play)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["content"], _this.playPoetry = function (content) {
+      var str = '';
+      if (typeof content === 'string') {
+        str = content;
+      } else {
+        content.map(function (item) {
+          str = str + item;
+        });
+      }
+      plugin.textToSpeech({
+        lang: "zh_CN",
+        tts: true,
+        content: str,
+        success: function success(res) {
+          console.log("succ tts", res.filename);
+          (0, _showToast2.default)({ title: '读音为合成音，仅作参考' });
+          innerAudioContext.src = res.filename;
+          innerAudioContext.play();
+          (0, _log2.default)('detail_page', {
+            action: '点击朗读',
+            poetry: str
+          });
+        },
+        fail: function fail(res) {
+          console.log("fail tts", res);
+          (0, _showToast2.default)({ title: '朗读失败' });
+        }
+      });
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Play, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Play.prototype.__proto__ || Object.getPrototypeOf(Play.prototype), "_constructor", this).call(this, props);
+
+      this.state = {};
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {}
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      innerAudioContext.stop();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var content = this.__props.content;
+
+
+      this.anonymousFunc0 = function () {
+        return _this2.playPoetry(content);
+      };
+
+      Object.assign(this.__state, {});
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }]);
+
+  return Play;
+}(_taroWeapp.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "components/Play/Play", _temp2);
+exports.default = Play;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Play));
+
+/***/ }),
+
+/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=W:\\lyy\\pro\\taroPro\\songs\\poetry\\src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/Play/Play.tsx?taro&type=template&parse=COMPONENT&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=W:/lyy/pro/taroPro/songs/poetry/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/components/Play/Play.tsx?taro&type=template&parse=COMPONENT& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "components/Play/Play.wxml";
+
+/***/ }),
+
+/***/ "./src/components/Play/Play.scss":
+/*!***************************************!*\
+  !*** ./src/components/Play/Play.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/Play/Play.tsx":
+/*!**************************************!*\
+  !*** ./src/components/Play/Play.tsx ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Play_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Play.tsx?taro&type=template&parse=COMPONENT& */ "./src/components/Play/Play.tsx?taro&type=template&parse=COMPONENT&");
+/* harmony import */ var _Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Play.tsx?taro&type=script&parse=COMPONENT& */ "./src/components/Play/Play.tsx?taro&type=script&parse=COMPONENT&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+
+
+/***/ }),
+
+/***/ "./src/components/Play/Play.tsx?taro&type=script&parse=COMPONENT&":
+/*!************************************************************************!*\
+  !*** ./src/components/Play/Play.tsx?taro&type=script&parse=COMPONENT& ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./Play.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/Play/Play.tsx?taro&type=script&parse=COMPONENT&");
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./src/components/Play/Play.tsx?taro&type=template&parse=COMPONENT&":
+/*!**************************************************************************!*\
+  !*** ./src/components/Play/Play.tsx?taro&type=template&parse=COMPONENT& ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=W:/lyy/pro/taroPro/songs/poetry/src!../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./Play.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=W:\\lyy\\pro\\taroPro\\songs\\poetry\\src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/Play/Play.tsx?taro&type=template&parse=COMPONENT&");
+/* harmony import */ var _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_W_lyy_pro_taroPro_songs_poetry_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_Play_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ })
+
+},[["./src/components/Play/Play.tsx","runtime","vendors","common"]]]);

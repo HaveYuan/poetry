@@ -1,1 +1,26 @@
-.my .head-box{height:300rpx;flex-direction:column;display:flex;align-items:center;justify-content:center;background:#161823}.my .head-box .user-avatar{width:120rpx;height:120rpx;border-radius:50%;overflow:hidden}.my .head-box .user-name{font-size:28rpx;margin-top:12rpx;color:#fff}.my .tips{text-align:center;font-size:34rpx;line-height:2;margin-top:100rpx}
+.my .head-box {
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #161823;
+}
+.my .head-box .user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.my .head-box .user-name {
+  font-size: 28rpx;
+  margin-top: 12rpx;
+  color: #fff;
+}
+.my .tips {
+  text-align: center;
+  font-size: 34rpx;
+  line-height: 2;
+  margin-top: 100rpx;
+}

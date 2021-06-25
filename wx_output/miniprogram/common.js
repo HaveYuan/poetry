@@ -1,1 +1,94 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[2],{"24":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function showToast(e){o.default.showToast({"title":e.title,"duration":e.duration||2e3,"icon":e.icon||"none"})};var o=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(n(0))},"3":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function logApi(e,t){var n=function formateTime(e){if("number"!=typeof e||e<0)return e;var t=new Date(e),n=t.getFullYear(),o=t.getMonth()+1,i=t.getDate(),r=t.getHours(),e=t.getMinutes(),t=t.getSeconds();return[n,o,i].map(formatNumber).join("-")+" "+[r,e,t].map(formatNumber).join(":")}((new Date).getTime()),o=r.default.getStorageSync("openid"),i=r.default.getSystemInfoSync();r.default.reportAnalytics(e,{"time":n,"system_info":JSON.stringify(i),"window_width":i.windowWidth||"","window_height":i.windowHeight||"","model":i.model||"","version":i.version||"","openid":o||"","action":t.action,"catalog":t.catalog,"poetry":t.poetry,"author_name":t.author_name,"inputVal":t.inputVal})};var r=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(n(0));function formatNumber(e){return(e=e.toString())[1]?e:"0"+e}}}]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["common"],{
+
+/***/ "./src/utils/log.ts":
+/*!**************************!*\
+  !*** ./src/utils/log.ts ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = logApi;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function logApi(name, logObj) {
+  var time = formateTime(new Date().getTime());
+  var storageRes = _taroWeapp2.default.getStorageSync('openid');
+  var system_info = _taroWeapp2.default.getSystemInfoSync();
+  _taroWeapp2.default.reportAnalytics(name, {
+    time: time,
+    system_info: JSON.stringify(system_info),
+    window_width: system_info.windowWidth || '',
+    window_height: system_info.windowHeight || '',
+    model: system_info.model || '',
+    version: system_info.version || '',
+    openid: storageRes || '',
+    action: logObj.action,
+    catalog: logObj.catalog,
+    poetry: logObj.poetry,
+    author_name: logObj.author_name,
+    inputVal: logObj.inputVal
+  });
+}
+function formateTime(time) {
+  if (typeof time !== 'number' || time < 0) {
+    return time;
+  }
+  var date = new Date(time);
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+}
+function formatNumber(n) {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
+}
+
+/***/ }),
+
+/***/ "./src/utils/showToast.ts":
+/*!********************************!*\
+  !*** ./src/utils/showToast.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = showToast;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function showToast(params) {
+  _taroWeapp2.default.showToast({
+    title: params.title,
+    duration: params.duration || 2000,
+    icon: params.icon || 'none'
+  });
+}
+
+/***/ })
+
+}]);

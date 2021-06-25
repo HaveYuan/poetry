@@ -1,1 +1,13 @@
-page{background:#d9c1a5}.poetryList{padding:0 30rpx}.search-area{position:-webkit-sticky;position:sticky;top:0;background:#d9c1a5;z-index:2}
+page {
+  background: #D9C1A5;
+}
+.poetryList {
+  padding: 0 30rpx;
+}
+.search-area {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: #D9C1A5;
+  z-index: 2;
+}

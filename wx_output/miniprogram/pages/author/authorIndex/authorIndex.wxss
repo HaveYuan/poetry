@@ -1,1 +1,32 @@
-.authorIndex{padding:0 30rpx}.authorIndex .search-content{margin-top:8%;display:grid}.authorIndex .hot-wrap{margin-top:15%}.authorIndex .hot-wrap .tips{line-height:2;position:relative;padding-left:18rpx}.authorIndex .hot-wrap .tips::after{content:'';width:4rpx;height:30rpx;background:#00bfff;position:absolute;top:50%;left:0;margin-top:-14rpx}.authorIndex .hot-wrap .author-grid{display:grid;grid-template-columns:repeat(auto-fill,120rpx);grid-column-gap:70rpx;grid-row-gap:30rpx;margin-top:40rpx}
+.authorIndex {
+  padding: 0 30rpx;
+}
+.authorIndex .search-content {
+  margin-top: 8%;
+  display: grid;
+}
+.authorIndex .hot-wrap {
+  margin-top: 15%;
+}
+.authorIndex .hot-wrap .tips {
+  line-height: 2;
+  position: relative;
+  padding-left: 18rpx;
+}
+.authorIndex .hot-wrap .tips::after {
+  content: '';
+  width: 4rpx;
+  height: 30rpx;
+  background: deepskyblue;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -14rpx;
+}
+.authorIndex .hot-wrap .author-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 120rpx);
+  grid-column-gap: 70rpx;
+  grid-row-gap: 30rpx;
+  margin-top: 40rpx;
+}

@@ -1,1 +1,51 @@
-.author-grid{display:grid;grid-template-columns:repeat(auto-fill,120rpx);grid-column-gap:70rpx;grid-row-gap:30rpx;margin-top:40rpx}.author-grid .Author{display:flex;flex-direction:column;width:120rpx}.author-grid .Author .header-icon{width:120rpx;height:120rpx;border-radius:87% 91% 98% 100%;border:4rpx solid deepskyblue}.author-grid .Author .name{font-size:28rpx;text-align:center;margin-top:12rpx;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.Author:nth-child(2n+1) .header-icon{border-radius:59% 52% 56% 59%;-webkit-transform:rotate(-6deg);transform:rotate(-6deg)}.Author:nth-child(3n+2) .header-icon{border-radius:84% 94% 83% 72%;-webkit-transform:rotate(5deg);transform:rotate(5deg)}.Author:nth-child(5n+3) .header-icon{border-radius:73% 100% 82% 100%;-webkit-transform:rotate(7deg);transform:rotate(7deg)}.Author:nth-child(11n+7) .header-icon,.Author:nth-child(7n+5) .header-icon{border-radius:93% 90% 85% 78%;-webkit-transform:rotate(-2deg);transform:rotate(-2deg)}.Author:nth-child(11n+7) .header-icon{border-radius:68% 68% 83% 53%}
+.author-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 120rpx);
+  grid-column-gap: 70rpx;
+  grid-row-gap: 30rpx;
+  margin-top: 40rpx;
+}
+.author-grid .Author {
+  display: flex;
+  flex-direction: column;
+  width: 120rpx;
+}
+.author-grid .Author .header-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 87% 91% 98% 100%;
+  border: 4rpx solid deepskyblue;
+}
+.author-grid .Author .name {
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 12rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.Author:nth-child(2n+1) .header-icon {
+  border-radius: 59% 52% 56% 59%;
+  -webkit-transform: rotate(-6deg);
+          transform: rotate(-6deg);
+}
+.Author:nth-child(3n+2) .header-icon {
+  border-radius: 84% 94% 83% 72%;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+.Author:nth-child(5n+3) .header-icon {
+  border-radius: 73% 100% 82% 100%;
+  -webkit-transform: rotate(7deg);
+          transform: rotate(7deg);
+}
+.Author:nth-child(7n+5) .header-icon {
+  border-radius: 93% 90% 85% 78%;
+  -webkit-transform: rotate(-2deg);
+          transform: rotate(-2deg);
+}
+.Author:nth-child(11n+7) .header-icon {
+  border-radius: 68% 68% 83% 53%;
+  -webkit-transform: rotate(-2deg);
+          transform: rotate(-2deg);
+}

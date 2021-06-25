@@ -1,1 +1,6948 @@
-require("./runtime"),require("./common"),require("./vendors"),(wx.webpackJsonp=wx.webpackJsonp||[]).push([[3],[,function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};t.check=function check(e,t,r){if(!t(e))throw log("error","uncaught at check",r),new Error(r)},t.hasOwn=hasOwn,t.remove=function remove(e,t){t=e.indexOf(t);0<=t&&e.splice(t,1)},t.deferred=deferred,t.arrayOfDeffered=function arrayOfDeffered(e){for(var t=[],r=0;r<e;r++)t.push(deferred());return t},t.delay=function delay(t){var r=!(1<arguments.length&&void 0!==arguments[1])||arguments[1],n=void 0,e=new Promise(function(e){n=setTimeout(function(){return e(r)},t)});return e[f]=function(){return clearTimeout(n)},e},t.createMockTask=function createMockTask(){var e,t=!0,r=void 0,n=void 0;return(e={})[i]=!0,e.isRunning=function isRunning(){return t},e.result=function result(){return r},e.error=function error(){return n},e.setRunning=function setRunning(e){return t=e},e.setResult=function setResult(e){return r=e},e.setError=function setError(e){return n=e},e},t.autoInc=autoInc,t.makeIterator=function makeIterator(e){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:p,r={"name":2<arguments.length&&void 0!==arguments[2]?arguments[2]:"","next":e,"throw":t,"return":y};arguments[3]&&(r[c]=!0);"undefined"!=typeof Symbol&&(r[Symbol.iterator]=function(){return r});return r},t.log=log,t.deprecate=function deprecate(e,t){return function(){return e.apply(void 0,arguments)}};var o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r,n=arguments[t];for(r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},a="function"==typeof Symbol&&"symbol"===n(Symbol.iterator)?function(e){return void 0===e?"undefined":n(e)}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":void 0===e?"undefined":n(e)},u=t.sym=function sym(e){return"@@redux-saga/"+e},i=t.TASK=u("TASK"),c=t.HELPER=u("HELPER"),f=(t.MATCH=u("MATCH"),t.CANCEL=u("CANCEL_PROMISE")),l=t.SAGA_ACTION=u("SAGA_ACTION"),u=(t.SELF_CANCELLATION=u("SELF_CANCELLATION"),t.konst=function konst(e){return function(){return e}});t.kTrue=u(!0),t.kFalse=u(!1),t.noop=function noop(){},t.ident=function ident(e){return e};var s=Object.prototype.hasOwnProperty;function hasOwn(e,t){return d.notUndef(e)&&s.call(e,t)}var d=t.is={"undef":function undef(e){return null==e},"notUndef":function notUndef(e){return null!=e},"func":function func(e){return"function"==typeof e},"number":function number(e){return"number"==typeof e},"string":function string(e){return"string"==typeof e},"array":Array.isArray,"object":function object(e){return e&&!d.array(e)&&"object"===(void 0===e?"undefined":a(e))},"promise":function promise(e){return e&&d.func(e.then)},"iterator":function iterator(e){return e&&d.func(e.next)&&d.func(e.throw)},"iterable":function iterable(e){return e&&d.func(Symbol)?d.func(e[Symbol.iterator]):d.array(e)},"task":function task(e){return e&&e[i]},"observable":function observable(e){return e&&d.func(e.subscribe)},"buffer":function buffer(e){return e&&d.func(e.isEmpty)&&d.func(e.take)&&d.func(e.put)},"pattern":function pattern(e){return e&&(d.string(e)||"symbol"===(void 0===e?"undefined":a(e))||d.func(e)||d.array(e))},"channel":function channel(e){return e&&d.func(e.take)&&d.func(e.close)},"helper":function helper(e){return e&&e[c]},"stringableFunc":function stringableFunc(e){return d.func(e)&&hasOwn(e,"toString")}};t.object={"assign":function assign(e,t){for(var r in t)hasOwn(t,r)&&(e[r]=t[r])}};t.array={"from":function from(e){var t,r=Array(e.length);for(t in e)hasOwn(e,t)&&(r[t]=e[t]);return r}};function deferred(){var r=o({},0<arguments.length&&void 0!==arguments[0]?arguments[0]:{}),e=new Promise(function(e,t){r.resolve=e,r.reject=t});return r.promise=e,r}function autoInc(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:0;return function(){return++e}}t.uid=autoInc();var p=function kThrow(e){throw e},y=function kReturn(e){return{"value":e,"done":!0}};function log(e,t){var r=2<arguments.length&&void 0!==arguments[2]?arguments[2]:"";"undefined"==typeof window?console.log("redux-saga "+e+": "+t+"\n"+(r&&r.stack||r)):console[e](t,r)}t.updateIncentive=function updateIncentive(e,t){return e+" has been deprecated in favor of "+t+", please update your code"},t.internalErr=function internalErr(e){return new Error("\n  redux-saga: Error checking hooks detected an inconsistent state. This is likely a bug\n  in redux-saga code and not yours. Thanks for reporting this in the project's github repo.\n  Error: "+e+"\n")},t.createSetContextWarning=function createSetContextWarning(e,t){return(e?e+".":"")+"setContext(props): argument "+t+" is not a plain object"},t.wrapSagaDispatch=function wrapSagaDispatch(t){return function(e){return t(Object.defineProperty(e,l,{"value":!0}))}},t.cloneableGenerator=function cloneableGenerator(a){return function(){for(var e=arguments.length,r=Array(e),t=0;t<e;t++)r[t]=arguments[t];var n=[],o=a.apply(void 0,r);return{"next":function next(e){return n.push(e),o.next(e)},"clone":function clone(){var t=cloneableGenerator(a).apply(void 0,r);return n.forEach(function(e){return t.next(e)}),t},"return":function _return(e){return o.return(e)},"throw":function _throw(e){return o.throw(e)}}}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.asEffect=t.takem=t.detach=void 0,t.take=take,t.put=put,t.all=all,t.race=function race(e){return E(c,e)},t.call=function call(e){for(var t=arguments.length,r=Array(1<t?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];return E(f,getFnCallDesc("call",e,r))},t.apply=function apply(e,t){var r=2<arguments.length&&void 0!==arguments[2]?arguments[2]:[];return E(f,getFnCallDesc("apply",{"context":e,"fn":t},r))},t.cps=function cps(e){for(var t=arguments.length,r=Array(1<t?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];return E(l,getFnCallDesc("cps",e,r))},t.fork=fork,t.spawn=function spawn(e){for(var t=arguments.length,r=Array(1<t?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];return k(fork.apply(void 0,[e].concat(r)))},t.join=function join(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];if(1<t.length)return all(t.map(function(e){return join(e)}));var n=t[0];(0,o.check)(n,o.is.notUndef,"join(task): argument task is undefined");(0,o.check)(n,o.is.task,"join(task): argument "+n+" is not a valid Task object "+_);return E(d,n)},t.cancel=function cancel(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];if(1<t.length)return all(t.map(function(e){return cancel(e)}));var n=t[0];1===t.length&&((0,o.check)(n,o.is.notUndef,"cancel(task): argument task is undefined"),(0,o.check)(n,o.is.task,"cancel(task): argument "+n+" is not a valid Task object "+_));return E(p,n||o.SELF_CANCELLATION)},t.select=function select(e){for(var t=arguments.length,r=Array(1<t?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];0===arguments.length?e=o.ident:((0,o.check)(e,o.is.notUndef,"select(selector,[...]): argument selector is undefined"),(0,o.check)(e,o.is.func,"select(selector,[...]): argument "+e+" is not a function"));return E(y,{"selector":e,"args":r})},t.actionChannel=function actionChannel(e,t){(0,o.check)(e,o.is.notUndef,"actionChannel(pattern,...): argument pattern is undefined"),1<arguments.length&&((0,o.check)(t,o.is.notUndef,"actionChannel(pattern, buffer): argument buffer is undefined"),(0,o.check)(t,o.is.buffer,"actionChannel(pattern, buffer): argument "+t+" is not a valid buffer"));return E(h,{"pattern":e,"buffer":t})},t.cancelled=function cancelled(){return E(v,{})},t.flush=function flush(e){return(0,o.check)(e,o.is.channel,"flush(channel): argument "+e+" is not valid channel"),E(b,e)},t.getContext=function getContext(e){return(0,o.check)(e,o.is.string,"getContext(prop): argument "+e+" is not a string"),E(g,e)},t.setContext=function setContext(e){return(0,o.check)(e,o.is.object,(0,o.createSetContextWarning)(null,e)),E(m,e)};var o=r(1),n=(0,o.sym)("IO"),a="TAKE",u="PUT",i="ALL",c="RACE",f="CALL",l="CPS",s="FORK",d="JOIN",p="CANCEL",y="SELECT",h="ACTION_CHANNEL",v="CANCELLED",b="FLUSH",g="GET_CONTEXT",m="SET_CONTEXT",_="\n(HINT: if you are getting this errors in tests, consider using createMockTask from redux-saga/utils)",E=function effect(e,t){var r={};return r[n]=!0,r[e]=t,r},k=t.detach=function detach(e){return(0,o.check)(w.fork(e),o.is.object,"detach(eff): argument must be a fork effect"),e[s].detached=!0,e};function take(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:"*";if(arguments.length&&(0,o.check)(arguments[0],o.is.notUndef,"take(patternOrChannel): patternOrChannel is undefined"),o.is.pattern(e))return E(a,{"pattern":e});if(o.is.channel(e))return E(a,{"channel":e});throw new Error("take(patternOrChannel): argument "+String(e)+" is not valid channel or a valid pattern")}take.maybe=function(){var e=take.apply(void 0,arguments);return e[a].maybe=!0,e};t.takem=(0,o.deprecate)(take.maybe,(0,o.updateIncentive)("takem","take.maybe"));function put(e,t){return 1<arguments.length?((0,o.check)(e,o.is.notUndef,"put(channel, action): argument channel is undefined"),(0,o.check)(e,o.is.channel,"put(channel, action): argument "+e+" is not a valid channel"),(0,o.check)(t,o.is.notUndef,"put(channel, action): argument action is undefined")):((0,o.check)(e,o.is.notUndef,"put(action): argument action is undefined"),t=e,e=null),E(u,{"channel":e,"action":t})}function all(e){return E(i,e)}function getFnCallDesc(e,t,r){(0,o.check)(t,o.is.notUndef,e+": argument fn is undefined");var n=null;return o.is.array(t)?(n=t[0],t=t[1]):t.fn&&(n=t.context,t=t.fn),n&&o.is.string(t)&&o.is.func(n[t])&&(t=n[t]),(0,o.check)(t,o.is.func,e+": argument "+t+" is not a function"),{"context":n,"fn":t,"args":r}}function fork(e){for(var t=arguments.length,r=Array(1<t?t-1:0),n=1;n<t;n++)r[n-1]=arguments[n];return E(s,getFnCallDesc("fork",e,r))}put.resolve=function(){var e=put.apply(void 0,arguments);return e[u].resolve=!0,e},put.sync=(0,o.deprecate)(put.resolve,(0,o.updateIncentive)("put.sync","put.resolve"));var r=function createAsEffectType(t){return function(e){return e&&e[n]&&e[t]}},w=t.asEffect={"take":r(a),"put":r(u),"all":r(i),"race":r(c),"call":r(f),"cps":r(l),"fork":r(s),"join":r(d),"cancel":r(p),"select":r(y),"actionChannel":r(h),"cancelled":r(v),"flush":r(b),"getContext":r(g),"setContext":r(m)}},,,function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.UNDEFINED_INPUT_ERROR=t.INVALID_BUFFER=t.isEnd=t.END=void 0,t.emitter=function emitter(){var o=[];return{"subscribe":function subscribe(e){return o.push(e),function(){return(0,u.remove)(o,e)}},"emit":function emit(e){for(var t=o.slice(),r=0,n=t.length;r<n;r++)t[r](e)}}},t.channel=channel,t.eventChannel=eventChannel,t.stdChannel=function stdChannel(e){var r=eventChannel(function(t){return e(function(e){e[u.SAGA_ACTION]?t(e):(0,n.asap)(function(){return t(e)})})});return o({},r,{"take":function take(e,t){1<arguments.length&&((0,u.check)(t,u.is.func,"channel.take's matcher argument must be a function"),e[u.MATCH]=t),r.take(e)}})};var u=r(1),i=r(8),n=r(48),o=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r,n=arguments[t];for(r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},a="@@redux-saga/CHANNEL_END",c=t.END={"type":a},f=t.isEnd=function isEnd(e){return e&&e.type===a};var l=t.INVALID_BUFFER="invalid buffer passed to channel factory function",s=t.UNDEFINED_INPUT_ERROR="Saga was provided with an undefined action";function channel(){var n=0<arguments.length&&void 0!==arguments[0]?arguments[0]:i.buffers.fixed(),o=!1,a=[];function checkForbiddenStates(){if(o&&a.length)throw(0,u.internalErr)("Cannot have a closed channel with pending takers");if(a.length&&!n.isEmpty())throw(0,u.internalErr)("Cannot have pending takers with non empty buffer")}return(0,u.check)(n,u.is.buffer,l),{"take":function take(e){checkForbiddenStates(),(0,u.check)(e,u.is.func,"channel.take's callback must be a function"),o&&n.isEmpty()?e(c):n.isEmpty()?(a.push(e),e.cancel=function(){return(0,u.remove)(a,e)}):e(n.take())},"put":function put(e){if(checkForbiddenStates(),(0,u.check)(e,u.is.notUndef,s),!o){if(!a.length)return n.put(e);for(var t=0;t<a.length;t++){var r=a[t];if(!r[u.MATCH]||r[u.MATCH](e))return a.splice(t,1),r(e)}}},"flush":function flush(e){checkForbiddenStates(),(0,u.check)(e,u.is.func,"channel.flush' callback must be a function"),o&&n.isEmpty()?e(c):e(n.flush())},"close":function close(){if(checkForbiddenStates(),!o&&(o=!0,a.length)){var e=a;a=[];for(var t=0,r=e.length;t<r;t++)e[t](c)}},get"__takers__"(){return a},get"__closed__"(){return o}}}function eventChannel(e){var t=1<arguments.length&&void 0!==arguments[1]?arguments[1]:i.buffers.none(),r=arguments[2];2<arguments.length&&(0,u.check)(r,u.is.func,"Invalid match function passed to eventChannel");function Bd(){n.__closed__||(o&&o(),n.close())}var n=channel(t),o=e(function(e){f(e)?Bd():r&&!r(e)||n.put(e)});if(n.__closed__&&o(),!u.is.func(o))throw new Error("in eventChannel: subscribe should return a function to unsubscribe");return{"take":n.take,"flush":n.flush,"close":Bd}}},,,function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.buffers=t.BUFFER_OVERFLOW=void 0;var r=r(1),n=(t.BUFFER_OVERFLOW="Channel's Buffer overflow!",{"isEmpty":r.kTrue,"put":r.noop,"take":r.noop});function ringBuffer(e,t){function _d(e){o[u]=e,u=(u+1)%r,a++}function ae(){if(0!=a){var e=o[i];return o[i]=null,a--,i=(i+1)%r,e}}function be(){for(var e=[];a;)e.push(ae());return e}var r=0<arguments.length&&void 0!==e?e:10,n=t,o=new Array(r),a=0,u=0,i=0;return{"isEmpty":function isEmpty(){return 0==a},"put":function put(e){if(a<r)_d(e);else{var t;switch(n){case 1:throw new Error("Channel's Buffer overflow!");case 3:o[u]=e,i=u=(u+1)%r;break;case 4:t=2*r,o=be(),a=o.length,u=o.length,i=0,o.length=t,r=t,_d(e)}}},"take":ae,"flush":be}}t.buffers={"none":function none(){return n},"fixed":function fixed(e){return ringBuffer(e,1)},"dropping":function dropping(e){return ringBuffer(e,2)},"sliding":function sliding(e){return ringBuffer(e,3)},"expanding":function expanding(e){return ringBuffer(e,4)}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var n=function(e,t,r){return t&&defineProperties(e.prototype,t),r&&defineProperties(e,r),e};function defineProperties(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}var o=r(0),a=_interopRequireDefault(o),u=r(4),i=_interopRequireDefault(r(70)),c=_interopRequireDefault(r(74)),f=_interopRequireDefault(r(3));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}r(104);i=c.default.createApp({"initialState":{},"models":i.default}).getStore();(0,u.setStore)(i),u.ReduxContext.Provider&&(u.ReduxContext.Provider({"store":i}),u.ReduxContext.Provider({"store":i}));(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)})(_App,o.Component),n(_App,[{"key":"componentDidMount","value":function componentDidMount(){a.default.cloud.init({"env":"test-hhh","traceUser":!0}),a.default.cloud.callFunction({"name":"login","complete":function complete(e){console.log("callFunction test result: ",e),e.result.openid&&a.default.setStorageSync("openid",e.result.openid)}});var e=this.$router.params,t=e.query.scene,r="自主进入";"code"===e.query.from&&(r="小程序码进入"),e.query.is_share&&(r="分享页面进入"),t&&(r="分享海报进入"),(0,f.default)("load_page",{"action":r})}},{"key":"componentDidShow","value":function componentDidShow(){}},{"key":"componentDidHide","value":function componentDidHide(){}},{"key":"componentDidCatchError","value":function componentDidCatchError(){}},{"key":"_createData","value":function _createData(){}}]),n=_App;function _App(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,_App);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(_App.__proto__||Object.getPrototypeOf(_App)).apply(this,arguments));return e.config={"pages":["pages/index/index","pages/poetryList/poetryList","pages/detailPage/detailPage","pages/about/about","pages/my/my","pages/author/authorIndex/authorIndex","pages/author/authorInfo/authorInfo"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"},"plugins":{"WechatSI":{"version":"0.3.3","provider":"wx069ba97219f66d99"}}},e}t.default=n,App(r(0).default.createApp(n)),a.default.initPxTransform({"designWidth":750,"deviceRatio":{"640":1.17,"750":1,"828":.905}})},,,,,,,,,,,,,,function(e,t,r){"use strict";r.r(t);var n,o=r(9),a=r.n(o);for(n in o)"default"!==n&&function(e){r.d(t,e,function(){return o[e]})}(n);t.default=a.a},,function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.qEnd=void 0,t.safeName=function safeName(e){return u.is.channel(e)?"channel":Array.isArray(e)?String(e.map(function(e){return String(e)})):String(e)},t.default=function fsmIterator(n,e){var t=2<arguments.length&&void 0!==arguments[2]?arguments[2]:"iterator",o=void 0,a=e;function next(e,t){if(a===c)return i;if(t)throw a=c,t;o&&o(e);var r=n[a](),t=r[0],e=r[1],r=r[2];return o=r,(a=t)===c?i:e}return(0,u.makeIterator)(next,function(e){return next(null,e)},t,!0)};var u=r(1),i={"done":!0,"value":void 0},c=t.qEnd={}},,,,,,,,,,,,,,,function(e,t,r){"use strict";e.exports=r(41)},function(e,t,r){"use strict";var n=function(){return this}()||{"Function":Function,"Boolean":Boolean,"Object":Object,"Number":Number,"Array":Array,"Date":Date,"String":String,"Symbol":Symbol,"Error":Error,"TypeError":TypeError,"Map":Map,"Set":Set,"WeakMap":WeakMap,"WeakSet":WeakSet,"ArrayBuffer":ArrayBuffer,"Math":Math,"Promise":Promise,"RegExp":RegExp,"DataView":DataView,"isFinite":isFinite,"parseInt":parseInt,"parseFloat":parseFloat,"Float32Array":Float32Array,"Float64Array":Float64Array,"Int8Array":Int8Array,"Int16Array":Int16Array,"Int32Array":Int32Array,"Uint8Array":Uint8Array,"Uint16Array":Uint16Array,"Uint32Array":Uint32Array,"Uint8ClampedArray":Uint8ClampedArray,"setTimeout":setTimeout,"clearTimeout":clearTimeout,"setInterval":setInterval,"clearInterval":clearInterval},o=n.regeneratorRuntime&&0<=Object.getOwnPropertyNames(n).indexOf("regeneratorRuntime"),a=o&&n.regeneratorRuntime;if(n.regeneratorRuntime=void 0,e.exports=r(72),o)n.regeneratorRuntime=a;else try{delete n.regeneratorRuntime}catch(e){n.regeneratorRuntime=void 0}},function(e,t,r){"use strict";e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children||(e.children=[]),Object.defineProperty(e,"loaded",{"enumerable":!0,"get":function get(){return e.l}}),Object.defineProperty(e,"id",{"enumerable":!0,"get":function get(){return e.i}}),e.webpackPolyfill=1),e}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.requestCloud=function requestCloud(a){return new Promise(function(t){var e=a.clounFnName,r=a.controller,n=a.action,o=a.data;u.default.cloud.callFunction({"name":e,"data":{"controller":r,"action":n,"data":o}}).then(function(e){0===e.result.code?t(e.result):(0,i.default)({"title":e.result.msg})}).catch(function(e){(0,i.default)({"title":e.message})})})};var u=_interopRequireDefault(r(0)),i=_interopRequireDefault(r(24));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _objectSpread(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?Object(arguments[e]):{},n=Object.keys(r);"function"==typeof Object.getOwnPropertySymbols&&(n=n.concat(Object.getOwnPropertySymbols(r).filter(function(e){return Object.getOwnPropertyDescriptor(r,e).enumerable}))),n.forEach(function(e){(0,o.default)(t,e,r[e])})}return t};var o=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(45))},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _defineProperty(e,t,r){t in e?Object.defineProperty(e,t,{"value":r,"enumerable":!0,"configurable":!0,"writable":!0}):e[t]=r;return e}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.runSaga=function runSaga(e,t){for(var r=arguments.length,n=Array(2<r?r-2:0),o=2;o<r;o++)n[o-2]=arguments[o];var a=void 0;p.is.iterator(e)?(a=e,e=t):((0,p.check)(t,p.is.func,h),a=t.apply(void 0,n),(0,p.check)(a,p.is.iterator,h));var u=e.subscribe,i=e.dispatch,c=e.getState,f=e.context,l=e.sagaMonitor,s=e.logger,d=e.onError,e=(0,p.uid)();l&&(l.effectTriggered=l.effectTriggered||p.noop,l.effectResolved=l.effectResolved||p.noop,l.effectRejected=l.effectRejected||p.noop,l.effectCancelled=l.effectCancelled||p.noop,l.actionDispatched=l.actionDispatched||p.noop,l.effectTriggered({"effectId":e,"root":!0,"parentEffectId":0,"effect":{"root":!0,"saga":t,"args":n}}));t=(0,y.default)(a,u,(0,p.wrapSagaDispatch)(i),c,f,{"sagaMonitor":l,"logger":s,"onError":d},e,t.name);l&&l.effectResolved(e,t);return t};var p=r(1),y=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(47));var h="runSaga(storeInterface, saga, ...args): saga argument must be a Generator function!"},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.TASK_CANCEL=t.CHANNEL_END=t.NOT_ITERATOR_ERROR=void 0;var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};t.default=function proc(n){var f=1<arguments.length&&void 0!==arguments[1]?arguments[1]:function(){return _.noop};var l=2<arguments.length&&void 0!==arguments[2]?arguments[2]:_.noop;var s=3<arguments.length&&void 0!==arguments[3]?arguments[3]:_.noop;var e=4<arguments.length&&void 0!==arguments[4]?arguments[4]:{};var d=5<arguments.length&&void 0!==arguments[5]?arguments[5]:{};var o=6<arguments.length&&void 0!==arguments[6]?arguments[6]:0;var u=7<arguments.length&&void 0!==arguments[7]?arguments[7]:"anonymous";var t=arguments[8];(0,_.check)(n,_.is.iterator,x);var i=(0,_.deprecate)(runAllEffect,(0,_.updateIncentive)("[...effects]","all([...effects])"));var c=d.sagaMonitor,r=d.logger,a=d.onError;var p=r||_.log;var y=function logError(e){var t=e.sagaStack;!t&&e.stack&&(t=-1!==e.stack.split("\n")[0].indexOf(e.message)?e.stack:"Error: "+e.message+"\n"+e.stack),p("error","uncaught at "+u,t||e.message||e)};var h=(0,w.stdChannel)(f);var v=Object.create(e);next.cancel=_.noop;var b=newTask(o,u,n,t);var g={"name":u,"cancel":cancelMain,"isRunning":!0};var m=forkQueue(0,g,end);function cancelMain(){g.isRunning&&!g.isCancelled&&(g.isCancelled=!0,next(S))}function cancel(){n._isRunning&&!n._isCancelled&&(n._isCancelled=!0,m.cancelAll(),end(S))}t&&(t.cancel=cancel);n._isRunning=!0;next();return b;function next(e,t){if(!g.isRunning)throw new Error("Trying to resume an already finished generator");try{var r=void 0;(r=t?n.throw(e):e===S?(g.isCancelled=!0,next.cancel(),_.is.func(n.return)?n.return(S):{"done":!0,"value":S}):e===j?_.is.func(n.return)?n.return():{"done":!0}:n.next(e)).done?(g.isMainRunning=!1,g.cont&&g.cont(r.value)):runEffect(r.value,o,"",next)}catch(e){g.isCancelled&&y(e),g.isMainRunning=!1,g.cont(e,!0)}}function end(t,r){n._isRunning=!1,h.close(),r?(t instanceof Error&&Object.defineProperty(t,"sagaStack",{"value":"at "+u+" \n "+(t.sagaStack||t.stack),"configurable":!0}),b.cont||(t instanceof Error&&a?a:y)(t),n._error=t,n._isAborted=!0,n._deferredEnd&&n._deferredEnd.reject(t)):(n._result=t,n._deferredEnd&&n._deferredEnd.resolve(t)),b.cont&&b.cont(t,r),b.joiners.forEach(function(e){return e.cb(t,r)}),b.joiners=null}function runEffect(e,t){var r=2<arguments.length&&void 0!==arguments[2]?arguments[2]:"",n=arguments[3],o=(0,_.uid)();c&&c.effectTriggered({"effectId":o,"parentEffectId":t,"label":r,"effect":e});var a=void 0;function currCb(e,t){a||(a=!0,n.cancel=_.noop,c&&(t?c.effectRejected(o,e):c.effectResolved(o,e)),n(e,t))}currCb.cancel=_.noop,n.cancel=function(){if(!a){a=!0;try{currCb.cancel()}catch(e){y(e)}currCb.cancel=_.noop,c&&c.effectCancelled(o)}};var r=void 0;return _.is.promise(e)?resolvePromise(e,currCb):_.is.helper(e)?runForkEffect(C(e),o,currCb):_.is.iterator(e)?resolveIterator(e,o,u,currCb):_.is.array(e)?i(e,o,currCb):(r=k.asEffect.take(e))?runTakeEffect(r,currCb):(r=k.asEffect.put(e))?runPutEffect(r,currCb):(r=k.asEffect.all(e))?runAllEffect(r,o,currCb):(r=k.asEffect.race(e))?runRaceEffect(r,o,currCb):(r=k.asEffect.call(e))?runCallEffect(r,o,currCb):(r=k.asEffect.cps(e))?runCPSEffect(r,currCb):(r=k.asEffect.fork(e))?runForkEffect(r,o,currCb):(r=k.asEffect.join(e))?runJoinEffect(r,currCb):(r=k.asEffect.cancel(e))?runCancelEffect(r,currCb):(r=k.asEffect.select(e))?runSelectEffect(r,currCb):(r=k.asEffect.actionChannel(e))?runChannelEffect(r,currCb):(r=k.asEffect.flush(e))?runFlushEffect(r,currCb):(r=k.asEffect.cancelled(e))?runCancelledEffect(r,currCb):(r=k.asEffect.getContext(e))?runGetContextEffect(r,currCb):(r=k.asEffect.setContext(e))?runSetContextEffect(r,currCb):currCb(e)}function resolvePromise(e,t){var r=e[_.CANCEL];_.is.func(r)?t.cancel=r:_.is.func(e.abort)&&(t.cancel=function(){return e.abort()}),e.then(t,function(e){return t(e,!0)})}function resolveIterator(e,t,r,n){proc(e,f,l,s,v,d,t,r,n)}function runTakeEffect(e,t){var r=e.channel,n=e.pattern,o=e.maybe;r=r||h;var a=function takeCb(e){return e instanceof Error?t(e,!0):(0,w.isEnd)(e)&&!o?t(j):t(e)};try{r.take(a,matcher(n))}catch(e){return t(e,!0)}t.cancel=a.cancel}function runPutEffect(e,t){var r=e.channel,n=e.action,o=e.resolve;(0,E.asap)(function(){var e=void 0;try{e=(r?r.put:l)(n)}catch(e){if(r||o)return t(e,!0);y(e)}if(!o||!_.is.promise(e))return t(e);resolvePromise(e,t)})}function runCallEffect(e,t,r){var n=e.context,o=e.fn,a=e.args,u=void 0;try{u=o.apply(n,a)}catch(e){return r(e,!0)}return _.is.promise(u)?resolvePromise(u,r):_.is.iterator(u)?resolveIterator(u,t,o.name,r):r(u)}function runCPSEffect(e,r){var t=e.context,n=e.fn,o=e.args;try{var a=function cpsCb(e,t){return _.is.undef(e)?r(t):r(e,!0)};n.apply(t,o.concat(a)),a.cancel&&(r.cancel=function(){return a.cancel()})}catch(e){return r(e,!0)}}function runForkEffect(e,t,r){var n=e.context,o=e.fn,a=e.args,u=e.detached,i=createTaskIterator({"context":n,"fn":o,"args":a});try{(0,E.suspend)();var c=proc(i,f,l,s,v,d,t,o.name,u?null:_.noop);u?r(c):i._isRunning?(m.addTask(c),r(c)):i._error?m.abort(i._error):r(c)}finally{(0,E.flush)()}}function runJoinEffect(e,t){var r;e.isRunning()?(r={"task":b,"cb":t},t.cancel=function(){return(0,_.remove)(e.joiners,r)},e.joiners.push(r)):e.isAborted()?t(e.error(),!0):t(e.result())}function runCancelEffect(e,t){e===_.SELF_CANCELLATION&&(e=b),e.isRunning()&&e.cancel(),t()}function runAllEffect(t,r,n){var e=Object.keys(t);if(!e.length)return n(_.is.array(t)?[]:{});var o=0,a=void 0,u={},i={};function checkEffectEnd(){o===e.length&&(a=!0,n(_.is.array(t)?_.array.from(A({},u,{"length":e.length})):u))}e.forEach(function(r){var e=function chCbAtKey(e,t){a||(t||(0,w.isEnd)(e)||e===j||e===S?(n.cancel(),n(e,t)):(u[r]=e,o++,checkEffectEnd()))};e.cancel=_.noop,i[r]=e}),n.cancel=function(){a||(a=!0,e.forEach(function(e){return i[e].cancel()}))},e.forEach(function(e){return runEffect(t[e],r,e,i[e])})}function runRaceEffect(n,t,o){var a=void 0,u=Object.keys(n),i={};u.forEach(function(r){var e=function chCbAtKey(e,t){a||(t?(o.cancel(),o(e,!0)):(0,w.isEnd)(e)||e===j||e===S||(o.cancel(),a=!0,(t={})[r]=e,t=t,o(_.is.array(n)?[].slice.call(A({},t,{"length":u.length})):t)))};e.cancel=_.noop,i[r]=e}),o.cancel=function(){a||(a=!0,u.forEach(function(e){return i[e].cancel()}))},u.forEach(function(e){a||runEffect(n[e],t,e,i[e])})}function runSelectEffect(e,t){var r=e.selector,n=e.args;try{var o=r.apply(void 0,[s()].concat(n));t(o)}catch(e){t(e,!0)}}function runChannelEffect(e,t){var r=e.pattern,n=e.buffer,e=matcher(r);e.pattern=r,t((0,w.eventChannel)(f,n||O.buffers.fixed(),e))}function runCancelledEffect(e,t){t(!!g.isCancelled)}function runFlushEffect(e,t){e.flush(t)}function runGetContextEffect(e,t){t(v[e])}function runSetContextEffect(e,t){_.object.assign(v,e),t()}function newTask(e,t,r,n){var o;return r._deferredEnd=null,(o={})[_.TASK]=!0,o.id=e,o.name=t,(e={})[t="done"]=e[t]||{},e[t].get=function(){if(r._deferredEnd)return r._deferredEnd.promise;var e=(0,_.deferred)();return r._deferredEnd=e,r._isRunning||(r._error?e.reject(r._error):e.resolve(r._result)),e.promise},o.cont=n,o.joiners=[],o.cancel=cancel,o.isRunning=function isRunning(){return r._isRunning},o.isCancelled=function isCancelled(){return r._isCancelled},o.isAborted=function isAborted(){return r._isAborted},o.result=function result(){return r._result},o.error=function error(){return r._error},o.setContext=function setContext(e){(0,_.check)(e,_.is.object,(0,_.createSetContextWarning)("task",e)),_.object.assign(v,e)},_defineEnumerableProperties(o,e),o}};var _=r(1),E=r(48),k=r(2),w=r(5),O=r(8),A=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r,n=arguments[t];for(r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},o="function"==typeof Symbol&&"symbol"===n(Symbol.iterator)?function(e){return void 0===e?"undefined":n(e)}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":void 0===e?"undefined":n(e)};function _defineEnumerableProperties(e,t){for(var r in t){var n=t[r];n.configurable=n.enumerable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,r,n)}return e}var x=t.NOT_ITERATOR_ERROR="proc first argument (Saga function result) must be an iterator",j=t.CHANNEL_END={"toString":function toString(){return"@@redux-saga/CHANNEL_END"}},S=t.TASK_CANCEL={"toString":function toString(){return"@@redux-saga/TASK_CANCEL"}},a={"wildcard":function wildcard(){return _.kTrue},"default":function _default(t){return"symbol"===(void 0===t?"undefined":o(t))?function(e){return e.type===t}:function(e){return e.type===String(t)}},"array":function array(e){return function(t){return e.some(function(e){return matcher(e)(t)})}},"predicate":function predicate(t){return function(e){return t(e)}}};function matcher(e){return("*"===e?a.wildcard:_.is.array(e)?a.array:!_.is.stringableFunc(e)&&_.is.func(e)?a.predicate:a.default)(e)}function forkQueue(e,n,o){var a=[],u=void 0,i=!1;function abort(e){cancelAll(),o(e,!0)}function addTask(r){a.push(r),r.cont=function(e,t){i||((0,_.remove)(a,r),r.cont=_.noop,t?abort(e):(r===n&&(u=e),a.length||(i=!0,o(u))))}}function cancelAll(){i||(i=!0,a.forEach(function(e){e.cont=_.noop,e.cancel()}),a=[])}return addTask(n),{"addTask":addTask,"cancelAll":cancelAll,"abort":abort,"getTasks":function getTasks(){return a},"taskNames":function taskNames(){return a.map(function(e){return e.name})}}}function createTaskIterator(e){var t=e.context,r=e.fn,n=e.args;if(_.is.iterator(r))return r;var o,a,u=void 0,i=void 0;try{u=r.apply(t,n)}catch(e){i=e}return _.is.iterator(u)?u:i?(0,_.makeIterator)(function(){throw i}):(0,_.makeIterator)((o=void 0,a={"done":!1,"value":u},function(e){return o?Sh(e):(o=!0,a)}));function Sh(e){return{"done":!0,"value":e}}}var C=function wrapHelper(e){return{"fn":e}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.asap=function asap(e){n.push(e),o||(o++,flush())},t.suspend=suspend,t.flush=flush;var n=[],o=0;function suspend(){o++}function flush(){o--;for(var e=void 0;!o&&void 0!==(e=n.shift());)!function exec(e){try{o++,e()}finally{o--}}(e)}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.throttleHelper=t.takeLatestHelper=t.takeEveryHelper=t.throttle=t.takeLatest=t.takeEvery=void 0;var n=_interopRequireDefault(r(80)),o=_interopRequireDefault(r(81)),a=_interopRequireDefault(r(82)),u=r(1);function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}var i=function deprecationWarning(e){return"import { "+e+" } from 'redux-saga' has been deprecated in favor of import { "+e+" } from 'redux-saga/effects'.\nThe latter will not work with yield*, as helper effects are wrapped automatically for you in fork effect.\nTherefore yield "+e+" will return task descriptor to your saga and execute next lines of code."},c=(0,u.deprecate)(n.default,i("takeEvery")),r=(0,u.deprecate)(o.default,i("takeLatest")),i=(0,u.deprecate)(a.default,i("throttle"));t.takeEvery=c,t.takeLatest=r,t.throttle=i,t.takeEveryHelper=n.default,t.takeLatestHelper=o.default,t.throttleHelper=a.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _arrayLikeToArray(e,t){(null==t||t>e.length)&&(t=e.length);for(var r=0,n=new Array(t);r<t;r++)n[r]=e[r];return n}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _unsupportedIterableToArray(e,t){if(!e)return;if("string"==typeof e)return(0,n.default)(e,t);var r=Object.prototype.toString.call(e).slice(8,-1);"Object"===r&&e.constructor&&(r=e.constructor.name);if("Map"===r||"Set"===r)return Array.from(e);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return(0,n.default)(e,t)};var n=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(50))},function(e,t,r){"use strict";e.exports=r(41)},,,,,,,,,,,,,,function(e,t,r){"use strict";r.r(t);var n,o=r(23);for(n in o)"default"!==n&&function(e){r.d(t,e,function(){return o[e]})}(n)},,,,function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var n=_interopRequireDefault(r(71)),r=_interopRequireDefault(r(73));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}r=[n.default,r.default];t.default=r},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var o=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(40)),n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r,n=arguments[t];for(r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},a=r(43);t.default={"namespace":"poetryDetail","state":{"poetryInfo":{}},"effects":{"poetryApi":o.default.mark(function poetryApi(e,t){var r=e.payload,n=e.callback;t.call,t.put;return o.default.wrap(function poetryApi$(e){for(;;)switch(e.prev=e.next){case 0:(0,a.requestCloud)({"clounFnName":"poetry","controller":"poetry","action":r.action,"data":r.data}).then(function(e){n(e)});case 1:case"end":return e.stop()}},poetryApi,this)})},"reducers":{"save":function save(e,t){t=t.payload;return n({},e,t)}}}},function(e,t,r){"use strict";(function(e){var t,c,f,l,s,d,p,r,n,i,o,a,u,y,h,v="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function wrap(e,t,r,n){t=t&&t.prototype instanceof Generator?t:Generator,t=Object.create(t.prototype),n=new Context(n||[]);return t._invoke=function makeInvokeMethod(o,a,u){var i=f;return function invoke(e,t){if(i===s)throw new Error("Generator is already running");if(i===d){if("throw"===e)throw t;return doneResult()}for(u.method=e,u.arg=t;;){var r=u.delegate;if(r){var n=function maybeInvokeDelegate(e,t){var r=e.iterator[t.method];if(r===c){if(t.delegate=null,"throw"===t.method){if(e.iterator.return&&(t.method="return",t.arg=c,maybeInvokeDelegate(e,t),"throw"===t.method))return p;t.method="throw",t.arg=new TypeError("The iterator does not provide a 'throw' method")}return p}r=tryCatch(r,e.iterator,t.arg);if("throw"===r.type)return t.method="throw",t.arg=r.arg,t.delegate=null,p;var r=r.arg;if(!r)return t.method="throw",t.arg=new TypeError("iterator result is not an object"),t.delegate=null,p;{if(!r.done)return r;t[e.resultName]=r.value,t.next=e.nextLoc,"return"!==t.method&&(t.method="next",t.arg=c)}t.delegate=null;return p}(r,u);if(n){if(n===p)continue;return n}}if("next"===u.method)u.sent=u._sent=u.arg;else if("throw"===u.method){if(i===f)throw i=d,u.arg;u.dispatchException(u.arg)}else"return"===u.method&&u.abrupt("return",u.arg);i=s;n=tryCatch(o,a,u);if("normal"===n.type){if(i=u.done?d:l,n.arg!==p)return{"value":n.arg,"done":u.done}}else"throw"===n.type&&(i=d,u.method="throw",u.arg=n.arg)}}}(e,r,n),t}function tryCatch(e,t,r){try{return{"type":"normal","arg":e.call(t,r)}}catch(e){return{"type":"throw","arg":e}}}function Generator(){}function GeneratorFunction(){}function GeneratorFunctionPrototype(){}function defineIteratorMethods(e){["next","throw","return"].forEach(function(t){e[t]=function(e){return this._invoke(t,e)}})}function AsyncIterator(a){var e;this._invoke=function enqueue(r,n){function callInvokeWithMethodAndArg(){return new Promise(function(e,t){!function invoke(e,t,r,n){e=tryCatch(a[e],a,t);if("throw"!==e.type){var o=e.arg,t=o.value;return t&&"object"===(void 0===t?"undefined":v(t))&&i.call(t,"__await")?Promise.resolve(t.__await).then(function(e){invoke("next",e,r,n)},function(e){invoke("throw",e,r,n)}):Promise.resolve(t).then(function(e){o.value=e,r(o)},n)}n(e.arg)}(r,n,e,t)})}return e=e?e.then(callInvokeWithMethodAndArg,callInvokeWithMethodAndArg):callInvokeWithMethodAndArg()}}function pushTryEntry(e){var t={"tryLoc":e[0]};1 in e&&(t.catchLoc=e[1]),2 in e&&(t.finallyLoc=e[2],t.afterLoc=e[3]),this.tryEntries.push(t)}function resetTryEntry(e){var t=e.completion||{};t.type="normal",delete t.arg,e.completion=t}function Context(e){this.tryEntries=[{"tryLoc":"root"}],e.forEach(pushTryEntry,this),this.reset(!0)}function values(e){if(e){var t=e[a];if(t)return t.call(e);if("function"==typeof e.next)return e;if(!isNaN(e.length)){var r=-1,t=function next(){for(;++r<e.length;)if(i.call(e,r))return next.value=e[r],next.done=!1,next;return next.value=c,next.done=!0,next};return t.next=t}}return{"next":doneResult}}function doneResult(){return{"value":c,"done":!0}}t=function(){return this}()||{"Function":Function,"Boolean":Boolean,"Object":Object,"Number":Number,"Array":Array,"Date":Date,"String":String,"Symbol":Symbol,"Error":Error,"TypeError":TypeError,"Map":Map,"Set":Set,"WeakMap":WeakMap,"WeakSet":WeakSet,"ArrayBuffer":ArrayBuffer,"Math":Math,"Promise":Promise,"RegExp":RegExp,"DataView":DataView,"isFinite":isFinite,"parseInt":parseInt,"parseFloat":parseFloat,"Float32Array":Float32Array,"Float64Array":Float64Array,"Int8Array":Int8Array,"Int16Array":Int16Array,"Int32Array":Int32Array,"Uint8Array":Uint8Array,"Uint16Array":Uint16Array,"Uint32Array":Uint32Array,"Uint8ClampedArray":Uint8ClampedArray,"setTimeout":setTimeout,"clearTimeout":clearTimeout,"setInterval":setInterval,"clearInterval":clearInterval},n=Object.prototype,i=n.hasOwnProperty,o="function"==typeof Symbol?Symbol:{},a=o.iterator||"@@iterator",u=o.asyncIterator||"@@asyncIterator",y=o.toStringTag||"@@toStringTag",o="object"===v(e),(h=t.regeneratorRuntime)?o&&(e.exports=h):((h=t.regeneratorRuntime=o?e.exports:{}).wrap=wrap,f="suspendedStart",l="suspendedYield",s="executing",d="completed",p={},(t={})[a]=function(){return this},(o=(o=Object.getPrototypeOf)&&o(o(values([]))))&&o!==n&&i.call(o,a)&&(t=o),r=GeneratorFunctionPrototype.prototype=Generator.prototype=Object.create(t),(GeneratorFunction.prototype=r.constructor=GeneratorFunctionPrototype).constructor=GeneratorFunction,GeneratorFunctionPrototype[y]=GeneratorFunction.displayName="GeneratorFunction",h.isGeneratorFunction=function(e){e="function"==typeof e&&e.constructor;return!!e&&(e===GeneratorFunction||"GeneratorFunction"===(e.displayName||e.name))},h.mark=function(e){return Object.setPrototypeOf?Object.setPrototypeOf(e,GeneratorFunctionPrototype):(e.__proto__=GeneratorFunctionPrototype,y in e||(e[y]="GeneratorFunction")),e.prototype=Object.create(r),e},h.awrap=function(e){return{"__await":e}},defineIteratorMethods(AsyncIterator.prototype),AsyncIterator.prototype[u]=function(){return this},h.AsyncIterator=AsyncIterator,h.async=function(e,t,r,n){var o=new AsyncIterator(wrap(e,t,r,n));return h.isGeneratorFunction(t)?o:o.next().then(function(e){return e.done?e.value:o.next()})},defineIteratorMethods(r),r[y]="Generator",r[a]=function(){return this},r.toString=function(){return"[object Generator]"},h.keys=function(t){var e,r=[];for(e in t)r.push(e);return r.reverse(),function next(){for(;r.length;){var e=r.pop();if(e in t)return next.value=e,next.done=!1,next}return next.done=!0,next}},h.values=values,Context.prototype={"constructor":Context,"reset":function reset(e){if(this.prev=0,this.next=0,this.sent=this._sent=c,this.done=!1,this.delegate=null,this.method="next",this.arg=c,this.tryEntries.forEach(resetTryEntry),!e)for(var t in this)"t"===t.charAt(0)&&i.call(this,t)&&!isNaN(+t.slice(1))&&(this[t]=c)},"stop":function stop(){this.done=!0;var e=this.tryEntries[0].completion;if("throw"===e.type)throw e.arg;return this.rval},"dispatchException":function dispatchException(r){if(this.done)throw r;var n=this;function handle(e,t){return o.type="throw",o.arg=r,n.next=e,t&&(n.method="next",n.arg=c),!!t}for(var e=this.tryEntries.length-1;0<=e;--e){var t=this.tryEntries[e],o=t.completion;if("root"===t.tryLoc)return handle("end");if(t.tryLoc<=this.prev){var a=i.call(t,"catchLoc"),u=i.call(t,"finallyLoc");if(a&&u){if(this.prev<t.catchLoc)return handle(t.catchLoc,!0);if(this.prev<t.finallyLoc)return handle(t.finallyLoc)}else if(a){if(this.prev<t.catchLoc)return handle(t.catchLoc,!0)}else{if(!u)throw new Error("try statement without catch or finally");if(this.prev<t.finallyLoc)return handle(t.finallyLoc)}}}},"abrupt":function abrupt(e,t){for(var r=this.tryEntries.length-1;0<=r;--r){var n=this.tryEntries[r];if(n.tryLoc<=this.prev&&i.call(n,"finallyLoc")&&this.prev<n.finallyLoc){var o=n;break}}o&&("break"===e||"continue"===e)&&o.tryLoc<=t&&t<=o.finallyLoc&&(o=null);var a=o?o.completion:{};return a.type=e,a.arg=t,o?(this.method="next",this.next=o.finallyLoc,p):this.complete(a)},"complete":function complete(e,t){if("throw"===e.type)throw e.arg;return"break"===e.type||"continue"===e.type?this.next=e.arg:"return"===e.type?(this.rval=this.arg=e.arg,this.method="return",this.next="end"):"normal"===e.type&&t&&(this.next=t),p},"finish":function finish(e){for(var t=this.tryEntries.length-1;0<=t;--t){var r=this.tryEntries[t];if(r.finallyLoc===e)return this.complete(r.completion,r.afterLoc),resetTryEntry(r),p}},"catch":function _catch(e){for(var t=this.tryEntries.length-1;0<=t;--t){var r=this.tryEntries[t];if(r.tryLoc===e){var n,o=r.completion;return"throw"===o.type&&(n=o.arg,resetTryEntry(r)),n}}throw new Error("illegal catch attempt")},"delegateYield":function delegateYield(e,t,r){return this.delegate={"iterator":values(e),"resultName":t,"nextLoc":r},"next"===this.method&&(this.arg=c),p}})}).call(this,r(42)(e))},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var u=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(40)),n=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r,n=arguments[t];for(r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},i=r(43);t.default={"namespace":"author","state":{"authorInfo":{},"hasAuthor":!1},"effects":{"authorApi":u.default.mark(function authorApi(e,t){var r=e.payload,n=e.callback;t.call,t.put;return u.default.wrap(function authorApi$(e){for(;;)switch(e.prev=e.next){case 0:(0,i.requestCloud)({"clounFnName":"poetry","controller":"poetry","action":r.action,"data":r.data}).then(function(e){n(e)});case 1:case"end":return e.stop()}},authorApi,this)}),"searchAuthor":u.default.mark(function searchAuthor(e,t){var r,n=e.payload,o=(e.callback,t.call),a=t.put;return u.default.wrap(function searchAuthor$(e){for(;;)switch(e.prev=e.next){case 0:return r=function getGuthorFn(){return(0,i.requestCloud)({"clounFnName":"poetry","controller":"poetry","action":"searchAuthor","data":n.data})},e.next=3,o(r,n.data);case 3:if(0<(r=e.sent).data.length)return e.next=7,a({"type":"save","payload":{"authorInfo":r.data[0],"hasAuthor":!0}});e.next=7;break;case 7:case"end":return e.stop()}},searchAuthor,this)})},"reducers":{"save":function save(e,t){t=t.payload;return n({},e,t)}}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var n=r(75),o=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(103));var a=void 0,u=void 0,r=function createApp(e){(a=(0,n.create)(e)).use((0,o.default)({})),u||e.models.forEach(function(e){return a.model(e)}),u=!0,a.start();var t=a._store;a.getStore=function(){return t};e=t.dispatch;return a.dispatch=e,a};t.default={"createApp":r,"getDispatch":function getDispatch(){return a.dispatch},"getStore":function getStore(){return a.getStore()}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.utils=t.create=t.saga=void 0;var R=_interopRequireDefault(r(44)),T=r(76),v=r(79),D=function _interopRequireWildcard(e){{if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r]);return t.default=e,t}}(v),I=_interopRequireDefault(r(87)),M=_interopRequireDefault(r(88)),n=_interopRequireDefault(r(89)),b=_interopRequireDefault(r(91)),o=_interopRequireDefault(r(92)),a=_interopRequireDefault(r(93)),N=_interopRequireDefault(r(94)),q=_interopRequireDefault(r(98)),g=_interopRequireDefault(r(99)),m=_interopRequireDefault(r(52));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}t.saga=D;function _p(){}function aq(e,t){for(var r=0,n=e.length;r<n;r+=1)if(t(e[r],r))return r;return-1}var L=Array.isArray.bind(Array),c=function isFunction(e){return"function"==typeof e},F=function returnSelf(e){return e},r=Object.freeze({"isPlainObject":n.default,"isArray":L,"isFunction":c,"returnSelf":F,"noop":_p,"findIndex":aq});var _="/";function prefix(r,n,o){return Object.keys(r).reduce(function(e,t){return(0,b.default)(0!==t.indexOf("".concat(n).concat(_)),"[prefixNamespace]: ".concat(o," ").concat(t," should not be prefixed with namespace ").concat(n)),e["".concat(n).concat(_).concat(t)]=r[t],e},{})}function prefixNamespace(e){var t=e.namespace,r=e.reducers,n=e.effects;return r&&(L(r)?e.reducers[0]=prefix(r[0],t,"reducer"):e.reducers=prefix(r,t,"reducer")),n&&(e.effects=prefix(n,t,"effect")),e}var u=["onError","onStateChange","onAction","onHmr","onReducer","onEffect","extraReducers","extraEnhancers","_handleActions"];var i=function(){function Plugin(){(0,o.default)(this,Plugin),this._handleActions=null,this.hooks=u.reduce(function(e,t){return e[t]=[],e},{})}return(0,a.default)(Plugin,[{"key":"use","value":function use(e){(0,I.default)((0,n.default)(e),"plugin.use: plugin should be plain object");var t,r=this.hooks;for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&((0,I.default)(r[t],"plugin.use: unknown plugin property: ".concat(t)),"_handleActions"===t?this._handleActions=e[t]:"extraEnhancers"===t?r[t]=e[t]:r[t].push(e[t]))}},{"key":"apply","value":function apply(e,a){var t=this.hooks;(0,I.default)(-1<["onError","onHmr"].indexOf(e),"plugin.apply: hook ".concat(e," cannot be applied"));var u=t[e];return function(){if(u.length){var e=!0,t=!1,r=void 0;try{for(var n,o=u[Symbol.iterator]();!(e=(n=o.next()).done);e=!0)n.value.apply(void 0,arguments)}catch(e){t=!0,r=e}finally{try{e||null==o.return||o.return()}finally{if(t)throw r}}}else a&&a.apply(void 0,arguments)}}},{"key":"get","value":function get(e){var t=this.hooks;return(0,I.default)(e in t,"plugin.get: hook ".concat(e," cannot be got")),"extraReducers"===e?function getExtraReducers(e){var t={},r=!0,n=!1,o=void 0;try{for(var a=e[Symbol.iterator]();!(r=(u=a.next()).done);r=!0){var u=u.value;t=(0,R.default)({},t,u)}}catch(e){n=!0,o=e}finally{try{r||null==a.return||a.return()}finally{if(n)throw o}}return t}(t[e]):"onReducer"===e?function getOnReducer(u){return function(e){var t=!0,r=!1,n=void 0;try{for(var o,a=u[Symbol.iterator]();!(t=(o=a.next()).done);t=!0)e=(0,o.value)(e)}catch(e){r=!0,n=e}finally{try{t||null==a.return||a.return()}finally{if(r)throw n}}return e}}(t[e]):t[e]}}]),Plugin}();function prefixType(e,t){var r="".concat(t.namespace).concat(_).concat(e),n=r.replace(/\/@@[^/]+?$/,"");return(Array.isArray(t.reducers)?t.reducers[0][n]:t.reducers&&t.reducers[n])||t.effects&&t.effects[n]?r:e}function getSaga(o,a,u,i){var c=4<arguments.length&&void 0!==arguments[4]?arguments[4]:{};return m.default.mark(function _callee3(){var n;return m.default.wrap(function _callee3$(e){for(;;)switch(e.prev=e.next){case 0:e.t0=m.default.keys(o);case 1:if((e.t1=e.t0()).done){e.next=7;break}if(n=e.t1.value,Object.prototype.hasOwnProperty.call(o,n))return e.delegateYield(m.default.mark(function _callee2(){var t,r;return m.default.wrap(function _callee2$(e){for(;;)switch(e.prev=e.next){case 0:return t=function getWatcher(c,e,f,l,t,s){var r,d,p=m.default.mark(sagaWithCatch),y=e,n="takeEvery";{var o;Array.isArray(e)&&(o=(0,g.default)(e,1),y=o[0],(e=e[1])&&e.type&&("throttle"===(n=e.type)&&((0,I.default)(e.ms,"app.start: opts.ms should be defined if type is throttle"),r=e.ms),"poll"===n&&((0,I.default)(e.delay,"app.start: opts.delay should be defined if type is poll"),d=e.delay)),(0,I.default)(-1<["watcher","takeEvery","takeLatest","throttle","poll"].indexOf(n),"app.start: effect type should be takeEvery, takeLatest, throttle, poll or watcher"))}function noop(){}function sagaWithCatch(){var t,r,n,o,a,u,i=arguments;return m.default.wrap(function sagaWithCatch$(e){for(;;)switch(e.prev=e.next){case 0:for(t=i.length,r=new Array(t),n=0;n<t;n++)r[n]=i[n];return a=0<r.length?r[0]:{},o=a.__dva_resolve,o=void 0===o?noop:o,a=a.__dva_reject,a=void 0===a?noop:a,e.prev=2,e.next=5,v.effects.put({"type":"".concat(c).concat(_,"@@start")});case 5:return e.next=7,y.apply(void 0,(0,N.default)(r.concat(function createEffects(n,o){function assertAction(e,t){(0,I.default)(e,"dispatch: action should be a plain Object with type");var r=o.namespacePrefixWarning;void 0!==r&&!r||(0,b.default)(0!==e.indexOf("".concat(n.namespace).concat(_)),"[".concat(t,"] ").concat(e," should not be prefixed with namespace ").concat(n.namespace))}function put(e){var t=e.type;return assertAction(t,"sagaEffects.put"),v.effects.put((0,R.default)({},e,{"type":prefixType(t,n)}))}return put.resolve=function putResolve(e){var t=e.type;return assertAction(t,"sagaEffects.put.resolve"),v.effects.put.resolve((0,R.default)({},e,{"type":prefixType(t,n)}))},(0,R.default)({},v.effects,{"put":put,"take":function take(e){return"string"==typeof e?(assertAction(e,"sagaEffects.take"),v.effects.take(prefixType(e,n))):Array.isArray(e)?v.effects.take(e.map(function(e){return"string"==typeof e?(assertAction(e,"sagaEffects.take"),prefixType(e,n)):e})):v.effects.take(e)}})}(f,s))));case 7:return u=e.sent,e.next=10,v.effects.put({"type":"".concat(c).concat(_,"@@end")});case 10:o(u),e.next=17;break;case 13:e.prev=13,e.t0=e.catch(2),l(e.t0,{"key":c,"effectArgs":r}),e.t0._dontReject||a(e.t0);case 17:case"end":return e.stop()}},p,null,[[2,13]])}var h=function applyOnEffect(e,t,r,n){var o=!0,a=!1,u=void 0;try{for(var i=e[Symbol.iterator]();!(o=(c=i.next()).done);o=!0){var c=c.value;t=c(t,v.effects,r,n)}}catch(e){a=!0,u=e}finally{try{o||null==i.return||i.return()}finally{if(a)throw u}}return t}(t,sagaWithCatch,f,c);switch(n){case"watcher":return sagaWithCatch;case"takeLatest":return m.default.mark(function _callee4(){return m.default.wrap(function _callee4$(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,v.effects.takeLatest(c,h);case 2:case"end":return e.stop()}},_callee4)});case"throttle":return m.default.mark(function _callee5(){return m.default.wrap(function _callee5$(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,v.effects.throttle(r,c,h);case 2:case"end":return e.stop()}},_callee5)});case"poll":return m.default.mark(function _callee6(){var o,a,t,r,n,u,i;return m.default.wrap(function _callee6$(e){for(;;)switch(e.prev=e.next){case 0:t=function _ref3(t,r){var n;return m.default.wrap(function pollSagaWorker$(e){for(;;)switch(e.prev=e.next){case 0:n=t.call;case 1:return e.next=4,n(h,r);case 4:return e.next=6,n(a,d);case 6:e.next=1;break;case 8:case"end":return e.stop()}},o)},a=function _ref2(t){return new Promise(function(e){return setTimeout(e,t)})},o=m.default.mark(t),r=v.effects.call,n=v.effects.take,u=v.effects.race;case 4:return e.next=7,n("".concat(c,"-start"));case 7:return i=e.sent,e.next=10,u([r(t,v.effects,i),n("".concat(c,"-stop"))]);case 10:e.next=4;break;case 12:case"end":return e.stop()}},_callee6)});default:return m.default.mark(function _callee7(){return m.default.wrap(function _callee7$(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,v.effects.takeEvery(c,h);case 2:case"end":return e.stop()}},_callee7)})}}(n,o[n],a,u,i,c),e.next=3,v.effects.fork(t);case 3:return r=e.sent,e.next=6,v.effects.fork(m.default.mark(function _callee(){return m.default.wrap(function _callee$(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,v.effects.take("".concat(a.namespace,"/@@CANCEL_EFFECTS"));case 2:return e.next=4,v.effects.cancel(r);case 4:case"end":return e.stop()}},_callee)}));case 6:case"end":return e.stop()}},_callee2)})(),"t2",5);e.next=5;break;case 5:e.next=1;break;case 7:case"end":return e.stop()}},_callee3)})}function identify(e){return e}function handleActions(t,e){var r=Object.keys(t).map(function(e){return function handleAction(n,e){var o=1<arguments.length&&void 0!==e?e:identify;return function(e,t){var r=t.type;return(0,I.default)(r,"dispatch: action should be a plain Object with type"),n===r?o(e,t):e}}(e,t[e])}),n=function reduceReducers(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];return function(e,r){return t.reduce(function(e,t){return t(e,r)},e)}}.apply(void 0,(0,N.default)(r));return function(){return n(0<arguments.length&&void 0!==arguments[0]?arguments[0]:e,1<arguments.length?arguments[1]:void 0)}}function getReducer(e,t,r){return Array.isArray(e)?e[1]((r||handleActions)(e[0],t)):(r||handleActions)(e||{},t)}function createPromiseMiddleware(o){return function(){return function(n){return function(r){return function isEffect(e){if(!e||"string"!=typeof e)return!1;var t=e.split(_),r=(0,g.default)(t,1)[0],t=o._models.filter(function(e){return e.namespace===r})[0];if(t&&t.effects&&t.effects[e])return!0;return!1}(r.type)?new Promise(function(e,t){n((0,R.default)({"__dva_resolve":e,"__dva_reject":t},r))}):n(r)}}}}function run(e,t,r,n){var o,a,u=[],i=[];for(o in e)Object.prototype.hasOwnProperty.call(e,o)&&(a=(0,e[o])({"dispatch":function prefixedDispatch(r,n){return function(e){var t=e.type;return(0,I.default)(t,"dispatch: action should be a plain Object with type"),(0,b.default)(0!==t.indexOf("".concat(n.namespace).concat(_)),"dispatch: ".concat(t," should not be prefixed with namespace ").concat(n.namespace)),r((0,R.default)({},e,{"type":prefixType(t,n)}))}}(r._store.dispatch,t),"history":r._history},n),c(a)?u.push(a):i.push(o));return{"funcs":u,"nonFuncs":i}}function unlisten(e,t){if(e[t]){var r=e[t],n=r.funcs,r=r.nonFuncs;(0,b.default)(0===r.length,"[app.unmodel] subscription should return unlistener function, check these subscriptions ".concat(r.join(", ")));var o=!0,a=!1,u=void 0;try{for(var i,c=n[Symbol.iterator]();!(o=(i=c.next()).done);o=!0)(0,i.value)()}catch(e){a=!0,u=e}finally{try{o||null==c.return||c.return()}finally{if(a)throw u}}delete e[t]}}var f=_p,U=aq,l={"namespace":"@@dva","state":0,"reducers":{"UPDATE":function UPDATE(e){return e+1}}};t.create=function create(){var A=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},x=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},j=x.initialReducer,e=x.setupApp,S=void 0===e?f:e,C=new i;C.use(function filterHooks(r){return Object.keys(r).reduce(function(e,t){return-1<u.indexOf(t)&&(e[t]=r[t]),e},{})}(A));var P={"_models":[prefixNamespace((0,R.default)({},l))],"_store":null,"_plugin":C,"use":C.use.bind(C),"model":model,"start":function start(){function Tu(e,t){e&&("string"==typeof e&&(e=new Error(e)),e.preventDefault=function(){e._dontReject=!0},C.apply("onError",function(e){throw new Error(e.stack||e)})(e,P._store.dispatch,t))}var e=(0,D.default)(),t=createPromiseMiddleware(P);P._getSaga=getSaga.bind(null);var r=[],n=(0,R.default)({},j),o=!0,a=!1,u=void 0;try{for(var i=P._models[Symbol.iterator]();!(o=(c=i.next()).done);o=!0){var c=c.value;n[c.namespace]=getReducer(c.reducers,c.state,C._handleActions),c.effects&&r.push(P._getSaga(c.effects,c,Tu,C.get("onEffect"),A))}}catch(e){a=!0,u=e}finally{try{o||null==i.return||i.return()}finally{if(a)throw u}}var f=C.get("onReducer"),l=C.get("extraReducers");(0,I.default)(Object.keys(l).every(function(e){return!(e in n)}),"[app.start] extraReducers is conflict with other reducers, reducers list: ".concat(Object.keys(n).join(", "))),P._store=function createStore(e){var t=e.reducers,r=e.initialState,n=e.plugin,o=e.sagaMiddleware,a=e.promiseMiddleware,e=void 0===(u=e.createOpts.setupMiddlewares)?F:u,u=n.get("extraEnhancers");return(0,I.default)(L(u),"[app.start] extraEnhancers should be array, but got ".concat((0,M.default)(u))),n=n.get("onAction"),o=e([a,o].concat((0,N.default)((0,q.default)(n)))),n=T.compose,u=[T.applyMiddleware.apply(void 0,(0,N.default)(o))].concat((0,N.default)(u)),(0,T.createStore)(t,r,n.apply(void 0,(0,N.default)(u)))}({"reducers":createReducer(),"initialState":A.initialState||{},"plugin":C,"createOpts":x,"sagaMiddleware":e,"promiseMiddleware":t});var s=P._store;s.runSaga=e.run,s.asyncReducers={};var d=C.get("onStateChange"),p=!0,y=!1,h=void 0;try{for(var v,b=function _loop(){var e=v.value;s.subscribe(function(){e(s.getState())})},g=d[Symbol.iterator]();!(p=(v=g.next()).done);p=!0)b()}catch(e){y=!0,h=e}finally{try{p||null==g.return||g.return()}finally{if(y)throw h}}r.forEach(e.run),S(P);var m={},_=!0,E=!1,k=void 0;try{for(var w=this._models[Symbol.iterator]();!(_=(O=w.next()).done);_=!0){var O=O.value;O.subscriptions&&(m[O.namespace]=run(O.subscriptions,O,P,Tu))}}catch(e){E=!0,k=e}finally{try{_||null==w.return||w.return()}finally{if(E)throw k}}function createReducer(){return f((0,T.combineReducers)((0,R.default)({},n,l,P._store?P._store.asyncReducers:{})))}P.model=function injectModel(e,t,r,n){n=model(n);var o=P._store;o.asyncReducers[n.namespace]=getReducer(n.reducers,n.state,C._handleActions),o.replaceReducer(e()),n.effects&&o.runSaga(P._getSaga(n.effects,n,t,C.get("onEffect"),A));n.subscriptions&&(r[n.namespace]=run(n.subscriptions,n,P,t))}.bind(P,createReducer,Tu,m),P.unmodel=function unmodel(e,t,r,n){var o=P._store;delete o.asyncReducers[n],delete t[n],o.replaceReducer(e()),o.dispatch({"type":"@@dva/UPDATE"}),o.dispatch({"type":"".concat(n,"/@@CANCEL_EFFECTS")}),unlisten(r,n),P._models=P._models.filter(function(e){return e.namespace!==n})}.bind(P,createReducer,n,m),P.replaceModel=function replaceModel(e,t,r,n,o){var a=P._store,u=o.namespace,i=U(P._models,function(e){return e.namespace===u});~i&&(a.dispatch({"type":"".concat(u,"/@@CANCEL_EFFECTS")}),delete a.asyncReducers[u],delete t[u],unlisten(r,u),P._models.splice(i,1));P.model(o),a.dispatch({"type":"@@dva/UPDATE"})}.bind(P,createReducer,n,m,Tu)}};return P;function model(e){e=prefixNamespace((0,R.default)({},e));return P._models.push(e),e}},t.utils=r},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.createStore=t.compose=t.combineReducers=t.bindActionCreators=t.applyMiddleware=t.__DO_NOT_USE__ActionTypes=void 0;var c="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},f=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(77));function Hv(){return Math.random().toString(36).substring(7).split("").join(".")}var d={"INIT":"@@redux/INIT"+Hv(),"REPLACE":"@@redux/REPLACE"+Hv(),"PROBE_UNKNOWN_ACTION":function PROBE_UNKNOWN_ACTION(){return"@@redux/PROBE_UNKNOWN_ACTION"+Hv()}};function isPlainObject(e){if("object"===(void 0===e?"undefined":c(e))&&null!==e){for(var t=e;null!==Object.getPrototypeOf(t);)t=Object.getPrototypeOf(t);return Object.getPrototypeOf(e)===t}}function bindActionCreator(e,t){return function(){return t(e.apply(this,arguments))}}function ownKeys(t,e){var r=Object.keys(t);return Object.getOwnPropertySymbols&&r.push.apply(r,Object.getOwnPropertySymbols(t)),e&&(r=r.filter(function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable})),r}function _objectSpread2(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?ownKeys(r,!0).forEach(function(e){!function _defineProperty(e,t,r){t in e?Object.defineProperty(e,t,{"value":r,"enumerable":!0,"configurable":!0,"writable":!0}):e[t]=r}(t,e,r[e])}):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):ownKeys(r).forEach(function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))})}return t}function compose(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];return 0===t.length?function(e){return e}:1===t.length?t[0]:t.reduce(function(e,t){return function(){return e(t.apply(void 0,arguments))}})}t.__DO_NOT_USE__ActionTypes=d,t.applyMiddleware=function applyMiddleware(){for(var e=arguments.length,a=new Array(e),t=0;t<e;t++)a[t]=arguments[t];return function(o){return function(){var e=o.apply(void 0,arguments),t=function dispatch(){throw new Error("Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.")},r={"getState":e.getState,"dispatch":function dispatch(){return t.apply(void 0,arguments)}},n=a.map(function(e){return e(r)});return _objectSpread2({},e,{"dispatch":t=compose.apply(void 0,n)(e.dispatch)})}}},t.bindActionCreators=function bindActionCreators(e,t){if("function"==typeof e)return bindActionCreator(e,t);if("object"!==(void 0===e?"undefined":c(e))||null===e)throw new Error("bindActionCreators expected an object or a function, instead received "+(null===e?"null":void 0===e?"undefined":c(e))+'. Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');var r,n={};for(r in e){var o=e[r];"function"==typeof o&&(n[r]=bindActionCreator(o,t))}return n},t.combineReducers=function combineReducers(e){for(var t=Object.keys(e),f={},r=0;r<t.length;r++){var n=t[r];"function"==typeof e[n]&&(f[n]=e[n])}var l,s=Object.keys(f);try{!function assertReducerShape(r){Object.keys(r).forEach(function(e){var t=r[e];if(void 0===t(void 0,{"type":d.INIT}))throw new Error('Reducer "'+e+"\" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined. If you don't want to set a value for this reducer, you can use null instead of undefined.");if(void 0===t(void 0,{"type":d.PROBE_UNKNOWN_ACTION()}))throw new Error('Reducer "'+e+"\" returned undefined when probed with a random type. Don't try to handle "+d.INIT+' or other actions in "redux/*" namespace. They are considered private. Instead, you must return the current state for any unknown actions, unless it is undefined, in which case you must return the initial state, regardless of the action type. The initial state may not be undefined, but can be null.')})}(f)}catch(e){l=e}return function combination(e,t){if(void 0===e&&(e={}),l)throw l;for(var r=!1,n={},o=0;o<s.length;o++){var a=s[o],u=f[a],i=e[a],c=u(i,t);if(void 0===c){u=function getUndefinedStateErrorMessage(e,t){return"Given "+((t=t&&t.type)&&'action "'+String(t)+'"'||"an action")+', reducer "'+e+'" returned undefined. To ignore an action, you must explicitly return the previous state. If you want this reducer to hold no value, you can return null instead of undefined.'}(a,t);throw new Error(u)}n[a]=c,r=r||c!==i}return(r=r||s.length!==Object.keys(e).length)?n:e}},t.compose=compose,t.createStore=function createStore(e,t,r){if("function"==typeof t&&"function"==typeof r||"function"==typeof r&&"function"==typeof arguments[3])throw new Error("It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function.");if("function"==typeof t&&void 0===r&&(r=t,t=void 0),void 0!==r){if("function"!=typeof r)throw new Error("Expected the enhancer to be a function.");return r(createStore)(e,t)}if("function"!=typeof e)throw new Error("Expected the reducer to be a function.");var n=e,o=t,a=[],u=a,i=!1;function getState(){if(i)throw new Error("You may not call store.getState() while the reducer is executing. The reducer has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store.");return o}function subscribe(t){if("function"!=typeof t)throw new Error("Expected the listener to be a function.");if(i)throw new Error("You may not call store.subscribe() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store.getState() in the callback to access the latest state. See https://redux.js.org/api-reference/store#subscribelistener for more details.");var r=!0;return u===a&&(u=a.slice()),u.push(t),function unsubscribe(){if(r){if(i)throw new Error("You may not unsubscribe from a store listener while the reducer is executing. See https://redux.js.org/api-reference/store#subscribelistener for more details.");r=!1,u===a&&(u=a.slice());var e=u.indexOf(t);u.splice(e,1),a=null}}}function dispatch(e){if(!isPlainObject(e))throw new Error("Actions must be plain objects. Use custom middleware for async actions.");if(void 0===e.type)throw new Error('Actions may not have an undefined "type" property. Have you misspelled a constant?');if(i)throw new Error("Reducers may not dispatch actions.");try{i=!0,o=n(o,e)}finally{i=!1}for(var t=a=u,r=0;r<t.length;r++)(0,t[r])();return e}return dispatch({"type":d.INIT}),(t={"dispatch":dispatch,"subscribe":subscribe,"getState":getState,"replaceReducer":function replaceReducer(e){if("function"!=typeof e)throw new Error("Expected the nextReducer to be a function.");n=e,dispatch({"type":d.REPLACE})}})[f.default]=function observable(){var t=subscribe,e={"subscribe":function subscribe(e){if("object"!==(void 0===e?"undefined":c(e))||null===e)throw new TypeError("Expected the observer to be an object.");function observeState(){e.next&&e.next(getState())}return observeState(),{"unsubscribe":t(observeState)}}};return e[f.default]=function(){return this},e},t}},function(e,n,o){"use strict";(function(e,t){Object.defineProperty(n,"__esModule",{"value":!0});var r=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(o(78));t="undefined"!=typeof self?self:"undefined"!=typeof window?window:void 0!==e?e:t;t=(0,r.default)(t);n.default=t}).call(this,o(7),o(42)(e))},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function symbolObservablePonyfill(e){var t,e=e.Symbol;"function"==typeof e?e.observable?t=e.observable:(t=e("observable"),e.observable=t):t="@@observable";return t}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.utils=t.effects=t.detach=t.CANCEL=t.delay=t.throttle=t.takeLatest=t.takeEvery=t.buffers=t.channel=t.eventChannel=t.END=t.runSaga=void 0;var n=r(46);Object.defineProperty(t,"runSaga",{"enumerable":!0,"get":function get(){return n.runSaga}});var o=r(5);Object.defineProperty(t,"END",{"enumerable":!0,"get":function get(){return o.END}}),Object.defineProperty(t,"eventChannel",{"enumerable":!0,"get":function get(){return o.eventChannel}}),Object.defineProperty(t,"channel",{"enumerable":!0,"get":function get(){return o.channel}});var a=r(8);Object.defineProperty(t,"buffers",{"enumerable":!0,"get":function get(){return a.buffers}});var u=r(49);Object.defineProperty(t,"takeEvery",{"enumerable":!0,"get":function get(){return u.takeEvery}}),Object.defineProperty(t,"takeLatest",{"enumerable":!0,"get":function get(){return u.takeLatest}}),Object.defineProperty(t,"throttle",{"enumerable":!0,"get":function get(){return u.throttle}});var i=r(1);Object.defineProperty(t,"delay",{"enumerable":!0,"get":function get(){return i.delay}}),Object.defineProperty(t,"CANCEL",{"enumerable":!0,"get":function get(){return i.CANCEL}});var c=r(2);Object.defineProperty(t,"detach",{"enumerable":!0,"get":function get(){return c.detach}});var f=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(83)),l=_interopRequireWildcard(r(84)),r=_interopRequireWildcard(r(86));function _interopRequireWildcard(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r]);return t.default=e,t}t.default=f.default,t.effects=l,t.utils=r},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function takeEvery(e,t){for(var r=arguments.length,n=Array(2<r?r-2:0),o=2;o<r;o++)n[o-2]=arguments[o];function vy(e){return{"done":!1,"value":f.fork.apply(void 0,[t].concat(n,[e]))}}function xy(e){return u=e}var a={"done":!1,"value":(0,f.take)(e)},u=void 0;return(0,c.default)({"q1":function q1(){return["q2",a,xy]},"q2":function q2(){return u===l.END?[i.qEnd]:["q1",vy(u)]}},"q1","takeEvery("+(0,i.safeName)(e)+", "+t.name+")")};var i=r(25),c=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(i),f=r(2),l=r(5)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function takeLatest(e,t){for(var r=arguments.length,n=Array(2<r?r-2:0),o=2;o<r;o++)n[o-2]=arguments[o];function Oy(e){return{"done":!1,"value":l.fork.apply(void 0,[t].concat(n,[e]))}}function Py(e){return{"done":!1,"value":(0,l.cancel)(e)}}function Sy(e){return u=e}function Ty(e){return i=e}var a={"done":!1,"value":(0,l.take)(e)},u=void 0,i=void 0;return(0,f.default)({"q1":function q1(){return["q2",a,Ty]},"q2":function q2(){return i===s.END?[c.qEnd]:u?["q3",Py(u)]:["q1",Oy(i),Sy]},"q3":function q3(){return["q1",Oy(i),Sy]}},"q1","takeLatest("+(0,c.safeName)(e)+", "+t.name+")")};var c=r(25),f=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(c),l=r(2),s=r(5)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function throttle(e,t,r){for(var n=arguments.length,o=Array(3<n?n-3:0),a=3;a<n;a++)o[a-3]=arguments[a];function pz(){return{"done":!1,"value":(0,d.take)(i)}}function qz(e){return{"done":!1,"value":d.fork.apply(void 0,[r].concat(o,[e]))}}function sz(e){return u=e}function tz(e){return i=e}var u=void 0,i=void 0,c={"done":!1,"value":(0,d.actionChannel)(t,y.buffers.sliding(1))},f={"done":!1,"value":(0,d.call)(h.delay,e)};return(0,s.default)({"q1":function q1(){return["q2",c,tz]},"q2":function q2(){return["q3",pz(),sz]},"q3":function q3(){return u===p.END?[l.qEnd]:["q4",qz(u)]},"q4":function q4(){return["q2",f]}},"q1","throttle("+(0,l.safeName)(t)+", "+r.name+")")};var l=r(25),s=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(l),d=r(2),p=r(5),y=r(8),h=r(1)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function sagaMiddlewareFactory(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},t=e.context,r=void 0===t?{}:t,o=function _objectWithoutProperties(e,t){var r,n={};for(r in e)0<=t.indexOf(r)||Object.prototype.hasOwnProperty.call(e,r)&&(n[r]=e[r]);return n}(e,["context"]),a=o.sagaMonitor,u=o.logger,i=o.onError;if(c.is.func(o))throw new Error("Saga middleware no longer accept Generator functions. Use sagaMiddleware.run instead");if(u&&!c.is.func(u))throw new Error("`options.logger` passed to the Saga middleware is not a function!");if(i&&!c.is.func(i))throw new Error("`options.onError` passed to the Saga middleware is not a function!");if(!o.emitter||c.is.func(o.emitter))return sagaMiddleware.run=function(){throw new Error("Before running a Saga, you must mount the Saga middleware on the Store using applyMiddleware")},sagaMiddleware.setContext=function(e){(0,c.check)(e,c.is.object,(0,c.createSetContextWarning)("sagaMiddleware",e)),c.object.assign(r,e)},sagaMiddleware;function sagaMiddleware(e){var t=e.getState,e=e.dispatch,n=(0,f.emitter)();return n.emit=(o.emitter||c.ident)(n.emit),sagaMiddleware.run=l.runSaga.bind(null,{"context":r,"subscribe":n.subscribe,"dispatch":e,"getState":t,"sagaMonitor":a,"logger":u,"onError":i}),function(r){return function(e){a&&a.actionDispatched&&a.actionDispatched(e);var t=r(e);return n.emit(e),t}}}throw new Error("`options.emitter` passed to the Saga middleware is not a function!")};var c=r(1),f=r(5),l=r(46)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var n=r(2);Object.defineProperty(t,"take",{"enumerable":!0,"get":function get(){return n.take}}),Object.defineProperty(t,"takem",{"enumerable":!0,"get":function get(){return n.takem}}),Object.defineProperty(t,"put",{"enumerable":!0,"get":function get(){return n.put}}),Object.defineProperty(t,"all",{"enumerable":!0,"get":function get(){return n.all}}),Object.defineProperty(t,"race",{"enumerable":!0,"get":function get(){return n.race}}),Object.defineProperty(t,"call",{"enumerable":!0,"get":function get(){return n.call}}),Object.defineProperty(t,"apply",{"enumerable":!0,"get":function get(){return n.apply}}),Object.defineProperty(t,"cps",{"enumerable":!0,"get":function get(){return n.cps}}),Object.defineProperty(t,"fork",{"enumerable":!0,"get":function get(){return n.fork}}),Object.defineProperty(t,"spawn",{"enumerable":!0,"get":function get(){return n.spawn}}),Object.defineProperty(t,"join",{"enumerable":!0,"get":function get(){return n.join}}),Object.defineProperty(t,"cancel",{"enumerable":!0,"get":function get(){return n.cancel}}),Object.defineProperty(t,"select",{"enumerable":!0,"get":function get(){return n.select}}),Object.defineProperty(t,"actionChannel",{"enumerable":!0,"get":function get(){return n.actionChannel}}),Object.defineProperty(t,"cancelled",{"enumerable":!0,"get":function get(){return n.cancelled}}),Object.defineProperty(t,"flush",{"enumerable":!0,"get":function get(){return n.flush}}),Object.defineProperty(t,"getContext",{"enumerable":!0,"get":function get(){return n.getContext}}),Object.defineProperty(t,"setContext",{"enumerable":!0,"get":function get(){return n.setContext}});var o=r(85);Object.defineProperty(t,"takeEvery",{"enumerable":!0,"get":function get(){return o.takeEvery}}),Object.defineProperty(t,"takeLatest",{"enumerable":!0,"get":function get(){return o.takeLatest}}),Object.defineProperty(t,"throttle",{"enumerable":!0,"get":function get(){return o.throttle}})},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.takeEvery=function takeEvery(e,t){for(var r=arguments.length,n=Array(2<r?r-2:0),o=2;o<r;o++)n[o-2]=arguments[o];return u.fork.apply(void 0,[i.takeEveryHelper,e,t].concat(n))},t.takeLatest=function takeLatest(e,t){for(var r=arguments.length,n=Array(2<r?r-2:0),o=2;o<r;o++)n[o-2]=arguments[o];return u.fork.apply(void 0,[i.takeLatestHelper,e,t].concat(n))},t.throttle=function throttle(e,t,r){for(var n=arguments.length,o=Array(3<n?n-3:0),a=3;a<n;a++)o[a-3]=arguments[a];return u.fork.apply(void 0,[i.throttleHelper,e,t,r].concat(o))};var u=r(2),i=r(49)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var n=r(1);Object.defineProperty(t,"TASK",{"enumerable":!0,"get":function get(){return n.TASK}}),Object.defineProperty(t,"SAGA_ACTION",{"enumerable":!0,"get":function get(){return n.SAGA_ACTION}}),Object.defineProperty(t,"noop",{"enumerable":!0,"get":function get(){return n.noop}}),Object.defineProperty(t,"is",{"enumerable":!0,"get":function get(){return n.is}}),Object.defineProperty(t,"deferred",{"enumerable":!0,"get":function get(){return n.deferred}}),Object.defineProperty(t,"arrayOfDeffered",{"enumerable":!0,"get":function get(){return n.arrayOfDeffered}}),Object.defineProperty(t,"createMockTask",{"enumerable":!0,"get":function get(){return n.createMockTask}}),Object.defineProperty(t,"cloneableGenerator",{"enumerable":!0,"get":function get(){return n.cloneableGenerator}});var o=r(2);Object.defineProperty(t,"asEffect",{"enumerable":!0,"get":function get(){return o.asEffect}});var a=r(47);Object.defineProperty(t,"CHANNEL_END",{"enumerable":!0,"get":function get(){return a.CHANNEL_END}})},function(e,t,r){"use strict";function DA(e,t,r,n,o,a,u,i){var c,f,l;if(!e)throw void 0===t?l=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings."):(c=[r,n,o,a,u,i],f=0,(l=new Error(t.replace(/%s/g,function(){return c[f++]}))).name="Invariant Violation"),l.framesToPop=1,l}e.exports=DA},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};function _typeof(e){return"function"==typeof Symbol&&"symbol"===n(Symbol.iterator)?t.default=_typeof=function _typeof(e){return void 0===e?"undefined":n(e)}:t.default=_typeof=function _typeof(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":void 0===e?"undefined":n(e)},_typeof(e)}t.default=_typeof},function(e,t,r){"use strict";var n=r(90);function isObjectObject(e){return!0===n(e)&&"[object Object]"===Object.prototype.toString.call(e)}e.exports=function isPlainObject(e){return!1!==isObjectObject(e)&&("function"==typeof(e=e.constructor)&&(!1!==isObjectObject(e=e.prototype)&&!1!==e.hasOwnProperty("isPrototypeOf")))}},function(e,t,r){"use strict";var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};e.exports=function isObject(e){return null!=e&&"object"===(void 0===e?"undefined":n(e))&&!1===Array.isArray(e)}},function(e,t,r){"use strict";function oB(){}e.exports=oB},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}},function(e,t,r){"use strict";function _defineProperties(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _createClass(e,t,r){t&&_defineProperties(e.prototype,t);r&&_defineProperties(e,r);return e}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _toConsumableArray(e){return(0,n.default)(e)||(0,o.default)(e)||(0,a.default)(e)||(0,u.default)()};var n=_interopRequireDefault(r(95)),o=_interopRequireDefault(r(96)),a=_interopRequireDefault(r(51)),u=_interopRequireDefault(r(97));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _arrayWithoutHoles(e){if(Array.isArray(e))return(0,n.default)(e)};var n=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(r(50))},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _iterableToArray(e){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e))return Array.from(e)}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}},function(e,t,r){"use strict";e.exports=function flatten(e,n){return(n="number"==typeof n?n:1/0)?function _flatten(e,r){return e.reduce(function(e,t){return Array.isArray(t)&&r<n?e.concat(_flatten(t,r+1)):e.concat(t)},[])}(e,1):Array.isArray(e)?e.map(function(e){return e}):e}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _slicedToArray(e,t){return(0,n.default)(e)||(0,o.default)(e,t)||(0,a.default)(e,t)||(0,u.default)()};var n=_interopRequireDefault(r(100)),o=_interopRequireDefault(r(101)),a=_interopRequireDefault(r(51)),u=_interopRequireDefault(r(102));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _arrayWithHoles(e){if(Array.isArray(e))return e}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _iterableToArrayLimit(e,t){if("undefined"==typeof Symbol||!(Symbol.iterator in Object(e)))return;var r=[],n=!0,o=!1,a=void 0;try{for(var u,i=e[Symbol.iterator]();!(n=(u=i.next()).done)&&(r.push(u.value),!t||r.length!==t);n=!0);}catch(e){o=!0,a=e}finally{try{n||null==i.return||i.return()}finally{if(o)throw a}}return r}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function _nonIterableRest(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var c=_interopRequireDefault(r(52)),l=_interopRequireDefault(r(45)),s=_interopRequireDefault(r(44));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}var d="@@DVA_LOADING/SHOW",p="@@DVA_LOADING/HIDE";t.default=function createLoading(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},t=e.namespace||"loading",r=e.only,u=void 0===r?[]:r,i=void 0===(e=e.except)?[]:e;if(0<u.length&&0<i.length)throw Error("It is ambiguous to configurate `only` and `except` items at the same time.");var f={"global":!1,"models":{},"effects":{}};return{"extraReducers":(0,l.default)({},t,function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:f,t=1<arguments.length?arguments[1]:void 0,r=t.type,t=t.payload||{},n=t.namespace,o=t.actionType;switch(r){case d:c=(0,s.default)({},e,{"global":!0,"models":(0,s.default)({},e.models,(0,l.default)({},n,!0)),"effects":(0,s.default)({},e.effects,(0,l.default)({},o,!0))});break;case p:var a=(0,s.default)({},e.effects,(0,l.default)({},o,!1)),u=(0,s.default)({},e.models,(0,l.default)({},n,Object.keys(a).some(function(e){return e.split("/")[0]===n&&a[e]}))),i=Object.keys(u).some(function(e){return u[e]}),c=(0,s.default)({},e,{"global":i,"models":u,"effects":a});break;default:c=e}return c}),"onEffect":function onEffect(r,e,t,n){var o=e.put,a=t.namespace;return 0===u.length&&0===i.length||0<u.length&&-1!==u.indexOf(n)||0<i.length&&-1===i.indexOf(n)?c.default.mark(function _callee(){var t=arguments;return c.default.wrap(function _callee$(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,o({"type":d,"payload":{"namespace":a,"actionType":n}});case 2:return e.next=4,r.apply(void 0,t);case 4:return e.next=6,o({"type":p,"payload":{"namespace":a,"actionType":n}});case 6:case"end":return e.stop()}},_callee)}):r}}}},function(e,t,r){}],[[66,0,1,2]]]);
+require("./runtime");
+require("./common");
+require("./vendors");
+
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["app"],{
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _arrayLikeToArray;
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _arrayWithHoles;
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _arrayWithoutHoles;
+
+var _arrayLikeToArray = __webpack_require__(/*! @babel/runtime/helpers/esm/arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js");
+
+var _arrayLikeToArray2 = _interopRequireDefault(_arrayLikeToArray);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return (0, _arrayLikeToArray2.default)(arr);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _classCallCheck;
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/createClass.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/createClass.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _createClass;
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _defineProperty;
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _iterableToArray;
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _iterableToArrayLimit;
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _nonIterableRest;
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _nonIterableSpread;
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/objectSpread.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/objectSpread.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _objectSpread;
+
+var _defineProperty = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? Object(arguments[i]) : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      (0, _defineProperty2.default)(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _slicedToArray;
+
+var _arrayWithHoles = __webpack_require__(/*! @babel/runtime/helpers/esm/arrayWithHoles */ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js");
+
+var _arrayWithHoles2 = _interopRequireDefault(_arrayWithHoles);
+
+var _iterableToArrayLimit = __webpack_require__(/*! @babel/runtime/helpers/esm/iterableToArrayLimit */ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js");
+
+var _iterableToArrayLimit2 = _interopRequireDefault(_iterableToArrayLimit);
+
+var _unsupportedIterableToArray = __webpack_require__(/*! @babel/runtime/helpers/esm/unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
+
+var _unsupportedIterableToArray2 = _interopRequireDefault(_unsupportedIterableToArray);
+
+var _nonIterableRest = __webpack_require__(/*! @babel/runtime/helpers/esm/nonIterableRest */ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js");
+
+var _nonIterableRest2 = _interopRequireDefault(_nonIterableRest);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _slicedToArray(arr, i) {
+  return (0, _arrayWithHoles2.default)(arr) || (0, _iterableToArrayLimit2.default)(arr, i) || (0, _unsupportedIterableToArray2.default)(arr, i) || (0, _nonIterableRest2.default)();
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _toConsumableArray;
+
+var _arrayWithoutHoles = __webpack_require__(/*! @babel/runtime/helpers/esm/arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js");
+
+var _arrayWithoutHoles2 = _interopRequireDefault(_arrayWithoutHoles);
+
+var _iterableToArray = __webpack_require__(/*! @babel/runtime/helpers/esm/iterableToArray */ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js");
+
+var _iterableToArray2 = _interopRequireDefault(_iterableToArray);
+
+var _unsupportedIterableToArray = __webpack_require__(/*! @babel/runtime/helpers/esm/unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
+
+var _unsupportedIterableToArray2 = _interopRequireDefault(_unsupportedIterableToArray);
+
+var _nonIterableSpread = __webpack_require__(/*! @babel/runtime/helpers/esm/nonIterableSpread */ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js");
+
+var _nonIterableSpread2 = _interopRequireDefault(_nonIterableSpread);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) {
+  return (0, _arrayWithoutHoles2.default)(arr) || (0, _iterableToArray2.default)(arr) || (0, _unsupportedIterableToArray2.default)(arr) || (0, _nonIterableSpread2.default)();
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/typeof.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/typeof.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.default = _typeof;
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    exports.default = _typeof = function _typeof(obj) {
+      return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+    };
+  } else {
+    exports.default = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _unsupportedIterableToArray;
+
+var _arrayLikeToArray = __webpack_require__(/*! @babel/runtime/helpers/esm/arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js");
+
+var _arrayLikeToArray2 = _interopRequireDefault(_arrayLikeToArray);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return (0, _arrayLikeToArray2.default)(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return (0, _arrayLikeToArray2.default)(o, minLen);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime-module.js");
+
+/***/ }),
+
+/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/app.tsx?taro&type=script&parse=ENTRY&":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/app.tsx?taro&type=script&parse=ENTRY& ***!
+  \************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _index = __webpack_require__(/*! ./models/index */ "./src/models/index.ts");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _dva = __webpack_require__(/*! ./utils/dva */ "./src/utils/dva.ts");
+
+var _dva2 = _interopRequireDefault(_dva);
+
+var _log = __webpack_require__(/*! ./utils/log */ "./src/utils/log.ts");
+
+var _log2 = _interopRequireDefault(_log);
+
+__webpack_require__(/*! ./app.scss */ "./src/app.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var dvaApp = _dva2.default.createApp({
+  initialState: {},
+  models: _index2.default
+});
+var store = dvaApp.getStore();
+// 如果需要在 h5 环境中开启 React Devtools
+// 取消以下注释：
+// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
+//   require('nerv-devtools')
+// }
+(0, _redux.setStore)(store);
+
+if (_redux.ReduxContext.Provider) {
+  _redux.ReduxContext.Provider({
+    store: store
+  });
+  _redux.ReduxContext.Provider({
+    store: store
+  });
+}
+
+var _App = function (_BaseComponent) {
+  _inherits(_App, _BaseComponent);
+
+  function _App() {
+    _classCallCheck(this, _App);
+
+    /**
+     * 指定config的类型声明为: Taro.Config
+     *
+     * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
+     * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
+     * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
+     */
+    var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
+
+    _this.config = {
+      pages: ['pages/index/index', 'pages/poetryList/poetryList', 'pages/detailPage/detailPage', 'pages/about/about', 'pages/my/my', 'pages/author/authorIndex/authorIndex', 'pages/author/authorInfo/authorInfo'],
+      window: {
+        backgroundTextStyle: 'light',
+        navigationBarBackgroundColor: '#fff',
+        navigationBarTitleText: 'WeChat',
+        navigationBarTextStyle: 'black'
+      },
+      plugins: {
+        'WechatSI': {
+          'version': '0.3.3',
+          'provider': 'wx069ba97219f66d99'
+        }
+      }
+    };
+    return _this;
+  }
+
+  _createClass(_App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      {
+        _taroWeapp2.default.cloud.init({
+          // env: process.env.NODE_ENV === 'development' ? 'test-hhh' : '',
+          env: 'test-hhh',
+          traceUser: true
+        });
+        _taroWeapp2.default.cloud.callFunction({
+          name: 'login',
+          complete: function complete(res) {
+            console.log('callFunction test result: ', res);
+            if (res.result.openid) {
+              _taroWeapp2.default.setStorageSync('openid', res.result.openid);
+            }
+          }
+        });
+      }
+      var params = this.$router.params;
+      var scene = params.query['scene'];
+      var action = '自主进入';
+      if (params.query['from'] === 'code') {
+        action = '小程序码进入';
+      }
+      if (params.query['is_share']) {
+        action = '分享页面进入';
+      }
+      if (scene) {
+        action = '分享海报进入';
+      }
+      // api上报
+      (0, _log2.default)('load_page', {
+        action: action
+      });
+    }
+  }, {
+    key: 'componentDidShow',
+    value: function componentDidShow() {}
+  }, {
+    key: 'componentDidHide',
+    value: function componentDidHide() {}
+  }, {
+    key: 'componentDidCatchError',
+    value: function componentDidCatchError() {}
+    // 在 App 类中的 render() 函数没有实际作用
+    // 请勿修改此函数
+
+  }, {
+    key: '_createData',
+    value: function _createData() {}
+  }]);
+
+  return _App;
+}(_taroWeapp.Component);
+
+exports.default = _App;
+
+App(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createApp(_App));
+_taroWeapp2.default.initPxTransform({
+  "designWidth": 750,
+  "deviceRatio": {
+    "640": 1.17,
+    "750": 1,
+    "828": 0.905
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-runtime/regenerator/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/babel-runtime/regenerator/index.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime-module.js");
+
+/***/ }),
+
+/***/ "./node_modules/dva-core/dist/index.esm.js":
+/*!*************************************************!*\
+  !*** ./node_modules/dva-core/dist/index.esm.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.utils = exports.create = exports.saga = undefined;
+
+var _objectSpread2 = __webpack_require__(/*! @babel/runtime/helpers/esm/objectSpread */ "./node_modules/@babel/runtime/helpers/esm/objectSpread.js");
+
+var _objectSpread3 = _interopRequireDefault(_objectSpread2);
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reduxSaga = __webpack_require__(/*! redux-saga */ "./node_modules/redux-saga/es/index.js");
+
+var createSagaMiddleware = _interopRequireWildcard(_reduxSaga);
+
+var _invariant = __webpack_require__(/*! invariant */ "./node_modules/invariant/browser.js");
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _typeof2 = __webpack_require__(/*! @babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _isPlainObject = __webpack_require__(/*! is-plain-object */ "./node_modules/is-plain-object/index.js");
+
+var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
+
+var _warning = __webpack_require__(/*! warning */ "./node_modules/warning/browser.js");
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _classCallCheck2 = __webpack_require__(/*! @babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(/*! @babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _toConsumableArray2 = __webpack_require__(/*! @babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _flatten = __webpack_require__(/*! flatten */ "./node_modules/flatten/index.js");
+
+var _flatten2 = _interopRequireDefault(_flatten);
+
+var _window = __webpack_require__(/*! global/window */ "./node_modules/global/window.js");
+
+var _window2 = _interopRequireDefault(_window);
+
+var _slicedToArray2 = __webpack_require__(/*! @babel/runtime/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+
+var _regenerator = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.saga = createSagaMiddleware;
+
+
+var isArray = Array.isArray.bind(Array);
+var isFunction = function isFunction(o) {
+  return typeof o === 'function';
+};
+var returnSelf = function returnSelf(m) {
+  return m;
+};
+var noop = function noop() {};
+var findIndex = function findIndex(array, predicate) {
+  for (var i = 0, length = array.length; i < length; i += 1) {
+    if (predicate(array[i], i)) return i;
+  }
+
+  return -1;
+};
+
+var utils = /*#__PURE__*/Object.freeze({
+  isPlainObject: _isPlainObject2.default,
+  isArray: isArray,
+  isFunction: isFunction,
+  returnSelf: returnSelf,
+  noop: noop,
+  findIndex: findIndex
+});
+
+function checkModel(model, existModels) {
+  var namespace = model.namespace,
+      reducers = model.reducers,
+      effects = model.effects,
+      subscriptions = model.subscriptions; // namespace 必须被定义
+
+  (0, _invariant2.default)(namespace, "[app.model] namespace should be defined"); // 并且是字符串
+
+  (0, _invariant2.default)(typeof namespace === 'string', "[app.model] namespace should be string, but got ".concat((0, _typeof3.default)(namespace))); // 并且唯一
+
+  (0, _invariant2.default)(!existModels.some(function (model) {
+    return model.namespace === namespace;
+  }), "[app.model] namespace should be unique"); // state 可以为任意值
+  // reducers 可以为空，PlainObject 或者数组
+
+  if (reducers) {
+    (0, _invariant2.default)((0, _isPlainObject2.default)(reducers) || isArray(reducers), "[app.model] reducers should be plain object or array, but got ".concat((0, _typeof3.default)(reducers))); // 数组的 reducers 必须是 [Object, Function] 的格式
+
+    (0, _invariant2.default)(!isArray(reducers) || (0, _isPlainObject2.default)(reducers[0]) && isFunction(reducers[1]), "[app.model] reducers with array should be [Object, Function]");
+  } // effects 可以为空，PlainObject
+
+
+  if (effects) {
+    (0, _invariant2.default)((0, _isPlainObject2.default)(effects), "[app.model] effects should be plain object, but got ".concat((0, _typeof3.default)(effects)));
+  }
+
+  if (subscriptions) {
+    // subscriptions 可以为空，PlainObject
+    (0, _invariant2.default)((0, _isPlainObject2.default)(subscriptions), "[app.model] subscriptions should be plain object, but got ".concat((0, _typeof3.default)(subscriptions))); // subscription 必须为函数
+
+    (0, _invariant2.default)(isAllFunction(subscriptions), "[app.model] subscription should be function");
+  }
+}
+
+function isAllFunction(obj) {
+  return Object.keys(obj).every(function (key) {
+    return isFunction(obj[key]);
+  });
+}
+
+var NAMESPACE_SEP = '/';
+
+function prefix(obj, namespace, type) {
+  return Object.keys(obj).reduce(function (memo, key) {
+    (0, _warning2.default)(key.indexOf("".concat(namespace).concat(NAMESPACE_SEP)) !== 0, "[prefixNamespace]: ".concat(type, " ").concat(key, " should not be prefixed with namespace ").concat(namespace));
+    var newKey = "".concat(namespace).concat(NAMESPACE_SEP).concat(key);
+    memo[newKey] = obj[key];
+    return memo;
+  }, {});
+}
+
+function prefixNamespace(model) {
+  var namespace = model.namespace,
+      reducers = model.reducers,
+      effects = model.effects;
+
+  if (reducers) {
+    if (isArray(reducers)) {
+      model.reducers[0] = prefix(reducers[0], namespace, 'reducer');
+    } else {
+      model.reducers = prefix(reducers, namespace, 'reducer');
+    }
+  }
+
+  if (effects) {
+    model.effects = prefix(effects, namespace, 'effect');
+  }
+
+  return model;
+}
+
+var hooks = ['onError', 'onStateChange', 'onAction', 'onHmr', 'onReducer', 'onEffect', 'extraReducers', 'extraEnhancers', '_handleActions'];
+function filterHooks(obj) {
+  return Object.keys(obj).reduce(function (memo, key) {
+    if (hooks.indexOf(key) > -1) {
+      memo[key] = obj[key];
+    }
+
+    return memo;
+  }, {});
+}
+
+var Plugin =
+/*#__PURE__*/
+function () {
+  function Plugin() {
+    (0, _classCallCheck3.default)(this, Plugin);
+
+    this._handleActions = null;
+    this.hooks = hooks.reduce(function (memo, key) {
+      memo[key] = [];
+      return memo;
+    }, {});
+  }
+
+  (0, _createClass3.default)(Plugin, [{
+    key: "use",
+    value: function use(plugin) {
+      (0, _invariant2.default)((0, _isPlainObject2.default)(plugin), 'plugin.use: plugin should be plain object');
+      var hooks = this.hooks;
+
+      for (var key in plugin) {
+        if (Object.prototype.hasOwnProperty.call(plugin, key)) {
+          (0, _invariant2.default)(hooks[key], "plugin.use: unknown plugin property: ".concat(key));
+
+          if (key === '_handleActions') {
+            this._handleActions = plugin[key];
+          } else if (key === 'extraEnhancers') {
+            hooks[key] = plugin[key];
+          } else {
+            hooks[key].push(plugin[key]);
+          }
+        }
+      }
+    }
+  }, {
+    key: "apply",
+    value: function apply(key, defaultHandler) {
+      var hooks = this.hooks;
+      var validApplyHooks = ['onError', 'onHmr'];
+      (0, _invariant2.default)(validApplyHooks.indexOf(key) > -1, "plugin.apply: hook ".concat(key, " cannot be applied"));
+      var fns = hooks[key];
+      return function () {
+        if (fns.length) {
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = fns[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var fn = _step.value;
+              fn.apply(undefined, arguments);
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+        } else if (defaultHandler) {
+          defaultHandler.apply(undefined, arguments);
+        }
+      };
+    }
+  }, {
+    key: "get",
+    value: function get(key) {
+      var hooks = this.hooks;
+      (0, _invariant2.default)(key in hooks, "plugin.get: hook ".concat(key, " cannot be got"));
+
+      if (key === 'extraReducers') {
+        return getExtraReducers(hooks[key]);
+      } else if (key === 'onReducer') {
+        return getOnReducer(hooks[key]);
+      } else {
+        return hooks[key];
+      }
+    }
+  }]);
+
+  return Plugin;
+}();
+
+function getExtraReducers(hook) {
+  var ret = {};
+  var _iteratorNormalCompletion2 = true;
+  var _didIteratorError2 = false;
+  var _iteratorError2 = undefined;
+
+  try {
+    for (var _iterator2 = hook[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      var reducerObj = _step2.value;
+      ret = (0, _objectSpread3.default)({}, ret, reducerObj);
+    }
+  } catch (err) {
+    _didIteratorError2 = true;
+    _iteratorError2 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+        _iterator2.return();
+      }
+    } finally {
+      if (_didIteratorError2) {
+        throw _iteratorError2;
+      }
+    }
+  }
+
+  return ret;
+}
+
+function getOnReducer(hook) {
+  return function (reducer) {
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
+
+    try {
+      for (var _iterator3 = hook[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        var reducerEnhancer = _step3.value;
+        reducer = reducerEnhancer(reducer);
+      }
+    } catch (err) {
+      _didIteratorError3 = true;
+      _iteratorError3 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+          _iterator3.return();
+        }
+      } finally {
+        if (_didIteratorError3) {
+          throw _iteratorError3;
+        }
+      }
+    }
+
+    return reducer;
+  };
+}
+
+function createStore(_ref) {
+  var reducers = _ref.reducers,
+      initialState = _ref.initialState,
+      plugin = _ref.plugin,
+      sagaMiddleware = _ref.sagaMiddleware,
+      promiseMiddleware = _ref.promiseMiddleware,
+      _ref$createOpts$setup = _ref.createOpts.setupMiddlewares,
+      setupMiddlewares = _ref$createOpts$setup === undefined ? returnSelf : _ref$createOpts$setup;
+  // extra enhancers
+  var extraEnhancers = plugin.get('extraEnhancers');
+  (0, _invariant2.default)(isArray(extraEnhancers), "[app.start] extraEnhancers should be array, but got ".concat((0, _typeof3.default)(extraEnhancers)));
+  var extraMiddlewares = plugin.get('onAction');
+  var middlewares = setupMiddlewares([promiseMiddleware, sagaMiddleware].concat((0, _toConsumableArray3.default)((0, _flatten2.default)(extraMiddlewares))));
+  var composeEnhancers = _window2.default.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? _window2.default.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    trace: true,
+    maxAge: 30
+  }) : _redux.compose;
+  var enhancers = [_redux.applyMiddleware.apply(undefined, (0, _toConsumableArray3.default)(middlewares))].concat((0, _toConsumableArray3.default)(extraEnhancers));
+  return (0, _redux.createStore)(reducers, initialState, composeEnhancers.apply(undefined, (0, _toConsumableArray3.default)(enhancers)));
+}
+
+function prefixType(type, model) {
+  var prefixedType = "".concat(model.namespace).concat(NAMESPACE_SEP).concat(type);
+  var typeWithoutAffix = prefixedType.replace(/\/@@[^/]+?$/, '');
+  var reducer = Array.isArray(model.reducers) ? model.reducers[0][typeWithoutAffix] : model.reducers && model.reducers[typeWithoutAffix];
+
+  if (reducer || model.effects && model.effects[typeWithoutAffix]) {
+    return prefixedType;
+  }
+
+  return type;
+}
+
+function getSaga(effects$1, model, onError, onEffect) {
+  var opts = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+  return (
+    /*#__PURE__*/
+    _regenerator2.default.mark(function _callee3() {
+      var key;
+      return _regenerator2.default.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.t0 = _regenerator2.default.keys(effects$1);
+
+            case 1:
+              if ((_context3.t1 = _context3.t0()).done) {
+                _context3.next = 7;
+                break;
+              }
+
+              key = _context3.t1.value;
+
+              if (!Object.prototype.hasOwnProperty.call(effects$1, key)) {
+                _context3.next = 5;
+                break;
+              }
+
+              return _context3.delegateYield(
+              /*#__PURE__*/
+              _regenerator2.default.mark(function _callee2() {
+                var watcher, task;
+                return _regenerator2.default.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        watcher = getWatcher(key, effects$1[key], model, onError, onEffect, opts);
+                        _context2.next = 3;
+                        return _reduxSaga.effects.fork(watcher);
+
+                      case 3:
+                        task = _context2.sent;
+                        _context2.next = 6;
+                        return _reduxSaga.effects.fork(
+                        /*#__PURE__*/
+                        _regenerator2.default.mark(function _callee() {
+                          return _regenerator2.default.wrap(function _callee$(_context) {
+                            while (1) {
+                              switch (_context.prev = _context.next) {
+                                case 0:
+                                  _context.next = 2;
+                                  return _reduxSaga.effects.take("".concat(model.namespace, "/@@CANCEL_EFFECTS"));
+
+                                case 2:
+                                  _context.next = 4;
+                                  return _reduxSaga.effects.cancel(task);
+
+                                case 4:
+                                case "end":
+                                  return _context.stop();
+                              }
+                            }
+                          }, _callee);
+                        }));
+
+                      case 6:
+                      case "end":
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2);
+              })(), "t2", 5);
+
+            case 5:
+              _context3.next = 1;
+              break;
+
+            case 7:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    })
+  );
+}
+
+function getWatcher(key, _effect, model, onError, onEffect, opts) {
+  var _marked =
+  /*#__PURE__*/
+  _regenerator2.default.mark(sagaWithCatch);
+
+  var effect = _effect;
+  var type = 'takeEvery';
+  var ms;
+  var delayMs;
+
+  if (Array.isArray(_effect)) {
+    var _effect2 = (0, _slicedToArray3.default)(_effect, 1);
+
+    effect = _effect2[0];
+    var _opts = _effect[1];
+
+    if (_opts && _opts.type) {
+      type = _opts.type;
+
+      if (type === 'throttle') {
+        (0, _invariant2.default)(_opts.ms, 'app.start: opts.ms should be defined if type is throttle');
+        ms = _opts.ms;
+      }
+
+      if (type === 'poll') {
+        (0, _invariant2.default)(_opts.delay, 'app.start: opts.delay should be defined if type is poll');
+        delayMs = _opts.delay;
+      }
+    }
+
+    (0, _invariant2.default)(['watcher', 'takeEvery', 'takeLatest', 'throttle', 'poll'].indexOf(type) > -1, 'app.start: effect type should be takeEvery, takeLatest, throttle, poll or watcher');
+  }
+
+  function noop() {}
+
+  function sagaWithCatch() {
+    var _len,
+        args,
+        _key,
+        _ref,
+        _ref$__dva_resolve,
+        resolve,
+        _ref$__dva_reject,
+        reject,
+        ret,
+        _args4 = arguments;
+
+    return _regenerator2.default.wrap(function sagaWithCatch$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            for (_len = _args4.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+              args[_key] = _args4[_key];
+            }
+
+            _ref = args.length > 0 ? args[0] : {}, _ref$__dva_resolve = _ref.__dva_resolve, resolve = _ref$__dva_resolve === undefined ? noop : _ref$__dva_resolve, _ref$__dva_reject = _ref.__dva_reject, reject = _ref$__dva_reject === undefined ? noop : _ref$__dva_reject;
+            _context4.prev = 2;
+            _context4.next = 5;
+            return _reduxSaga.effects.put({
+              type: "".concat(key).concat(NAMESPACE_SEP, "@@start")
+            });
+
+          case 5:
+            _context4.next = 7;
+            return effect.apply(undefined, (0, _toConsumableArray3.default)(args.concat(createEffects(model, opts))));
+
+          case 7:
+            ret = _context4.sent;
+            _context4.next = 10;
+            return _reduxSaga.effects.put({
+              type: "".concat(key).concat(NAMESPACE_SEP, "@@end")
+            });
+
+          case 10:
+            resolve(ret);
+            _context4.next = 17;
+            break;
+
+          case 13:
+            _context4.prev = 13;
+            _context4.t0 = _context4["catch"](2);
+            onError(_context4.t0, {
+              key: key,
+              effectArgs: args
+            });
+
+            if (!_context4.t0._dontReject) {
+              reject(_context4.t0);
+            }
+
+          case 17:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _marked, null, [[2, 13]]);
+  }
+
+  var sagaWithOnEffect = applyOnEffect(onEffect, sagaWithCatch, model, key);
+
+  switch (type) {
+    case 'watcher':
+      return sagaWithCatch;
+
+    case 'takeLatest':
+      return (
+        /*#__PURE__*/
+        _regenerator2.default.mark(function _callee4() {
+          return _regenerator2.default.wrap(function _callee4$(_context5) {
+            while (1) {
+              switch (_context5.prev = _context5.next) {
+                case 0:
+                  _context5.next = 2;
+                  return _reduxSaga.effects.takeLatest(key, sagaWithOnEffect);
+
+                case 2:
+                case "end":
+                  return _context5.stop();
+              }
+            }
+          }, _callee4);
+        })
+      );
+
+    case 'throttle':
+      return (
+        /*#__PURE__*/
+        _regenerator2.default.mark(function _callee5() {
+          return _regenerator2.default.wrap(function _callee5$(_context6) {
+            while (1) {
+              switch (_context6.prev = _context6.next) {
+                case 0:
+                  _context6.next = 2;
+                  return _reduxSaga.effects.throttle(ms, key, sagaWithOnEffect);
+
+                case 2:
+                case "end":
+                  return _context6.stop();
+              }
+            }
+          }, _callee5);
+        })
+      );
+
+    case 'poll':
+      return (
+        /*#__PURE__*/
+        _regenerator2.default.mark(function _callee6() {
+          var _marked2, delay, pollSagaWorker, call, take, race, action;
+
+          return _regenerator2.default.wrap(function _callee6$(_context8) {
+            while (1) {
+              switch (_context8.prev = _context8.next) {
+                case 0:
+                  pollSagaWorker = function _ref3(sagaEffects, action) {
+                    var call;
+                    return _regenerator2.default.wrap(function pollSagaWorker$(_context7) {
+                      while (1) {
+                        switch (_context7.prev = _context7.next) {
+                          case 0:
+                            call = sagaEffects.call;
+
+                          case 1:
+
+                            _context7.next = 4;
+                            return call(sagaWithOnEffect, action);
+
+                          case 4:
+                            _context7.next = 6;
+                            return call(delay, delayMs);
+
+                          case 6:
+                            _context7.next = 1;
+                            break;
+
+                          case 8:
+                          case "end":
+                            return _context7.stop();
+                        }
+                      }
+                    }, _marked2);
+                  };
+
+                  delay = function _ref2(timeout) {
+                    return new Promise(function (resolve) {
+                      return setTimeout(resolve, timeout);
+                    });
+                  };
+
+                  _marked2 =
+                  /*#__PURE__*/
+                  _regenerator2.default.mark(pollSagaWorker);
+                  call = _reduxSaga.effects.call, take = _reduxSaga.effects.take, race = _reduxSaga.effects.race;
+
+                case 4:
+
+                  _context8.next = 7;
+                  return take("".concat(key, "-start"));
+
+                case 7:
+                  action = _context8.sent;
+                  _context8.next = 10;
+                  return race([call(pollSagaWorker, _reduxSaga.effects, action), take("".concat(key, "-stop"))]);
+
+                case 10:
+                  _context8.next = 4;
+                  break;
+
+                case 12:
+                case "end":
+                  return _context8.stop();
+              }
+            }
+          }, _callee6);
+        })
+      );
+
+    default:
+      return (
+        /*#__PURE__*/
+        _regenerator2.default.mark(function _callee7() {
+          return _regenerator2.default.wrap(function _callee7$(_context9) {
+            while (1) {
+              switch (_context9.prev = _context9.next) {
+                case 0:
+                  _context9.next = 2;
+                  return _reduxSaga.effects.takeEvery(key, sagaWithOnEffect);
+
+                case 2:
+                case "end":
+                  return _context9.stop();
+              }
+            }
+          }, _callee7);
+        })
+      );
+  }
+}
+
+function createEffects(model, opts) {
+  function assertAction(type, name) {
+    (0, _invariant2.default)(type, 'dispatch: action should be a plain Object with type');
+    var _opts$namespacePrefix = opts.namespacePrefixWarning,
+        namespacePrefixWarning = _opts$namespacePrefix === undefined ? true : _opts$namespacePrefix;
+
+    if (namespacePrefixWarning) {
+      (0, _warning2.default)(type.indexOf("".concat(model.namespace).concat(NAMESPACE_SEP)) !== 0, "[".concat(name, "] ").concat(type, " should not be prefixed with namespace ").concat(model.namespace));
+    }
+  }
+
+  function put(action) {
+    var type = action.type;
+    assertAction(type, 'sagaEffects.put');
+    return _reduxSaga.effects.put((0, _objectSpread3.default)({}, action, {
+      type: prefixType(type, model)
+    }));
+  } // The operator `put` doesn't block waiting the returned promise to resolve.
+  // Using `put.resolve` will wait until the promsie resolve/reject before resuming.
+  // It will be helpful to organize multi-effects in order,
+  // and increase the reusability by seperate the effect in stand-alone pieces.
+  // https://github.com/redux-saga/redux-saga/issues/336
+
+
+  function putResolve(action) {
+    var type = action.type;
+    assertAction(type, 'sagaEffects.put.resolve');
+    return _reduxSaga.effects.put.resolve((0, _objectSpread3.default)({}, action, {
+      type: prefixType(type, model)
+    }));
+  }
+
+  put.resolve = putResolve;
+
+  function take(type) {
+    if (typeof type === 'string') {
+      assertAction(type, 'sagaEffects.take');
+      return _reduxSaga.effects.take(prefixType(type, model));
+    } else if (Array.isArray(type)) {
+      return _reduxSaga.effects.take(type.map(function (t) {
+        if (typeof t === 'string') {
+          assertAction(t, 'sagaEffects.take');
+          return prefixType(t, model);
+        }
+
+        return t;
+      }));
+    } else {
+      return _reduxSaga.effects.take(type);
+    }
+  }
+
+  return (0, _objectSpread3.default)({}, _reduxSaga.effects, {
+    put: put,
+    take: take
+  });
+}
+
+function applyOnEffect(fns, effect, model, key) {
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = fns[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var fn = _step.value;
+      effect = fn(effect, _reduxSaga.effects, model, key);
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  return effect;
+}
+
+function identify(value) {
+  return value;
+}
+
+function handleAction(actionType) {
+  var reducer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : identify;
+  return function (state, action) {
+    var type = action.type;
+    (0, _invariant2.default)(type, 'dispatch: action should be a plain Object with type');
+
+    if (actionType === type) {
+      return reducer(state, action);
+    }
+
+    return state;
+  };
+}
+
+function reduceReducers() {
+  for (var _len = arguments.length, reducers = new Array(_len), _key = 0; _key < _len; _key++) {
+    reducers[_key] = arguments[_key];
+  }
+
+  return function (previous, current) {
+    return reducers.reduce(function (p, r) {
+      return r(p, current);
+    }, previous);
+  };
+}
+
+function handleActions(handlers, defaultState) {
+  var reducers = Object.keys(handlers).map(function (type) {
+    return handleAction(type, handlers[type]);
+  });
+  var reducer = reduceReducers.apply(undefined, (0, _toConsumableArray3.default)(reducers));
+  return function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+    var action = arguments.length > 1 ? arguments[1] : undefined;
+    return reducer(state, action);
+  };
+}
+
+function getReducer(reducers, state, handleActions$1) {
+  // Support reducer enhancer
+  // e.g. reducers: [realReducers, enhancer]
+  if (Array.isArray(reducers)) {
+    return reducers[1]((handleActions$1 || handleActions)(reducers[0], state));
+  } else {
+    return (handleActions$1 || handleActions)(reducers || {}, state);
+  }
+}
+
+function createPromiseMiddleware(app) {
+  return function () {
+    return function (next) {
+      return function (action) {
+        var type = action.type;
+
+        if (isEffect(type)) {
+          return new Promise(function (resolve, reject) {
+            next((0, _objectSpread3.default)({
+              __dva_resolve: resolve,
+              __dva_reject: reject
+            }, action));
+          });
+        } else {
+          return next(action);
+        }
+      };
+    };
+  };
+
+  function isEffect(type) {
+    if (!type || typeof type !== 'string') return false;
+
+    var _type$split = type.split(NAMESPACE_SEP),
+        _type$split2 = (0, _slicedToArray3.default)(_type$split, 1),
+        namespace = _type$split2[0];
+
+    var model = app._models.filter(function (m) {
+      return m.namespace === namespace;
+    })[0];
+
+    if (model) {
+      if (model.effects && model.effects[type]) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+}
+
+function prefixedDispatch(dispatch, model) {
+  return function (action) {
+    var type = action.type;
+    (0, _invariant2.default)(type, 'dispatch: action should be a plain Object with type');
+    (0, _warning2.default)(type.indexOf("".concat(model.namespace).concat(NAMESPACE_SEP)) !== 0, "dispatch: ".concat(type, " should not be prefixed with namespace ").concat(model.namespace));
+    return dispatch((0, _objectSpread3.default)({}, action, {
+      type: prefixType(type, model)
+    }));
+  };
+}
+
+function run(subs, model, app, onError) {
+  var funcs = [];
+  var nonFuncs = [];
+
+  for (var key in subs) {
+    if (Object.prototype.hasOwnProperty.call(subs, key)) {
+      var sub = subs[key];
+      var unlistener = sub({
+        dispatch: prefixedDispatch(app._store.dispatch, model),
+        history: app._history
+      }, onError);
+
+      if (isFunction(unlistener)) {
+        funcs.push(unlistener);
+      } else {
+        nonFuncs.push(key);
+      }
+    }
+  }
+
+  return {
+    funcs: funcs,
+    nonFuncs: nonFuncs
+  };
+}
+function unlisten(unlisteners, namespace) {
+  if (!unlisteners[namespace]) return;
+  var _unlisteners$namespac = unlisteners[namespace],
+      funcs = _unlisteners$namespac.funcs,
+      nonFuncs = _unlisteners$namespac.nonFuncs;
+  (0, _warning2.default)(nonFuncs.length === 0, "[app.unmodel] subscription should return unlistener function, check these subscriptions ".concat(nonFuncs.join(', ')));
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = funcs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var unlistener = _step.value;
+      unlistener();
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  delete unlisteners[namespace];
+}
+
+var noop$1 = noop,
+    findIndex$1 = findIndex; // Internal model to update global state when do unmodel
+
+var dvaModel = {
+  namespace: '@@dva',
+  state: 0,
+  reducers: {
+    UPDATE: function UPDATE(state) {
+      return state + 1;
+    }
+  }
+};
+/**
+ * Create dva-core instance.
+ *
+ * @param hooksAndOpts
+ * @param createOpts
+ */
+
+function create() {
+  var hooksAndOpts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var createOpts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var initialReducer = createOpts.initialReducer,
+      _createOpts$setupApp = createOpts.setupApp,
+      setupApp = _createOpts$setupApp === undefined ? noop$1 : _createOpts$setupApp;
+  var plugin = new Plugin();
+  plugin.use(filterHooks(hooksAndOpts));
+  var app = {
+    _models: [prefixNamespace((0, _objectSpread3.default)({}, dvaModel))],
+    _store: null,
+    _plugin: plugin,
+    use: plugin.use.bind(plugin),
+    model: model,
+    start: start
+  };
+  return app;
+  /**
+   * Register model before app is started.
+   *
+   * @param m {Object} model to register
+   */
+
+  function model(m) {
+    {
+      checkModel(m, app._models);
+    }
+
+    var prefixedModel = prefixNamespace((0, _objectSpread3.default)({}, m));
+
+    app._models.push(prefixedModel);
+
+    return prefixedModel;
+  }
+  /**
+   * Inject model after app is started.
+   *
+   * @param createReducer
+   * @param onError
+   * @param unlisteners
+   * @param m
+   */
+
+  function injectModel(createReducer, onError, unlisteners, m) {
+    m = model(m);
+    var store = app._store;
+    store.asyncReducers[m.namespace] = getReducer(m.reducers, m.state, plugin._handleActions);
+    store.replaceReducer(createReducer());
+
+    if (m.effects) {
+      store.runSaga(app._getSaga(m.effects, m, onError, plugin.get('onEffect'), hooksAndOpts));
+    }
+
+    if (m.subscriptions) {
+      unlisteners[m.namespace] = run(m.subscriptions, m, app, onError);
+    }
+  }
+  /**
+   * Unregister model.
+   *
+   * @param createReducer
+   * @param reducers
+   * @param unlisteners
+   * @param namespace
+   *
+   * Unexpected key warn problem:
+   * https://github.com/reactjs/redux/issues/1636
+   */
+
+  function unmodel(createReducer, reducers, unlisteners, namespace) {
+    var store = app._store; // Delete reducers
+
+    delete store.asyncReducers[namespace];
+    delete reducers[namespace];
+    store.replaceReducer(createReducer());
+    store.dispatch({
+      type: '@@dva/UPDATE'
+    }); // Cancel effects
+
+    store.dispatch({
+      type: "".concat(namespace, "/@@CANCEL_EFFECTS")
+    }); // Unlisten subscrioptions
+
+    unlisten(unlisteners, namespace); // Delete model from app._models
+
+    app._models = app._models.filter(function (model) {
+      return model.namespace !== namespace;
+    });
+  }
+  /**
+   * Replace a model if it exsits, if not, add it to app
+   * Attention:
+   * - Only available after dva.start gets called
+   * - Will not check origin m is strict equal to the new one
+   * Useful for HMR
+   * @param createReducer
+   * @param reducers
+   * @param unlisteners
+   * @param onError
+   * @param m
+   */
+
+  function replaceModel(createReducer, reducers, unlisteners, onError, m) {
+    var store = app._store;
+    var namespace = m.namespace;
+    var oldModelIdx = findIndex$1(app._models, function (model) {
+      return model.namespace === namespace;
+    });
+
+    if (~oldModelIdx) {
+      // Cancel effects
+      store.dispatch({
+        type: "".concat(namespace, "/@@CANCEL_EFFECTS")
+      }); // Delete reducers
+
+      delete store.asyncReducers[namespace];
+      delete reducers[namespace]; // Unlisten subscrioptions
+
+      unlisten(unlisteners, namespace); // Delete model from app._models
+
+      app._models.splice(oldModelIdx, 1);
+    } // add new version model to store
+
+
+    app.model(m);
+    store.dispatch({
+      type: '@@dva/UPDATE'
+    });
+  }
+  /**
+   * Start the app.
+   *
+   * @returns void
+   */
+
+  function start() {
+    // Global error handler
+    var onError = function onError(err, extension) {
+      if (err) {
+        if (typeof err === 'string') err = new Error(err);
+
+        err.preventDefault = function () {
+          err._dontReject = true;
+        };
+
+        plugin.apply('onError', function (err) {
+          throw new Error(err.stack || err);
+        })(err, app._store.dispatch, extension);
+      }
+    };
+
+    var sagaMiddleware = (0, createSagaMiddleware.default)();
+    var promiseMiddleware = createPromiseMiddleware(app);
+    app._getSaga = getSaga.bind(null);
+    var sagas = [];
+
+    var reducers = (0, _objectSpread3.default)({}, initialReducer);
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = app._models[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var m = _step.value;
+        reducers[m.namespace] = getReducer(m.reducers, m.state, plugin._handleActions);
+
+        if (m.effects) {
+          sagas.push(app._getSaga(m.effects, m, onError, plugin.get('onEffect'), hooksAndOpts));
+        }
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    var reducerEnhancer = plugin.get('onReducer');
+    var extraReducers = plugin.get('extraReducers');
+    (0, _invariant2.default)(Object.keys(extraReducers).every(function (key) {
+      return !(key in reducers);
+    }), "[app.start] extraReducers is conflict with other reducers, reducers list: ".concat(Object.keys(reducers).join(', '))); // Create store
+
+    app._store = createStore({
+      reducers: createReducer(),
+      initialState: hooksAndOpts.initialState || {},
+      plugin: plugin,
+      createOpts: createOpts,
+      sagaMiddleware: sagaMiddleware,
+      promiseMiddleware: promiseMiddleware
+    });
+    var store = app._store; // Extend store
+
+    store.runSaga = sagaMiddleware.run;
+    store.asyncReducers = {}; // Execute listeners when state is changed
+
+    var listeners = plugin.get('onStateChange');
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      var _loop = function _loop() {
+        var listener = _step2.value;
+        store.subscribe(function () {
+          listener(store.getState());
+        });
+      };
+
+      for (var _iterator2 = listeners[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        _loop();
+      } // Run sagas
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+
+    sagas.forEach(sagaMiddleware.run); // Setup app
+
+    setupApp(app); // Run subscriptions
+
+    var unlisteners = {};
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
+
+    try {
+      for (var _iterator3 = this._models[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+        var _model = _step3.value;
+
+        if (_model.subscriptions) {
+          unlisteners[_model.namespace] = run(_model.subscriptions, _model, app, onError);
+        }
+      } // Setup app.model and app.unmodel
+    } catch (err) {
+      _didIteratorError3 = true;
+      _iteratorError3 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+          _iterator3.return();
+        }
+      } finally {
+        if (_didIteratorError3) {
+          throw _iteratorError3;
+        }
+      }
+    }
+
+    app.model = injectModel.bind(app, createReducer, onError, unlisteners);
+    app.unmodel = unmodel.bind(app, createReducer, reducers, unlisteners);
+    app.replaceModel = replaceModel.bind(app, createReducer, reducers, unlisteners, onError);
+    /**
+     * Create global reducer for redux.
+     *
+     * @returns {Object}
+     */
+
+    function createReducer() {
+      return reducerEnhancer((0, _redux.combineReducers)((0, _objectSpread3.default)({}, reducers, extraReducers, app._store ? app._store.asyncReducers : {})));
+    }
+  }
+}
+
+exports.create = create;
+exports.utils = utils;
+
+/***/ }),
+
+/***/ "./node_modules/dva-loading/dist/index.esm.js":
+/*!****************************************************!*\
+  !*** ./node_modules/dva-loading/dist/index.esm.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _defineProperty2 = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _objectSpread2 = __webpack_require__(/*! @babel/runtime/helpers/esm/objectSpread */ "./node_modules/@babel/runtime/helpers/esm/objectSpread.js");
+
+var _objectSpread3 = _interopRequireDefault(_objectSpread2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SHOW = '@@DVA_LOADING/SHOW';
+var HIDE = '@@DVA_LOADING/HIDE';
+var NAMESPACE = 'loading';
+
+function createLoading() {
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var namespace = opts.namespace || NAMESPACE;
+  var _opts$only = opts.only,
+      only = _opts$only === undefined ? [] : _opts$only,
+      _opts$except = opts.except,
+      except = _opts$except === undefined ? [] : _opts$except;
+
+  if (only.length > 0 && except.length > 0) {
+    throw Error('It is ambiguous to configurate `only` and `except` items at the same time.');
+  }
+
+  var initialState = {
+    global: false,
+    models: {},
+    effects: {}
+  };
+
+  var extraReducers = (0, _defineProperty3.default)({}, namespace, function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+
+    var _ref = arguments.length > 1 ? arguments[1] : undefined,
+        type = _ref.type,
+        payload = _ref.payload;
+
+    var _ref2 = payload || {},
+        namespace = _ref2.namespace,
+        actionType = _ref2.actionType;
+
+    var ret;
+
+    switch (type) {
+      case SHOW:
+        ret = (0, _objectSpread3.default)({}, state, {
+          global: true,
+          models: (0, _objectSpread3.default)({}, state.models, (0, _defineProperty3.default)({}, namespace, true)),
+          effects: (0, _objectSpread3.default)({}, state.effects, (0, _defineProperty3.default)({}, actionType, true))
+        });
+        break;
+
+      case HIDE:
+        {
+          var effects = (0, _objectSpread3.default)({}, state.effects, (0, _defineProperty3.default)({}, actionType, false));
+
+          var models = (0, _objectSpread3.default)({}, state.models, (0, _defineProperty3.default)({}, namespace, Object.keys(effects).some(function (actionType) {
+            var _namespace = actionType.split('/')[0];
+            if (_namespace !== namespace) return false;
+            return effects[actionType];
+          })));
+
+          var global = Object.keys(models).some(function (namespace) {
+            return models[namespace];
+          });
+          ret = (0, _objectSpread3.default)({}, state, {
+            global: global,
+            models: models,
+            effects: effects
+          });
+          break;
+        }
+
+      default:
+        ret = state;
+        break;
+    }
+
+    return ret;
+  });
+
+  function onEffect(effect, _ref3, model, actionType) {
+    var put = _ref3.put;
+    var namespace = model.namespace;
+
+    if (only.length === 0 && except.length === 0 || only.length > 0 && only.indexOf(actionType) !== -1 || except.length > 0 && except.indexOf(actionType) === -1) {
+      return (
+        /*#__PURE__*/
+        _regenerator2.default.mark(function _callee() {
+          var _args = arguments;
+          return _regenerator2.default.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _context.next = 2;
+                  return put({
+                    type: SHOW,
+                    payload: {
+                      namespace: namespace,
+                      actionType: actionType
+                    }
+                  });
+
+                case 2:
+                  _context.next = 4;
+                  return effect.apply(undefined, _args);
+
+                case 4:
+                  _context.next = 6;
+                  return put({
+                    type: HIDE,
+                    payload: {
+                      namespace: namespace,
+                      actionType: actionType
+                    }
+                  });
+
+                case 6:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        })
+      );
+    } else {
+      return effect;
+    }
+  }
+
+  return {
+    extraReducers: extraReducers,
+    onEffect: onEffect
+  };
+}
+
+exports.default = createLoading;
+
+/***/ }),
+
+/***/ "./node_modules/flatten/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/flatten/index.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function flatten(list, depth) {
+  depth = typeof depth == 'number' ? depth : Infinity;
+
+  if (!depth) {
+    if (Array.isArray(list)) {
+      return list.map(function (i) {
+        return i;
+      });
+    }
+    return list;
+  }
+
+  return _flatten(list, 1);
+
+  function _flatten(list, d) {
+    return list.reduce(function (acc, item) {
+      if (Array.isArray(item) && d < depth) {
+        return acc.concat(_flatten(item, d + 1));
+      } else {
+        return acc.concat(item);
+      }
+    }, []);
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/global/window.js":
+/*!***************************************!*\
+  !*** ./node_modules/global/window.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var win;
+
+if (typeof window !== "undefined") {
+  win = window;
+} else if (typeof global !== "undefined") {
+  win = global;
+} else if (typeof self !== "undefined") {
+  win = self;
+} else {
+  win = {};
+}
+
+module.exports = win;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/invariant/browser.js":
+/*!*******************************************!*\
+  !*** ./node_modules/invariant/browser.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function invariant(condition, format, a, b, c, d, e, f) {
+  {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+
+/***/ }),
+
+/***/ "./node_modules/is-plain-object/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/is-plain-object/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+
+
+var isObject = __webpack_require__(/*! isobject */ "./node_modules/isobject/index.js");
+
+function isObjectObject(o) {
+  return isObject(o) === true && Object.prototype.toString.call(o) === '[object Object]';
+}
+
+module.exports = function isPlainObject(o) {
+  var ctor, prot;
+
+  if (isObjectObject(o) === false) return false;
+
+  // If has modified constructor
+  ctor = o.constructor;
+  if (typeof ctor !== 'function') return false;
+
+  // If has modified prototype
+  prot = ctor.prototype;
+  if (isObjectObject(prot) === false) return false;
+
+  // If constructor does not have an Object-specific method
+  if (prot.hasOwnProperty('isPrototypeOf') === false) {
+    return false;
+  }
+
+  // Most likely a plain Object
+  return true;
+};
+
+/***/ }),
+
+/***/ "./node_modules/isobject/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/isobject/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * isobject <https://github.com/jonschlinkert/isobject>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+module.exports = function isObject(val) {
+  return val != null && (typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object' && Array.isArray(val) === false;
+};
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/effects.js":
+/*!***********************************************!*\
+  !*** ./node_modules/redux-saga/es/effects.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _io = __webpack_require__(/*! ./internal/io */ "./node_modules/redux-saga/es/internal/io.js");
+
+Object.defineProperty(exports, 'take', {
+  enumerable: true,
+  get: function get() {
+    return _io.take;
+  }
+});
+Object.defineProperty(exports, 'takem', {
+  enumerable: true,
+  get: function get() {
+    return _io.takem;
+  }
+});
+Object.defineProperty(exports, 'put', {
+  enumerable: true,
+  get: function get() {
+    return _io.put;
+  }
+});
+Object.defineProperty(exports, 'all', {
+  enumerable: true,
+  get: function get() {
+    return _io.all;
+  }
+});
+Object.defineProperty(exports, 'race', {
+  enumerable: true,
+  get: function get() {
+    return _io.race;
+  }
+});
+Object.defineProperty(exports, 'call', {
+  enumerable: true,
+  get: function get() {
+    return _io.call;
+  }
+});
+Object.defineProperty(exports, 'apply', {
+  enumerable: true,
+  get: function get() {
+    return _io.apply;
+  }
+});
+Object.defineProperty(exports, 'cps', {
+  enumerable: true,
+  get: function get() {
+    return _io.cps;
+  }
+});
+Object.defineProperty(exports, 'fork', {
+  enumerable: true,
+  get: function get() {
+    return _io.fork;
+  }
+});
+Object.defineProperty(exports, 'spawn', {
+  enumerable: true,
+  get: function get() {
+    return _io.spawn;
+  }
+});
+Object.defineProperty(exports, 'join', {
+  enumerable: true,
+  get: function get() {
+    return _io.join;
+  }
+});
+Object.defineProperty(exports, 'cancel', {
+  enumerable: true,
+  get: function get() {
+    return _io.cancel;
+  }
+});
+Object.defineProperty(exports, 'select', {
+  enumerable: true,
+  get: function get() {
+    return _io.select;
+  }
+});
+Object.defineProperty(exports, 'actionChannel', {
+  enumerable: true,
+  get: function get() {
+    return _io.actionChannel;
+  }
+});
+Object.defineProperty(exports, 'cancelled', {
+  enumerable: true,
+  get: function get() {
+    return _io.cancelled;
+  }
+});
+Object.defineProperty(exports, 'flush', {
+  enumerable: true,
+  get: function get() {
+    return _io.flush;
+  }
+});
+Object.defineProperty(exports, 'getContext', {
+  enumerable: true,
+  get: function get() {
+    return _io.getContext;
+  }
+});
+Object.defineProperty(exports, 'setContext', {
+  enumerable: true,
+  get: function get() {
+    return _io.setContext;
+  }
+});
+
+var _ioHelpers = __webpack_require__(/*! ./internal/io-helpers */ "./node_modules/redux-saga/es/internal/io-helpers.js");
+
+Object.defineProperty(exports, 'takeEvery', {
+  enumerable: true,
+  get: function get() {
+    return _ioHelpers.takeEvery;
+  }
+});
+Object.defineProperty(exports, 'takeLatest', {
+  enumerable: true,
+  get: function get() {
+    return _ioHelpers.takeLatest;
+  }
+});
+Object.defineProperty(exports, 'throttle', {
+  enumerable: true,
+  get: function get() {
+    return _ioHelpers.throttle;
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/redux-saga/es/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.utils = exports.effects = exports.detach = exports.CANCEL = exports.delay = exports.throttle = exports.takeLatest = exports.takeEvery = exports.buffers = exports.channel = exports.eventChannel = exports.END = exports.runSaga = undefined;
+
+var _runSaga = __webpack_require__(/*! ./internal/runSaga */ "./node_modules/redux-saga/es/internal/runSaga.js");
+
+Object.defineProperty(exports, 'runSaga', {
+  enumerable: true,
+  get: function get() {
+    return _runSaga.runSaga;
+  }
+});
+
+var _channel = __webpack_require__(/*! ./internal/channel */ "./node_modules/redux-saga/es/internal/channel.js");
+
+Object.defineProperty(exports, 'END', {
+  enumerable: true,
+  get: function get() {
+    return _channel.END;
+  }
+});
+Object.defineProperty(exports, 'eventChannel', {
+  enumerable: true,
+  get: function get() {
+    return _channel.eventChannel;
+  }
+});
+Object.defineProperty(exports, 'channel', {
+  enumerable: true,
+  get: function get() {
+    return _channel.channel;
+  }
+});
+
+var _buffers = __webpack_require__(/*! ./internal/buffers */ "./node_modules/redux-saga/es/internal/buffers.js");
+
+Object.defineProperty(exports, 'buffers', {
+  enumerable: true,
+  get: function get() {
+    return _buffers.buffers;
+  }
+});
+
+var _sagaHelpers = __webpack_require__(/*! ./internal/sagaHelpers */ "./node_modules/redux-saga/es/internal/sagaHelpers/index.js");
+
+Object.defineProperty(exports, 'takeEvery', {
+  enumerable: true,
+  get: function get() {
+    return _sagaHelpers.takeEvery;
+  }
+});
+Object.defineProperty(exports, 'takeLatest', {
+  enumerable: true,
+  get: function get() {
+    return _sagaHelpers.takeLatest;
+  }
+});
+Object.defineProperty(exports, 'throttle', {
+  enumerable: true,
+  get: function get() {
+    return _sagaHelpers.throttle;
+  }
+});
+
+var _utils = __webpack_require__(/*! ./internal/utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+Object.defineProperty(exports, 'delay', {
+  enumerable: true,
+  get: function get() {
+    return _utils.delay;
+  }
+});
+Object.defineProperty(exports, 'CANCEL', {
+  enumerable: true,
+  get: function get() {
+    return _utils.CANCEL;
+  }
+});
+
+var _io = __webpack_require__(/*! ./internal/io */ "./node_modules/redux-saga/es/internal/io.js");
+
+Object.defineProperty(exports, 'detach', {
+  enumerable: true,
+  get: function get() {
+    return _io.detach;
+  }
+});
+
+var _middleware = __webpack_require__(/*! ./internal/middleware */ "./node_modules/redux-saga/es/internal/middleware.js");
+
+var _middleware2 = _interopRequireDefault(_middleware);
+
+var _effects = __webpack_require__(/*! ./effects */ "./node_modules/redux-saga/es/effects.js");
+
+var effects = _interopRequireWildcard(_effects);
+
+var _utils2 = __webpack_require__(/*! ./utils */ "./node_modules/redux-saga/es/utils.js");
+
+var utils = _interopRequireWildcard(_utils2);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _middleware2.default;
+exports.effects = effects;
+exports.utils = utils;
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/buffers.js":
+/*!********************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/buffers.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.buffers = exports.BUFFER_OVERFLOW = undefined;
+
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+var BUFFER_OVERFLOW = exports.BUFFER_OVERFLOW = "Channel's Buffer overflow!";
+
+var ON_OVERFLOW_THROW = 1;
+var ON_OVERFLOW_DROP = 2;
+var ON_OVERFLOW_SLIDE = 3;
+var ON_OVERFLOW_EXPAND = 4;
+
+var zeroBuffer = { isEmpty: _utils.kTrue, put: _utils.noop, take: _utils.noop };
+
+function ringBuffer() {
+  var limit = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
+  var overflowAction = arguments[1];
+
+  var arr = new Array(limit);
+  var length = 0;
+  var pushIndex = 0;
+  var popIndex = 0;
+
+  var push = function push(it) {
+    arr[pushIndex] = it;
+    pushIndex = (pushIndex + 1) % limit;
+    length++;
+  };
+
+  var take = function take() {
+    if (length != 0) {
+      var it = arr[popIndex];
+      arr[popIndex] = null;
+      length--;
+      popIndex = (popIndex + 1) % limit;
+      return it;
+    }
+  };
+
+  var flush = function flush() {
+    var items = [];
+    while (length) {
+      items.push(take());
+    }
+    return items;
+  };
+
+  return {
+    isEmpty: function isEmpty() {
+      return length == 0;
+    },
+    put: function put(it) {
+      if (length < limit) {
+        push(it);
+      } else {
+        var doubledLimit = undefined;
+        switch (overflowAction) {
+          case ON_OVERFLOW_THROW:
+            throw new Error(BUFFER_OVERFLOW);
+          case ON_OVERFLOW_SLIDE:
+            arr[pushIndex] = it;
+            pushIndex = (pushIndex + 1) % limit;
+            popIndex = pushIndex;
+            break;
+          case ON_OVERFLOW_EXPAND:
+            doubledLimit = 2 * limit;
+
+            arr = flush();
+
+            length = arr.length;
+            pushIndex = arr.length;
+            popIndex = 0;
+
+            arr.length = doubledLimit;
+            limit = doubledLimit;
+
+            push(it);
+            break;
+          default:
+          // DROP
+        }
+      }
+    },
+    take: take,
+    flush: flush
+  };
+}
+
+var buffers = exports.buffers = {
+  none: function none() {
+    return zeroBuffer;
+  },
+  fixed: function fixed(limit) {
+    return ringBuffer(limit, ON_OVERFLOW_THROW);
+  },
+  dropping: function dropping(limit) {
+    return ringBuffer(limit, ON_OVERFLOW_DROP);
+  },
+  sliding: function sliding(limit) {
+    return ringBuffer(limit, ON_OVERFLOW_SLIDE);
+  },
+  expanding: function expanding(initialSize) {
+    return ringBuffer(initialSize, ON_OVERFLOW_EXPAND);
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/channel.js":
+/*!********************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/channel.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UNDEFINED_INPUT_ERROR = exports.INVALID_BUFFER = exports.isEnd = exports.END = undefined;
+exports.emitter = emitter;
+exports.channel = channel;
+exports.eventChannel = eventChannel;
+exports.stdChannel = stdChannel;
+
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+var _buffers = __webpack_require__(/*! ./buffers */ "./node_modules/redux-saga/es/internal/buffers.js");
+
+var _scheduler = __webpack_require__(/*! ./scheduler */ "./node_modules/redux-saga/es/internal/scheduler.js");
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var CHANNEL_END_TYPE = '@@redux-saga/CHANNEL_END';
+var END = exports.END = { type: CHANNEL_END_TYPE };
+var isEnd = exports.isEnd = function isEnd(a) {
+  return a && a.type === CHANNEL_END_TYPE;
+};
+
+function emitter() {
+  var subscribers = [];
+
+  function subscribe(sub) {
+    subscribers.push(sub);
+    return function () {
+      return (0, _utils.remove)(subscribers, sub);
+    };
+  }
+
+  function emit(item) {
+    var arr = subscribers.slice();
+    for (var i = 0, len = arr.length; i < len; i++) {
+      arr[i](item);
+    }
+  }
+
+  return {
+    subscribe: subscribe,
+    emit: emit
+  };
+}
+
+var INVALID_BUFFER = exports.INVALID_BUFFER = 'invalid buffer passed to channel factory function';
+var UNDEFINED_INPUT_ERROR = exports.UNDEFINED_INPUT_ERROR = 'Saga was provided with an undefined action';
+
+{
+  exports.UNDEFINED_INPUT_ERROR = UNDEFINED_INPUT_ERROR += '\nHints:\n    - check that your Action Creator returns a non-undefined value\n    - if the Saga was started using runSaga, check that your subscribe source provides the action to its listeners\n  ';
+}
+
+function channel() {
+  var buffer = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _buffers.buffers.fixed();
+
+  var closed = false;
+  var takers = [];
+
+  (0, _utils.check)(buffer, _utils.is.buffer, INVALID_BUFFER);
+
+  function checkForbiddenStates() {
+    if (closed && takers.length) {
+      throw (0, _utils.internalErr)('Cannot have a closed channel with pending takers');
+    }
+    if (takers.length && !buffer.isEmpty()) {
+      throw (0, _utils.internalErr)('Cannot have pending takers with non empty buffer');
+    }
+  }
+
+  function put(input) {
+    checkForbiddenStates();
+    (0, _utils.check)(input, _utils.is.notUndef, UNDEFINED_INPUT_ERROR);
+    if (closed) {
+      return;
+    }
+    if (!takers.length) {
+      return buffer.put(input);
+    }
+    for (var i = 0; i < takers.length; i++) {
+      var cb = takers[i];
+      if (!cb[_utils.MATCH] || cb[_utils.MATCH](input)) {
+        takers.splice(i, 1);
+        return cb(input);
+      }
+    }
+  }
+
+  function take(cb) {
+    checkForbiddenStates();
+    (0, _utils.check)(cb, _utils.is.func, "channel.take's callback must be a function");
+
+    if (closed && buffer.isEmpty()) {
+      cb(END);
+    } else if (!buffer.isEmpty()) {
+      cb(buffer.take());
+    } else {
+      takers.push(cb);
+      cb.cancel = function () {
+        return (0, _utils.remove)(takers, cb);
+      };
+    }
+  }
+
+  function flush(cb) {
+    checkForbiddenStates(); // TODO: check if some new state should be forbidden now
+    (0, _utils.check)(cb, _utils.is.func, "channel.flush' callback must be a function");
+    if (closed && buffer.isEmpty()) {
+      cb(END);
+      return;
+    }
+    cb(buffer.flush());
+  }
+
+  function close() {
+    checkForbiddenStates();
+    if (!closed) {
+      closed = true;
+      if (takers.length) {
+        var arr = takers;
+        takers = [];
+        for (var i = 0, len = arr.length; i < len; i++) {
+          arr[i](END);
+        }
+      }
+    }
+  }
+
+  return {
+    take: take,
+    put: put,
+    flush: flush,
+    close: close,
+    get __takers__() {
+      return takers;
+    },
+    get __closed__() {
+      return closed;
+    }
+  };
+}
+
+function eventChannel(subscribe) {
+  var buffer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _buffers.buffers.none();
+  var matcher = arguments[2];
+
+  /**
+    should be if(typeof matcher !== undefined) instead?
+    see PR #273 for a background discussion
+  **/
+  if (arguments.length > 2) {
+    (0, _utils.check)(matcher, _utils.is.func, 'Invalid match function passed to eventChannel');
+  }
+
+  var chan = channel(buffer);
+  var close = function close() {
+    if (!chan.__closed__) {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+      chan.close();
+    }
+  };
+  var unsubscribe = subscribe(function (input) {
+    if (isEnd(input)) {
+      close();
+      return;
+    }
+    if (matcher && !matcher(input)) {
+      return;
+    }
+    chan.put(input);
+  });
+  if (chan.__closed__) {
+    unsubscribe();
+  }
+
+  if (!_utils.is.func(unsubscribe)) {
+    throw new Error('in eventChannel: subscribe should return a function to unsubscribe');
+  }
+
+  return {
+    take: chan.take,
+    flush: chan.flush,
+    close: close
+  };
+}
+
+function stdChannel(subscribe) {
+  var chan = eventChannel(function (cb) {
+    return subscribe(function (input) {
+      if (input[_utils.SAGA_ACTION]) {
+        cb(input);
+        return;
+      }
+      (0, _scheduler.asap)(function () {
+        return cb(input);
+      });
+    });
+  });
+
+  return _extends({}, chan, {
+    take: function take(cb, matcher) {
+      if (arguments.length > 1) {
+        (0, _utils.check)(matcher, _utils.is.func, "channel.take's matcher argument must be a function");
+        cb[_utils.MATCH] = matcher;
+      }
+      chan.take(cb);
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/io-helpers.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/io-helpers.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.takeEvery = takeEvery;
+exports.takeLatest = takeLatest;
+exports.throttle = throttle;
+
+var _io = __webpack_require__(/*! ./io */ "./node_modules/redux-saga/es/internal/io.js");
+
+var _index = __webpack_require__(/*! ./sagaHelpers/index */ "./node_modules/redux-saga/es/internal/sagaHelpers/index.js");
+
+function takeEvery(patternOrChannel, worker) {
+  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    args[_key - 2] = arguments[_key];
+  }
+
+  return _io.fork.apply(undefined, [_index.takeEveryHelper, patternOrChannel, worker].concat(args));
+}
+
+function takeLatest(patternOrChannel, worker) {
+  for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+    args[_key2 - 2] = arguments[_key2];
+  }
+
+  return _io.fork.apply(undefined, [_index.takeLatestHelper, patternOrChannel, worker].concat(args));
+}
+
+function throttle(ms, pattern, worker) {
+  for (var _len3 = arguments.length, args = Array(_len3 > 3 ? _len3 - 3 : 0), _key3 = 3; _key3 < _len3; _key3++) {
+    args[_key3 - 3] = arguments[_key3];
+  }
+
+  return _io.fork.apply(undefined, [_index.throttleHelper, ms, pattern, worker].concat(args));
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/io.js":
+/*!***************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/io.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.asEffect = exports.takem = exports.detach = undefined;
+exports.take = take;
+exports.put = put;
+exports.all = all;
+exports.race = race;
+exports.call = call;
+exports.apply = apply;
+exports.cps = cps;
+exports.fork = fork;
+exports.spawn = spawn;
+exports.join = join;
+exports.cancel = cancel;
+exports.select = select;
+exports.actionChannel = actionChannel;
+exports.cancelled = cancelled;
+exports.flush = flush;
+exports.getContext = getContext;
+exports.setContext = setContext;
+
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+var IO = /*#__PURE__*/(0, _utils.sym)('IO');
+var TAKE = 'TAKE';
+var PUT = 'PUT';
+var ALL = 'ALL';
+var RACE = 'RACE';
+var CALL = 'CALL';
+var CPS = 'CPS';
+var FORK = 'FORK';
+var JOIN = 'JOIN';
+var CANCEL = 'CANCEL';
+var SELECT = 'SELECT';
+var ACTION_CHANNEL = 'ACTION_CHANNEL';
+var CANCELLED = 'CANCELLED';
+var FLUSH = 'FLUSH';
+var GET_CONTEXT = 'GET_CONTEXT';
+var SET_CONTEXT = 'SET_CONTEXT';
+
+var TEST_HINT = '\n(HINT: if you are getting this errors in tests, consider using createMockTask from redux-saga/utils)';
+
+var effect = function effect(type, payload) {
+  var _ref;
+
+  return _ref = {}, _ref[IO] = true, _ref[type] = payload, _ref;
+};
+
+var detach = exports.detach = function detach(eff) {
+  (0, _utils.check)(asEffect.fork(eff), _utils.is.object, 'detach(eff): argument must be a fork effect');
+  eff[FORK].detached = true;
+  return eff;
+};
+
+function take() {
+  var patternOrChannel = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '*';
+
+  if (arguments.length) {
+    (0, _utils.check)(arguments[0], _utils.is.notUndef, 'take(patternOrChannel): patternOrChannel is undefined');
+  }
+  if (_utils.is.pattern(patternOrChannel)) {
+    return effect(TAKE, { pattern: patternOrChannel });
+  }
+  if (_utils.is.channel(patternOrChannel)) {
+    return effect(TAKE, { channel: patternOrChannel });
+  }
+  throw new Error('take(patternOrChannel): argument ' + String(patternOrChannel) + ' is not valid channel or a valid pattern');
+}
+
+take.maybe = function () {
+  var eff = take.apply(undefined, arguments);
+  eff[TAKE].maybe = true;
+  return eff;
+};
+
+var takem = /*#__PURE__*/exports.takem = (0, _utils.deprecate)(take.maybe, /*#__PURE__*/(0, _utils.updateIncentive)('takem', 'take.maybe'));
+
+function put(channel, action) {
+  if (arguments.length > 1) {
+    (0, _utils.check)(channel, _utils.is.notUndef, 'put(channel, action): argument channel is undefined');
+    (0, _utils.check)(channel, _utils.is.channel, 'put(channel, action): argument ' + channel + ' is not a valid channel');
+    (0, _utils.check)(action, _utils.is.notUndef, 'put(channel, action): argument action is undefined');
+  } else {
+    (0, _utils.check)(channel, _utils.is.notUndef, 'put(action): argument action is undefined');
+    action = channel;
+    channel = null;
+  }
+  return effect(PUT, { channel: channel, action: action });
+}
+
+put.resolve = function () {
+  var eff = put.apply(undefined, arguments);
+  eff[PUT].resolve = true;
+  return eff;
+};
+
+put.sync = /*#__PURE__*/(0, _utils.deprecate)(put.resolve, /*#__PURE__*/(0, _utils.updateIncentive)('put.sync', 'put.resolve'));
+
+function all(effects) {
+  return effect(ALL, effects);
+}
+
+function race(effects) {
+  return effect(RACE, effects);
+}
+
+function getFnCallDesc(meth, fn, args) {
+  (0, _utils.check)(fn, _utils.is.notUndef, meth + ': argument fn is undefined');
+
+  var context = null;
+  if (_utils.is.array(fn)) {
+    var _fn = fn;
+    context = _fn[0];
+    fn = _fn[1];
+  } else if (fn.fn) {
+    var _fn2 = fn;
+    context = _fn2.context;
+    fn = _fn2.fn;
+  }
+  if (context && _utils.is.string(fn) && _utils.is.func(context[fn])) {
+    fn = context[fn];
+  }
+  (0, _utils.check)(fn, _utils.is.func, meth + ': argument ' + fn + ' is not a function');
+
+  return { context: context, fn: fn, args: args };
+}
+
+function call(fn) {
+  for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return effect(CALL, getFnCallDesc('call', fn, args));
+}
+
+function apply(context, fn) {
+  var args = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+  return effect(CALL, getFnCallDesc('apply', { context: context, fn: fn }, args));
+}
+
+function cps(fn) {
+  for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+    args[_key2 - 1] = arguments[_key2];
+  }
+
+  return effect(CPS, getFnCallDesc('cps', fn, args));
+}
+
+function fork(fn) {
+  for (var _len3 = arguments.length, args = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+    args[_key3 - 1] = arguments[_key3];
+  }
+
+  return effect(FORK, getFnCallDesc('fork', fn, args));
+}
+
+function spawn(fn) {
+  for (var _len4 = arguments.length, args = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+    args[_key4 - 1] = arguments[_key4];
+  }
+
+  return detach(fork.apply(undefined, [fn].concat(args)));
+}
+
+function join() {
+  for (var _len5 = arguments.length, tasks = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+    tasks[_key5] = arguments[_key5];
+  }
+
+  if (tasks.length > 1) {
+    return all(tasks.map(function (t) {
+      return join(t);
+    }));
+  }
+  var task = tasks[0];
+  (0, _utils.check)(task, _utils.is.notUndef, 'join(task): argument task is undefined');
+  (0, _utils.check)(task, _utils.is.task, 'join(task): argument ' + task + ' is not a valid Task object ' + TEST_HINT);
+  return effect(JOIN, task);
+}
+
+function cancel() {
+  for (var _len6 = arguments.length, tasks = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+    tasks[_key6] = arguments[_key6];
+  }
+
+  if (tasks.length > 1) {
+    return all(tasks.map(function (t) {
+      return cancel(t);
+    }));
+  }
+  var task = tasks[0];
+  if (tasks.length === 1) {
+    (0, _utils.check)(task, _utils.is.notUndef, 'cancel(task): argument task is undefined');
+    (0, _utils.check)(task, _utils.is.task, 'cancel(task): argument ' + task + ' is not a valid Task object ' + TEST_HINT);
+  }
+  return effect(CANCEL, task || _utils.SELF_CANCELLATION);
+}
+
+function select(selector) {
+  for (var _len7 = arguments.length, args = Array(_len7 > 1 ? _len7 - 1 : 0), _key7 = 1; _key7 < _len7; _key7++) {
+    args[_key7 - 1] = arguments[_key7];
+  }
+
+  if (arguments.length === 0) {
+    selector = _utils.ident;
+  } else {
+    (0, _utils.check)(selector, _utils.is.notUndef, 'select(selector,[...]): argument selector is undefined');
+    (0, _utils.check)(selector, _utils.is.func, 'select(selector,[...]): argument ' + selector + ' is not a function');
+  }
+  return effect(SELECT, { selector: selector, args: args });
+}
+
+/**
+  channel(pattern, [buffer])    => creates an event channel for store actions
+**/
+function actionChannel(pattern, buffer) {
+  (0, _utils.check)(pattern, _utils.is.notUndef, 'actionChannel(pattern,...): argument pattern is undefined');
+  if (arguments.length > 1) {
+    (0, _utils.check)(buffer, _utils.is.notUndef, 'actionChannel(pattern, buffer): argument buffer is undefined');
+    (0, _utils.check)(buffer, _utils.is.buffer, 'actionChannel(pattern, buffer): argument ' + buffer + ' is not a valid buffer');
+  }
+  return effect(ACTION_CHANNEL, { pattern: pattern, buffer: buffer });
+}
+
+function cancelled() {
+  return effect(CANCELLED, {});
+}
+
+function flush(channel) {
+  (0, _utils.check)(channel, _utils.is.channel, 'flush(channel): argument ' + channel + ' is not valid channel');
+  return effect(FLUSH, channel);
+}
+
+function getContext(prop) {
+  (0, _utils.check)(prop, _utils.is.string, 'getContext(prop): argument ' + prop + ' is not a string');
+  return effect(GET_CONTEXT, prop);
+}
+
+function setContext(props) {
+  (0, _utils.check)(props, _utils.is.object, (0, _utils.createSetContextWarning)(null, props));
+  return effect(SET_CONTEXT, props);
+}
+
+var createAsEffectType = function createAsEffectType(type) {
+  return function (effect) {
+    return effect && effect[IO] && effect[type];
+  };
+};
+
+var asEffect = exports.asEffect = {
+  take: /*#__PURE__*/createAsEffectType(TAKE),
+  put: /*#__PURE__*/createAsEffectType(PUT),
+  all: /*#__PURE__*/createAsEffectType(ALL),
+  race: /*#__PURE__*/createAsEffectType(RACE),
+  call: /*#__PURE__*/createAsEffectType(CALL),
+  cps: /*#__PURE__*/createAsEffectType(CPS),
+  fork: /*#__PURE__*/createAsEffectType(FORK),
+  join: /*#__PURE__*/createAsEffectType(JOIN),
+  cancel: /*#__PURE__*/createAsEffectType(CANCEL),
+  select: /*#__PURE__*/createAsEffectType(SELECT),
+  actionChannel: /*#__PURE__*/createAsEffectType(ACTION_CHANNEL),
+  cancelled: /*#__PURE__*/createAsEffectType(CANCELLED),
+  flush: /*#__PURE__*/createAsEffectType(FLUSH),
+  getContext: /*#__PURE__*/createAsEffectType(GET_CONTEXT),
+  setContext: /*#__PURE__*/createAsEffectType(SET_CONTEXT)
+};
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/middleware.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/middleware.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = sagaMiddlewareFactory;
+
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+var _channel = __webpack_require__(/*! ./channel */ "./node_modules/redux-saga/es/internal/channel.js");
+
+var _runSaga = __webpack_require__(/*! ./runSaga */ "./node_modules/redux-saga/es/internal/runSaga.js");
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+function sagaMiddlewareFactory() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var _ref$context = _ref.context,
+      context = _ref$context === undefined ? {} : _ref$context,
+      options = _objectWithoutProperties(_ref, ['context']);
+
+  var sagaMonitor = options.sagaMonitor,
+      logger = options.logger,
+      onError = options.onError;
+
+  if (_utils.is.func(options)) {
+    {
+      throw new Error('You passed a function to the Saga middleware. You are likely trying to start a        Saga by directly passing it to the middleware. This is no longer possible starting from 0.10.0.        To run a Saga, you must do it dynamically AFTER mounting the middleware into the store.\n        Example:\n          import createSagaMiddleware from \'redux-saga\'\n          ... other imports\n\n          const sagaMiddleware = createSagaMiddleware()\n          const store = createStore(reducer, applyMiddleware(sagaMiddleware))\n          sagaMiddleware.run(saga, ...args)\n      ');
+    }
+  }
+
+  if (logger && !_utils.is.func(logger)) {
+    throw new Error('`options.logger` passed to the Saga middleware is not a function!');
+  }
+
+  if (options.onerror) {
+    throw new Error('`options.onerror` was removed. Use `options.onError` instead.');
+  }
+
+  if (onError && !_utils.is.func(onError)) {
+    throw new Error('`options.onError` passed to the Saga middleware is not a function!');
+  }
+
+  if (options.emitter && !_utils.is.func(options.emitter)) {
+    throw new Error('`options.emitter` passed to the Saga middleware is not a function!');
+  }
+
+  function sagaMiddleware(_ref2) {
+    var getState = _ref2.getState,
+        dispatch = _ref2.dispatch;
+
+    var sagaEmitter = (0, _channel.emitter)();
+    sagaEmitter.emit = (options.emitter || _utils.ident)(sagaEmitter.emit);
+
+    sagaMiddleware.run = _runSaga.runSaga.bind(null, {
+      context: context,
+      subscribe: sagaEmitter.subscribe,
+      dispatch: dispatch,
+      getState: getState,
+      sagaMonitor: sagaMonitor,
+      logger: logger,
+      onError: onError
+    });
+
+    return function (next) {
+      return function (action) {
+        if (sagaMonitor && sagaMonitor.actionDispatched) {
+          sagaMonitor.actionDispatched(action);
+        }
+        var result = next(action); // hit reducers
+        sagaEmitter.emit(action);
+        return result;
+      };
+    };
+  }
+
+  sagaMiddleware.run = function () {
+    throw new Error('Before running a Saga, you must mount the Saga middleware on the Store using applyMiddleware');
+  };
+
+  sagaMiddleware.setContext = function (props) {
+    (0, _utils.check)(props, _utils.is.object, (0, _utils.createSetContextWarning)('sagaMiddleware', props));
+    _utils.object.assign(context, props);
+  };
+
+  return sagaMiddleware;
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/proc.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/proc.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TASK_CANCEL = exports.CHANNEL_END = exports.NOT_ITERATOR_ERROR = undefined;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.default = proc;
+
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+var _scheduler = __webpack_require__(/*! ./scheduler */ "./node_modules/redux-saga/es/internal/scheduler.js");
+
+var _io = __webpack_require__(/*! ./io */ "./node_modules/redux-saga/es/internal/io.js");
+
+var _channel = __webpack_require__(/*! ./channel */ "./node_modules/redux-saga/es/internal/channel.js");
+
+var _buffers = __webpack_require__(/*! ./buffers */ "./node_modules/redux-saga/es/internal/buffers.js");
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+function _defineEnumerableProperties(obj, descs) {
+  for (var key in descs) {
+    var desc = descs[key];desc.configurable = desc.enumerable = true;if ("value" in desc) desc.writable = true;Object.defineProperty(obj, key, desc);
+  }return obj;
+}
+
+var NOT_ITERATOR_ERROR = exports.NOT_ITERATOR_ERROR = 'proc first argument (Saga function result) must be an iterator';
+
+var CHANNEL_END = exports.CHANNEL_END = {
+  toString: function toString() {
+    return '@@redux-saga/CHANNEL_END';
+  }
+};
+var TASK_CANCEL = exports.TASK_CANCEL = {
+  toString: function toString() {
+    return '@@redux-saga/TASK_CANCEL';
+  }
+};
+
+var matchers = {
+  wildcard: function wildcard() {
+    return _utils.kTrue;
+  },
+  default: function _default(pattern) {
+    return (typeof pattern === 'undefined' ? 'undefined' : _typeof(pattern)) === 'symbol' ? function (input) {
+      return input.type === pattern;
+    } : function (input) {
+      return input.type === String(pattern);
+    };
+  },
+  array: function array(patterns) {
+    return function (input) {
+      return patterns.some(function (p) {
+        return matcher(p)(input);
+      });
+    };
+  },
+  predicate: function predicate(_predicate) {
+    return function (input) {
+      return _predicate(input);
+    };
+  }
+};
+
+function matcher(pattern) {
+  // prettier-ignore
+  return (pattern === '*' ? matchers.wildcard : _utils.is.array(pattern) ? matchers.array : _utils.is.stringableFunc(pattern) ? matchers.default : _utils.is.func(pattern) ? matchers.predicate : matchers.default)(pattern);
+}
+
+/**
+  Used to track a parent task and its forks
+  In the new fork model, forked tasks are attached by default to their parent
+  We model this using the concept of Parent task && main Task
+  main task is the main flow of the current Generator, the parent tasks is the
+  aggregation of the main tasks + all its forked tasks.
+  Thus the whole model represents an execution tree with multiple branches (vs the
+  linear execution tree in sequential (non parallel) programming)
+
+  A parent tasks has the following semantics
+  - It completes if all its forks either complete or all cancelled
+  - If it's cancelled, all forks are cancelled as well
+  - It aborts if any uncaught error bubbles up from forks
+  - If it completes, the return value is the one returned by the main task
+**/
+function forkQueue(name, mainTask, cb) {
+  var tasks = [],
+      result = undefined,
+      completed = false;
+  addTask(mainTask);
+
+  function abort(err) {
+    cancelAll();
+    cb(err, true);
+  }
+
+  function addTask(task) {
+    tasks.push(task);
+    task.cont = function (res, isErr) {
+      if (completed) {
+        return;
+      }
+
+      (0, _utils.remove)(tasks, task);
+      task.cont = _utils.noop;
+      if (isErr) {
+        abort(res);
+      } else {
+        if (task === mainTask) {
+          result = res;
+        }
+        if (!tasks.length) {
+          completed = true;
+          cb(result);
+        }
+      }
+    };
+    // task.cont.cancel = task.cancel
+  }
+
+  function cancelAll() {
+    if (completed) {
+      return;
+    }
+    completed = true;
+    tasks.forEach(function (t) {
+      t.cont = _utils.noop;
+      t.cancel();
+    });
+    tasks = [];
+  }
+
+  return {
+    addTask: addTask,
+    cancelAll: cancelAll,
+    abort: abort,
+    getTasks: function getTasks() {
+      return tasks;
+    },
+    taskNames: function taskNames() {
+      return tasks.map(function (t) {
+        return t.name;
+      });
+    }
+  };
+}
+
+function createTaskIterator(_ref) {
+  var context = _ref.context,
+      fn = _ref.fn,
+      args = _ref.args;
+
+  if (_utils.is.iterator(fn)) {
+    return fn;
+  }
+
+  // catch synchronous failures; see #152 and #441
+  var result = undefined,
+      error = undefined;
+  try {
+    result = fn.apply(context, args);
+  } catch (err) {
+    error = err;
+  }
+
+  // i.e. a generator function returns an iterator
+  if (_utils.is.iterator(result)) {
+    return result;
+  }
+
+  // do not bubble up synchronous failures for detached forks
+  // instead create a failed task. See #152 and #441
+  return error ? (0, _utils.makeIterator)(function () {
+    throw error;
+  }) : (0, _utils.makeIterator)(function () {
+    var pc = undefined;
+    var eff = { done: false, value: result };
+    var ret = function ret(value) {
+      return { done: true, value: value };
+    };
+    return function (arg) {
+      if (!pc) {
+        pc = true;
+        return eff;
+      } else {
+        return ret(arg);
+      }
+    };
+  }());
+}
+
+var wrapHelper = function wrapHelper(helper) {
+  return { fn: helper };
+};
+
+function proc(iterator) {
+  var subscribe = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {
+    return _utils.noop;
+  };
+  var dispatch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _utils.noop;
+  var getState = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : _utils.noop;
+  var parentContext = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+  var options = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
+  var parentEffectId = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+  var name = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 'anonymous';
+  var cont = arguments[8];
+
+  (0, _utils.check)(iterator, _utils.is.iterator, NOT_ITERATOR_ERROR);
+
+  var effectsString = '[...effects]';
+  var runParallelEffect = (0, _utils.deprecate)(runAllEffect, (0, _utils.updateIncentive)(effectsString, "all([...effects])"));
+
+  var sagaMonitor = options.sagaMonitor,
+      logger = options.logger,
+      onError = options.onError;
+
+  var log = logger || _utils.log;
+  var logError = function logError(err) {
+    var message = err.sagaStack;
+
+    if (!message && err.stack) {
+      message = err.stack.split('\n')[0].indexOf(err.message) !== -1 ? err.stack : 'Error: ' + err.message + '\n' + err.stack;
+    }
+
+    log('error', 'uncaught at ' + name, message || err.message || err);
+  };
+  var stdChannel = (0, _channel.stdChannel)(subscribe);
+  var taskContext = Object.create(parentContext);
+  /**
+    Tracks the current effect cancellation
+    Each time the generator progresses. calling runEffect will set a new value
+    on it. It allows propagating cancellation to child effects
+  **/
+  next.cancel = _utils.noop;
+
+  /**
+    Creates a new task descriptor for this generator, We'll also create a main task
+    to track the main flow (besides other forked tasks)
+  **/
+  var task = newTask(parentEffectId, name, iterator, cont);
+  var mainTask = { name: name, cancel: cancelMain, isRunning: true };
+  var taskQueue = forkQueue(name, mainTask, end);
+
+  /**
+    cancellation of the main task. We'll simply resume the Generator with a Cancel
+  **/
+  function cancelMain() {
+    if (mainTask.isRunning && !mainTask.isCancelled) {
+      mainTask.isCancelled = true;
+      next(TASK_CANCEL);
+    }
+  }
+
+  /**
+    This may be called by a parent generator to trigger/propagate cancellation
+    cancel all pending tasks (including the main task), then end the current task.
+     Cancellation propagates down to the whole execution tree holded by this Parent task
+    It's also propagated to all joiners of this task and their execution tree/joiners
+     Cancellation is noop for terminated/Cancelled tasks tasks
+  **/
+  function cancel() {
+    /**
+      We need to check both Running and Cancelled status
+      Tasks can be Cancelled but still Running
+    **/
+    if (iterator._isRunning && !iterator._isCancelled) {
+      iterator._isCancelled = true;
+      taskQueue.cancelAll();
+      /**
+        Ending with a Never result will propagate the Cancellation to all joiners
+      **/
+      end(TASK_CANCEL);
+    }
+  }
+  /**
+    attaches cancellation logic to this task's continuation
+    this will permit cancellation to propagate down the call chain
+  **/
+  cont && (cont.cancel = cancel);
+
+  // tracks the running status
+  iterator._isRunning = true;
+
+  // kicks up the generator
+  next();
+
+  // then return the task descriptor to the caller
+  return task;
+
+  /**
+    This is the generator driver
+    It's a recursive async/continuation function which calls itself
+    until the generator terminates or throws
+  **/
+  function next(arg, isErr) {
+    // Preventive measure. If we end up here, then there is really something wrong
+    if (!mainTask.isRunning) {
+      throw new Error('Trying to resume an already finished generator');
+    }
+
+    try {
+      var result = undefined;
+      if (isErr) {
+        result = iterator.throw(arg);
+      } else if (arg === TASK_CANCEL) {
+        /**
+          getting TASK_CANCEL automatically cancels the main task
+          We can get this value here
+           - By cancelling the parent task manually
+          - By joining a Cancelled task
+        **/
+        mainTask.isCancelled = true;
+        /**
+          Cancels the current effect; this will propagate the cancellation down to any called tasks
+        **/
+        next.cancel();
+        /**
+          If this Generator has a `return` method then invokes it
+          This will jump to the finally block
+        **/
+        result = _utils.is.func(iterator.return) ? iterator.return(TASK_CANCEL) : { done: true, value: TASK_CANCEL };
+      } else if (arg === CHANNEL_END) {
+        // We get CHANNEL_END by taking from a channel that ended using `take` (and not `takem` used to trap End of channels)
+        result = _utils.is.func(iterator.return) ? iterator.return() : { done: true };
+      } else {
+        result = iterator.next(arg);
+      }
+
+      if (!result.done) {
+        runEffect(result.value, parentEffectId, '', next);
+      } else {
+        /**
+          This Generator has ended, terminate the main task and notify the fork queue
+        **/
+        mainTask.isMainRunning = false;
+        mainTask.cont && mainTask.cont(result.value);
+      }
+    } catch (error) {
+      if (mainTask.isCancelled) {
+        logError(error);
+      }
+      mainTask.isMainRunning = false;
+      mainTask.cont(error, true);
+    }
+  }
+
+  function end(result, isErr) {
+    iterator._isRunning = false;
+    stdChannel.close();
+    if (!isErr) {
+      iterator._result = result;
+      iterator._deferredEnd && iterator._deferredEnd.resolve(result);
+    } else {
+      if (result instanceof Error) {
+        Object.defineProperty(result, 'sagaStack', {
+          value: 'at ' + name + ' \n ' + (result.sagaStack || result.stack),
+          configurable: true
+        });
+      }
+      if (!task.cont) {
+        if (result instanceof Error && onError) {
+          onError(result);
+        } else {
+          logError(result);
+        }
+      }
+      iterator._error = result;
+      iterator._isAborted = true;
+      iterator._deferredEnd && iterator._deferredEnd.reject(result);
+    }
+    task.cont && task.cont(result, isErr);
+    task.joiners.forEach(function (j) {
+      return j.cb(result, isErr);
+    });
+    task.joiners = null;
+  }
+
+  function runEffect(effect, parentEffectId) {
+    var label = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+    var cb = arguments[3];
+
+    var effectId = (0, _utils.uid)();
+    sagaMonitor && sagaMonitor.effectTriggered({ effectId: effectId, parentEffectId: parentEffectId, label: label, effect: effect });
+
+    /**
+      completion callback and cancel callback are mutually exclusive
+      We can't cancel an already completed effect
+      And We can't complete an already cancelled effectId
+    **/
+    var effectSettled = undefined;
+
+    // Completion callback passed to the appropriate effect runner
+    function currCb(res, isErr) {
+      if (effectSettled) {
+        return;
+      }
+
+      effectSettled = true;
+      cb.cancel = _utils.noop; // defensive measure
+      if (sagaMonitor) {
+        isErr ? sagaMonitor.effectRejected(effectId, res) : sagaMonitor.effectResolved(effectId, res);
+      }
+      cb(res, isErr);
+    }
+    // tracks down the current cancel
+    currCb.cancel = _utils.noop;
+
+    // setup cancellation logic on the parent cb
+    cb.cancel = function () {
+      // prevents cancelling an already completed effect
+      if (effectSettled) {
+        return;
+      }
+
+      effectSettled = true;
+      /**
+        propagates cancel downward
+        catch uncaught cancellations errors; since we can no longer call the completion
+        callback, log errors raised during cancellations into the console
+      **/
+      try {
+        currCb.cancel();
+      } catch (err) {
+        logError(err);
+      }
+      currCb.cancel = _utils.noop; // defensive measure
+
+      sagaMonitor && sagaMonitor.effectCancelled(effectId);
+    };
+
+    /**
+      each effect runner must attach its own logic of cancellation to the provided callback
+      it allows this generator to propagate cancellation downward.
+       ATTENTION! effect runners must setup the cancel logic by setting cb.cancel = [cancelMethod]
+      And the setup must occur before calling the callback
+       This is a sort of inversion of control: called async functions are responsible
+      for completing the flow by calling the provided continuation; while caller functions
+      are responsible for aborting the current flow by calling the attached cancel function
+       Library users can attach their own cancellation logic to promises by defining a
+      promise[CANCEL] method in their returned promises
+      ATTENTION! calling cancel must have no effect on an already completed or cancelled effect
+    **/
+    var data = undefined;
+    // prettier-ignore
+    return (
+      // Non declarative effect
+      _utils.is.promise(effect) ? resolvePromise(effect, currCb) : _utils.is.helper(effect) ? runForkEffect(wrapHelper(effect), effectId, currCb) : _utils.is.iterator(effect) ? resolveIterator(effect, effectId, name, currCb)
+
+      // declarative effects
+      : _utils.is.array(effect) ? runParallelEffect(effect, effectId, currCb) : (data = _io.asEffect.take(effect)) ? runTakeEffect(data, currCb) : (data = _io.asEffect.put(effect)) ? runPutEffect(data, currCb) : (data = _io.asEffect.all(effect)) ? runAllEffect(data, effectId, currCb) : (data = _io.asEffect.race(effect)) ? runRaceEffect(data, effectId, currCb) : (data = _io.asEffect.call(effect)) ? runCallEffect(data, effectId, currCb) : (data = _io.asEffect.cps(effect)) ? runCPSEffect(data, currCb) : (data = _io.asEffect.fork(effect)) ? runForkEffect(data, effectId, currCb) : (data = _io.asEffect.join(effect)) ? runJoinEffect(data, currCb) : (data = _io.asEffect.cancel(effect)) ? runCancelEffect(data, currCb) : (data = _io.asEffect.select(effect)) ? runSelectEffect(data, currCb) : (data = _io.asEffect.actionChannel(effect)) ? runChannelEffect(data, currCb) : (data = _io.asEffect.flush(effect)) ? runFlushEffect(data, currCb) : (data = _io.asEffect.cancelled(effect)) ? runCancelledEffect(data, currCb) : (data = _io.asEffect.getContext(effect)) ? runGetContextEffect(data, currCb) : (data = _io.asEffect.setContext(effect)) ? runSetContextEffect(data, currCb) : /* anything else returned as is */currCb(effect)
+    );
+  }
+
+  function resolvePromise(promise, cb) {
+    var cancelPromise = promise[_utils.CANCEL];
+    if (_utils.is.func(cancelPromise)) {
+      cb.cancel = cancelPromise;
+    } else if (_utils.is.func(promise.abort)) {
+      cb.cancel = function () {
+        return promise.abort();
+      };
+      // TODO: add support for the fetch API, whenever they get around to
+      // adding cancel support
+    }
+    promise.then(cb, function (error) {
+      return cb(error, true);
+    });
+  }
+
+  function resolveIterator(iterator, effectId, name, cb) {
+    proc(iterator, subscribe, dispatch, getState, taskContext, options, effectId, name, cb);
+  }
+
+  function runTakeEffect(_ref2, cb) {
+    var channel = _ref2.channel,
+        pattern = _ref2.pattern,
+        maybe = _ref2.maybe;
+
+    channel = channel || stdChannel;
+    var takeCb = function takeCb(inp) {
+      return inp instanceof Error ? cb(inp, true) : (0, _channel.isEnd)(inp) && !maybe ? cb(CHANNEL_END) : cb(inp);
+    };
+    try {
+      channel.take(takeCb, matcher(pattern));
+    } catch (err) {
+      return cb(err, true);
+    }
+    cb.cancel = takeCb.cancel;
+  }
+
+  function runPutEffect(_ref3, cb) {
+    var channel = _ref3.channel,
+        action = _ref3.action,
+        resolve = _ref3.resolve;
+
+    /**
+      Schedule the put in case another saga is holding a lock.
+      The put will be executed atomically. ie nested puts will execute after
+      this put has terminated.
+    **/
+    (0, _scheduler.asap)(function () {
+      var result = undefined;
+      try {
+        result = (channel ? channel.put : dispatch)(action);
+      } catch (error) {
+        // If we have a channel or `put.resolve` was used then bubble up the error.
+        if (channel || resolve) return cb(error, true);
+        logError(error);
+      }
+
+      if (resolve && _utils.is.promise(result)) {
+        resolvePromise(result, cb);
+      } else {
+        return cb(result);
+      }
+    });
+    // Put effects are non cancellables
+  }
+
+  function runCallEffect(_ref4, effectId, cb) {
+    var context = _ref4.context,
+        fn = _ref4.fn,
+        args = _ref4.args;
+
+    var result = undefined;
+    // catch synchronous failures; see #152
+    try {
+      result = fn.apply(context, args);
+    } catch (error) {
+      return cb(error, true);
+    }
+    return _utils.is.promise(result) ? resolvePromise(result, cb) : _utils.is.iterator(result) ? resolveIterator(result, effectId, fn.name, cb) : cb(result);
+  }
+
+  function runCPSEffect(_ref5, cb) {
+    var context = _ref5.context,
+        fn = _ref5.fn,
+        args = _ref5.args;
+
+    // CPS (ie node style functions) can define their own cancellation logic
+    // by setting cancel field on the cb
+
+    // catch synchronous failures; see #152
+    try {
+      var cpsCb = function cpsCb(err, res) {
+        return _utils.is.undef(err) ? cb(res) : cb(err, true);
+      };
+      fn.apply(context, args.concat(cpsCb));
+      if (cpsCb.cancel) {
+        cb.cancel = function () {
+          return cpsCb.cancel();
+        };
+      }
+    } catch (error) {
+      return cb(error, true);
+    }
+  }
+
+  function runForkEffect(_ref6, effectId, cb) {
+    var context = _ref6.context,
+        fn = _ref6.fn,
+        args = _ref6.args,
+        detached = _ref6.detached;
+
+    var taskIterator = createTaskIterator({ context: context, fn: fn, args: args });
+
+    try {
+      (0, _scheduler.suspend)();
+      var _task = proc(taskIterator, subscribe, dispatch, getState, taskContext, options, effectId, fn.name, detached ? null : _utils.noop);
+
+      if (detached) {
+        cb(_task);
+      } else {
+        if (taskIterator._isRunning) {
+          taskQueue.addTask(_task);
+          cb(_task);
+        } else if (taskIterator._error) {
+          taskQueue.abort(taskIterator._error);
+        } else {
+          cb(_task);
+        }
+      }
+    } finally {
+      (0, _scheduler.flush)();
+    }
+    // Fork effects are non cancellables
+  }
+
+  function runJoinEffect(t, cb) {
+    if (t.isRunning()) {
+      var joiner = { task: task, cb: cb };
+      cb.cancel = function () {
+        return (0, _utils.remove)(t.joiners, joiner);
+      };
+      t.joiners.push(joiner);
+    } else {
+      t.isAborted() ? cb(t.error(), true) : cb(t.result());
+    }
+  }
+
+  function runCancelEffect(taskToCancel, cb) {
+    if (taskToCancel === _utils.SELF_CANCELLATION) {
+      taskToCancel = task;
+    }
+    if (taskToCancel.isRunning()) {
+      taskToCancel.cancel();
+    }
+    cb();
+    // cancel effects are non cancellables
+  }
+
+  function runAllEffect(effects, effectId, cb) {
+    var keys = Object.keys(effects);
+
+    if (!keys.length) {
+      return cb(_utils.is.array(effects) ? [] : {});
+    }
+
+    var completedCount = 0;
+    var completed = undefined;
+    var results = {};
+    var childCbs = {};
+
+    function checkEffectEnd() {
+      if (completedCount === keys.length) {
+        completed = true;
+        cb(_utils.is.array(effects) ? _utils.array.from(_extends({}, results, { length: keys.length })) : results);
+      }
+    }
+
+    keys.forEach(function (key) {
+      var chCbAtKey = function chCbAtKey(res, isErr) {
+        if (completed) {
+          return;
+        }
+        if (isErr || (0, _channel.isEnd)(res) || res === CHANNEL_END || res === TASK_CANCEL) {
+          cb.cancel();
+          cb(res, isErr);
+        } else {
+          results[key] = res;
+          completedCount++;
+          checkEffectEnd();
+        }
+      };
+      chCbAtKey.cancel = _utils.noop;
+      childCbs[key] = chCbAtKey;
+    });
+
+    cb.cancel = function () {
+      if (!completed) {
+        completed = true;
+        keys.forEach(function (key) {
+          return childCbs[key].cancel();
+        });
+      }
+    };
+
+    keys.forEach(function (key) {
+      return runEffect(effects[key], effectId, key, childCbs[key]);
+    });
+  }
+
+  function runRaceEffect(effects, effectId, cb) {
+    var completed = undefined;
+    var keys = Object.keys(effects);
+    var childCbs = {};
+
+    keys.forEach(function (key) {
+      var chCbAtKey = function chCbAtKey(res, isErr) {
+        if (completed) {
+          return;
+        }
+
+        if (isErr) {
+          // Race Auto cancellation
+          cb.cancel();
+          cb(res, true);
+        } else if (!(0, _channel.isEnd)(res) && res !== CHANNEL_END && res !== TASK_CANCEL) {
+          var _response;
+
+          cb.cancel();
+          completed = true;
+          var response = (_response = {}, _response[key] = res, _response);
+          cb(_utils.is.array(effects) ? [].slice.call(_extends({}, response, { length: keys.length })) : response);
+        }
+      };
+      chCbAtKey.cancel = _utils.noop;
+      childCbs[key] = chCbAtKey;
+    });
+
+    cb.cancel = function () {
+      // prevents unnecessary cancellation
+      if (!completed) {
+        completed = true;
+        keys.forEach(function (key) {
+          return childCbs[key].cancel();
+        });
+      }
+    };
+    keys.forEach(function (key) {
+      if (completed) {
+        return;
+      }
+      runEffect(effects[key], effectId, key, childCbs[key]);
+    });
+  }
+
+  function runSelectEffect(_ref7, cb) {
+    var selector = _ref7.selector,
+        args = _ref7.args;
+
+    try {
+      var state = selector.apply(undefined, [getState()].concat(args));
+      cb(state);
+    } catch (error) {
+      cb(error, true);
+    }
+  }
+
+  function runChannelEffect(_ref8, cb) {
+    var pattern = _ref8.pattern,
+        buffer = _ref8.buffer;
+
+    var match = matcher(pattern);
+    match.pattern = pattern;
+    cb((0, _channel.eventChannel)(subscribe, buffer || _buffers.buffers.fixed(), match));
+  }
+
+  function runCancelledEffect(data, cb) {
+    cb(!!mainTask.isCancelled);
+  }
+
+  function runFlushEffect(channel, cb) {
+    channel.flush(cb);
+  }
+
+  function runGetContextEffect(prop, cb) {
+    cb(taskContext[prop]);
+  }
+
+  function runSetContextEffect(props, cb) {
+    _utils.object.assign(taskContext, props);
+    cb();
+  }
+
+  function newTask(id, name, iterator, cont) {
+    var _done, _ref9, _mutatorMap;
+
+    iterator._deferredEnd = null;
+    return _ref9 = {}, _ref9[_utils.TASK] = true, _ref9.id = id, _ref9.name = name, _done = 'done', _mutatorMap = {}, _mutatorMap[_done] = _mutatorMap[_done] || {}, _mutatorMap[_done].get = function () {
+      if (iterator._deferredEnd) {
+        return iterator._deferredEnd.promise;
+      } else {
+        var def = (0, _utils.deferred)();
+        iterator._deferredEnd = def;
+        if (!iterator._isRunning) {
+          iterator._error ? def.reject(iterator._error) : def.resolve(iterator._result);
+        }
+        return def.promise;
+      }
+    }, _ref9.cont = cont, _ref9.joiners = [], _ref9.cancel = cancel, _ref9.isRunning = function isRunning() {
+      return iterator._isRunning;
+    }, _ref9.isCancelled = function isCancelled() {
+      return iterator._isCancelled;
+    }, _ref9.isAborted = function isAborted() {
+      return iterator._isAborted;
+    }, _ref9.result = function result() {
+      return iterator._result;
+    }, _ref9.error = function error() {
+      return iterator._error;
+    }, _ref9.setContext = function setContext(props) {
+      (0, _utils.check)(props, _utils.is.object, (0, _utils.createSetContextWarning)('task', props));
+      _utils.object.assign(taskContext, props);
+    }, _defineEnumerableProperties(_ref9, _mutatorMap), _ref9;
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/runSaga.js":
+/*!********************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/runSaga.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.runSaga = runSaga;
+
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+var _proc = __webpack_require__(/*! ./proc */ "./node_modules/redux-saga/es/internal/proc.js");
+
+var _proc2 = _interopRequireDefault(_proc);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var RUN_SAGA_SIGNATURE = 'runSaga(storeInterface, saga, ...args)';
+var NON_GENERATOR_ERR = "runSaga(storeInterface, saga, ...args): saga argument must be a Generator function!";
+
+function runSaga(storeInterface, saga) {
+  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    args[_key - 2] = arguments[_key];
+  }
+
+  var iterator = undefined;
+
+  if (_utils.is.iterator(storeInterface)) {
+    {
+      (0, _utils.log)('warn', "runSaga(iterator, storeInterface) has been deprecated in favor of runSaga(storeInterface, saga, ...args)");
+    }
+    iterator = storeInterface;
+    storeInterface = saga;
+  } else {
+    (0, _utils.check)(saga, _utils.is.func, NON_GENERATOR_ERR);
+    iterator = saga.apply(undefined, args);
+    (0, _utils.check)(iterator, _utils.is.iterator, NON_GENERATOR_ERR);
+  }
+
+  var _storeInterface = storeInterface,
+      subscribe = _storeInterface.subscribe,
+      dispatch = _storeInterface.dispatch,
+      getState = _storeInterface.getState,
+      context = _storeInterface.context,
+      sagaMonitor = _storeInterface.sagaMonitor,
+      logger = _storeInterface.logger,
+      onError = _storeInterface.onError;
+
+  var effectId = (0, _utils.uid)();
+
+  if (sagaMonitor) {
+    // monitors are expected to have a certain interface, let's fill-in any missing ones
+    sagaMonitor.effectTriggered = sagaMonitor.effectTriggered || _utils.noop;
+    sagaMonitor.effectResolved = sagaMonitor.effectResolved || _utils.noop;
+    sagaMonitor.effectRejected = sagaMonitor.effectRejected || _utils.noop;
+    sagaMonitor.effectCancelled = sagaMonitor.effectCancelled || _utils.noop;
+    sagaMonitor.actionDispatched = sagaMonitor.actionDispatched || _utils.noop;
+
+    sagaMonitor.effectTriggered({ effectId: effectId, root: true, parentEffectId: 0, effect: { root: true, saga: saga, args: args } });
+  }
+
+  var task = (0, _proc2.default)(iterator, subscribe, (0, _utils.wrapSagaDispatch)(dispatch), getState, context, { sagaMonitor: sagaMonitor, logger: logger, onError: onError }, effectId, saga.name);
+
+  if (sagaMonitor) {
+    sagaMonitor.effectResolved(effectId, task);
+  }
+
+  return task;
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/sagaHelpers/fsmIterator.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/sagaHelpers/fsmIterator.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.qEnd = undefined;
+exports.safeName = safeName;
+exports.default = fsmIterator;
+
+var _utils = __webpack_require__(/*! ../utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+var done = { done: true, value: undefined };
+var qEnd = exports.qEnd = {};
+
+function safeName(patternOrChannel) {
+  if (_utils.is.channel(patternOrChannel)) {
+    return 'channel';
+  } else if (Array.isArray(patternOrChannel)) {
+    return String(patternOrChannel.map(function (entry) {
+      return String(entry);
+    }));
+  } else {
+    return String(patternOrChannel);
+  }
+}
+
+function fsmIterator(fsm, q0) {
+  var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'iterator';
+
+  var updateState = undefined,
+      qNext = q0;
+
+  function next(arg, error) {
+    if (qNext === qEnd) {
+      return done;
+    }
+
+    if (error) {
+      qNext = qEnd;
+      throw error;
+    } else {
+      updateState && updateState(arg);
+
+      var _fsm$qNext = fsm[qNext](),
+          q = _fsm$qNext[0],
+          output = _fsm$qNext[1],
+          _updateState = _fsm$qNext[2];
+
+      qNext = q;
+      updateState = _updateState;
+      return qNext === qEnd ? done : output;
+    }
+  }
+
+  return (0, _utils.makeIterator)(next, function (error) {
+    return next(null, error);
+  }, name, true);
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/sagaHelpers/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/sagaHelpers/index.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.throttleHelper = exports.takeLatestHelper = exports.takeEveryHelper = exports.throttle = exports.takeLatest = exports.takeEvery = undefined;
+
+var _takeEvery = __webpack_require__(/*! ./takeEvery */ "./node_modules/redux-saga/es/internal/sagaHelpers/takeEvery.js");
+
+var _takeEvery2 = _interopRequireDefault(_takeEvery);
+
+var _takeLatest = __webpack_require__(/*! ./takeLatest */ "./node_modules/redux-saga/es/internal/sagaHelpers/takeLatest.js");
+
+var _takeLatest2 = _interopRequireDefault(_takeLatest);
+
+var _throttle = __webpack_require__(/*! ./throttle */ "./node_modules/redux-saga/es/internal/sagaHelpers/throttle.js");
+
+var _throttle2 = _interopRequireDefault(_throttle);
+
+var _utils = __webpack_require__(/*! ../utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var deprecationWarning = function deprecationWarning(helperName) {
+  return 'import { ' + helperName + ' } from \'redux-saga\' has been deprecated in favor of import { ' + helperName + ' } from \'redux-saga/effects\'.\nThe latter will not work with yield*, as helper effects are wrapped automatically for you in fork effect.\nTherefore yield ' + helperName + ' will return task descriptor to your saga and execute next lines of code.';
+};
+
+var takeEvery = /*#__PURE__*/(0, _utils.deprecate)(_takeEvery2.default, /*#__PURE__*/deprecationWarning('takeEvery'));
+var takeLatest = /*#__PURE__*/(0, _utils.deprecate)(_takeLatest2.default, /*#__PURE__*/deprecationWarning('takeLatest'));
+var throttle = /*#__PURE__*/(0, _utils.deprecate)(_throttle2.default, /*#__PURE__*/deprecationWarning('throttle'));
+
+exports.takeEvery = takeEvery;
+exports.takeLatest = takeLatest;
+exports.throttle = throttle;
+exports.takeEveryHelper = _takeEvery2.default;
+exports.takeLatestHelper = _takeLatest2.default;
+exports.throttleHelper = _throttle2.default;
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/sagaHelpers/takeEvery.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/sagaHelpers/takeEvery.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = takeEvery;
+
+var _fsmIterator = __webpack_require__(/*! ./fsmIterator */ "./node_modules/redux-saga/es/internal/sagaHelpers/fsmIterator.js");
+
+var _fsmIterator2 = _interopRequireDefault(_fsmIterator);
+
+var _io = __webpack_require__(/*! ../io */ "./node_modules/redux-saga/es/internal/io.js");
+
+var _channel = __webpack_require__(/*! ../channel */ "./node_modules/redux-saga/es/internal/channel.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function takeEvery(patternOrChannel, worker) {
+  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    args[_key - 2] = arguments[_key];
+  }
+
+  var yTake = { done: false, value: (0, _io.take)(patternOrChannel) };
+  var yFork = function yFork(ac) {
+    return { done: false, value: _io.fork.apply(undefined, [worker].concat(args, [ac])) };
+  };
+
+  var action = undefined,
+      setAction = function setAction(ac) {
+    return action = ac;
+  };
+
+  return (0, _fsmIterator2.default)({
+    q1: function q1() {
+      return ['q2', yTake, setAction];
+    },
+    q2: function q2() {
+      return action === _channel.END ? [_fsmIterator.qEnd] : ['q1', yFork(action)];
+    }
+  }, 'q1', 'takeEvery(' + (0, _fsmIterator.safeName)(patternOrChannel) + ', ' + worker.name + ')');
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/sagaHelpers/takeLatest.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/sagaHelpers/takeLatest.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = takeLatest;
+
+var _fsmIterator = __webpack_require__(/*! ./fsmIterator */ "./node_modules/redux-saga/es/internal/sagaHelpers/fsmIterator.js");
+
+var _fsmIterator2 = _interopRequireDefault(_fsmIterator);
+
+var _io = __webpack_require__(/*! ../io */ "./node_modules/redux-saga/es/internal/io.js");
+
+var _channel = __webpack_require__(/*! ../channel */ "./node_modules/redux-saga/es/internal/channel.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function takeLatest(patternOrChannel, worker) {
+  for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    args[_key - 2] = arguments[_key];
+  }
+
+  var yTake = { done: false, value: (0, _io.take)(patternOrChannel) };
+  var yFork = function yFork(ac) {
+    return { done: false, value: _io.fork.apply(undefined, [worker].concat(args, [ac])) };
+  };
+  var yCancel = function yCancel(task) {
+    return { done: false, value: (0, _io.cancel)(task) };
+  };
+
+  var task = undefined,
+      action = undefined;
+  var setTask = function setTask(t) {
+    return task = t;
+  };
+  var setAction = function setAction(ac) {
+    return action = ac;
+  };
+
+  return (0, _fsmIterator2.default)({
+    q1: function q1() {
+      return ['q2', yTake, setAction];
+    },
+    q2: function q2() {
+      return action === _channel.END ? [_fsmIterator.qEnd] : task ? ['q3', yCancel(task)] : ['q1', yFork(action), setTask];
+    },
+    q3: function q3() {
+      return ['q1', yFork(action), setTask];
+    }
+  }, 'q1', 'takeLatest(' + (0, _fsmIterator.safeName)(patternOrChannel) + ', ' + worker.name + ')');
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/sagaHelpers/throttle.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/sagaHelpers/throttle.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = throttle;
+
+var _fsmIterator = __webpack_require__(/*! ./fsmIterator */ "./node_modules/redux-saga/es/internal/sagaHelpers/fsmIterator.js");
+
+var _fsmIterator2 = _interopRequireDefault(_fsmIterator);
+
+var _io = __webpack_require__(/*! ../io */ "./node_modules/redux-saga/es/internal/io.js");
+
+var _channel = __webpack_require__(/*! ../channel */ "./node_modules/redux-saga/es/internal/channel.js");
+
+var _buffers = __webpack_require__(/*! ../buffers */ "./node_modules/redux-saga/es/internal/buffers.js");
+
+var _utils = __webpack_require__(/*! ../utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function throttle(delayLength, pattern, worker) {
+  for (var _len = arguments.length, args = Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+    args[_key - 3] = arguments[_key];
+  }
+
+  var action = undefined,
+      channel = undefined;
+
+  var yActionChannel = { done: false, value: (0, _io.actionChannel)(pattern, _buffers.buffers.sliding(1)) };
+  var yTake = function yTake() {
+    return { done: false, value: (0, _io.take)(channel) };
+  };
+  var yFork = function yFork(ac) {
+    return { done: false, value: _io.fork.apply(undefined, [worker].concat(args, [ac])) };
+  };
+  var yDelay = { done: false, value: (0, _io.call)(_utils.delay, delayLength) };
+
+  var setAction = function setAction(ac) {
+    return action = ac;
+  };
+  var setChannel = function setChannel(ch) {
+    return channel = ch;
+  };
+
+  return (0, _fsmIterator2.default)({
+    q1: function q1() {
+      return ['q2', yActionChannel, setChannel];
+    },
+    q2: function q2() {
+      return ['q3', yTake(), setAction];
+    },
+    q3: function q3() {
+      return action === _channel.END ? [_fsmIterator.qEnd] : ['q4', yFork(action)];
+    },
+    q4: function q4() {
+      return ['q2', yDelay];
+    }
+  }, 'q1', 'throttle(' + (0, _fsmIterator.safeName)(pattern) + ', ' + worker.name + ')');
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/scheduler.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/scheduler.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.asap = asap;
+exports.suspend = suspend;
+exports.flush = flush;
+var queue = [];
+/**
+  Variable to hold a counting semaphore
+  - Incrementing adds a lock and puts the scheduler in a `suspended` state (if it's not
+    already suspended)
+  - Decrementing releases a lock. Zero locks puts the scheduler in a `released` state. This
+    triggers flushing the queued tasks.
+**/
+var semaphore = 0;
+
+/**
+  Executes a task 'atomically'. Tasks scheduled during this execution will be queued
+  and flushed after this task has finished (assuming the scheduler endup in a released
+  state).
+**/
+function exec(task) {
+  try {
+    suspend();
+    task();
+  } finally {
+    release();
+  }
+}
+
+/**
+  Executes or queues a task depending on the state of the scheduler (`suspended` or `released`)
+**/
+function asap(task) {
+  queue.push(task);
+
+  if (!semaphore) {
+    suspend();
+    flush();
+  }
+}
+
+/**
+  Puts the scheduler in a `suspended` state. Scheduled tasks will be queued until the
+  scheduler is released.
+**/
+function suspend() {
+  semaphore++;
+}
+
+/**
+  Puts the scheduler in a `released` state.
+**/
+function release() {
+  semaphore--;
+}
+
+/**
+  Releases the current lock. Executes all queued tasks if the scheduler is in the released state.
+**/
+function flush() {
+  release();
+
+  var task = undefined;
+  while (!semaphore && (task = queue.shift()) !== undefined) {
+    exec(task);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/internal/utils.js":
+/*!******************************************************!*\
+  !*** ./node_modules/redux-saga/es/internal/utils.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.check = check;
+exports.hasOwn = hasOwn;
+exports.remove = remove;
+exports.deferred = deferred;
+exports.arrayOfDeffered = arrayOfDeffered;
+exports.delay = delay;
+exports.createMockTask = createMockTask;
+exports.autoInc = autoInc;
+exports.makeIterator = makeIterator;
+exports.log = log;
+exports.deprecate = deprecate;
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+var sym = exports.sym = function sym(id) {
+  return '@@redux-saga/' + id;
+};
+
+var TASK = /*#__PURE__*/exports.TASK = sym('TASK');
+var HELPER = /*#__PURE__*/exports.HELPER = sym('HELPER');
+var MATCH = /*#__PURE__*/exports.MATCH = sym('MATCH');
+var CANCEL = /*#__PURE__*/exports.CANCEL = sym('CANCEL_PROMISE');
+var SAGA_ACTION = /*#__PURE__*/exports.SAGA_ACTION = sym('SAGA_ACTION');
+var SELF_CANCELLATION = /*#__PURE__*/exports.SELF_CANCELLATION = sym('SELF_CANCELLATION');
+var konst = exports.konst = function konst(v) {
+  return function () {
+    return v;
+  };
+};
+var kTrue = /*#__PURE__*/exports.kTrue = konst(true);
+var kFalse = /*#__PURE__*/exports.kFalse = konst(false);
+var noop = exports.noop = function noop() {};
+var ident = exports.ident = function ident(v) {
+  return v;
+};
+
+function check(value, predicate, error) {
+  if (!predicate(value)) {
+    log('error', 'uncaught at check', error);
+    throw new Error(error);
+  }
+}
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn(object, property) {
+  return is.notUndef(object) && hasOwnProperty.call(object, property);
+}
+
+var is = exports.is = {
+  undef: function undef(v) {
+    return v === null || v === undefined;
+  },
+  notUndef: function notUndef(v) {
+    return v !== null && v !== undefined;
+  },
+  func: function func(f) {
+    return typeof f === 'function';
+  },
+  number: function number(n) {
+    return typeof n === 'number';
+  },
+  string: function string(s) {
+    return typeof s === 'string';
+  },
+  array: Array.isArray,
+  object: function object(obj) {
+    return obj && !is.array(obj) && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object';
+  },
+  promise: function promise(p) {
+    return p && is.func(p.then);
+  },
+  iterator: function iterator(it) {
+    return it && is.func(it.next) && is.func(it.throw);
+  },
+  iterable: function iterable(it) {
+    return it && is.func(Symbol) ? is.func(it[Symbol.iterator]) : is.array(it);
+  },
+  task: function task(t) {
+    return t && t[TASK];
+  },
+  observable: function observable(ob) {
+    return ob && is.func(ob.subscribe);
+  },
+  buffer: function buffer(buf) {
+    return buf && is.func(buf.isEmpty) && is.func(buf.take) && is.func(buf.put);
+  },
+  pattern: function pattern(pat) {
+    return pat && (is.string(pat) || (typeof pat === 'undefined' ? 'undefined' : _typeof(pat)) === 'symbol' || is.func(pat) || is.array(pat));
+  },
+  channel: function channel(ch) {
+    return ch && is.func(ch.take) && is.func(ch.close);
+  },
+  helper: function helper(it) {
+    return it && it[HELPER];
+  },
+  stringableFunc: function stringableFunc(f) {
+    return is.func(f) && hasOwn(f, 'toString');
+  }
+};
+
+var object = exports.object = {
+  assign: function assign(target, source) {
+    for (var i in source) {
+      if (hasOwn(source, i)) {
+        target[i] = source[i];
+      }
+    }
+  }
+};
+
+function remove(array, item) {
+  var index = array.indexOf(item);
+  if (index >= 0) {
+    array.splice(index, 1);
+  }
+}
+
+var array = exports.array = {
+  from: function from(obj) {
+    var arr = Array(obj.length);
+    for (var i in obj) {
+      if (hasOwn(obj, i)) {
+        arr[i] = obj[i];
+      }
+    }
+    return arr;
+  }
+};
+
+function deferred() {
+  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  var def = _extends({}, props);
+  var promise = new Promise(function (resolve, reject) {
+    def.resolve = resolve;
+    def.reject = reject;
+  });
+  def.promise = promise;
+  return def;
+}
+
+function arrayOfDeffered(length) {
+  var arr = [];
+  for (var i = 0; i < length; i++) {
+    arr.push(deferred());
+  }
+  return arr;
+}
+
+function delay(ms) {
+  var val = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+  var timeoutId = undefined;
+  var promise = new Promise(function (resolve) {
+    timeoutId = setTimeout(function () {
+      return resolve(val);
+    }, ms);
+  });
+
+  promise[CANCEL] = function () {
+    return clearTimeout(timeoutId);
+  };
+
+  return promise;
+}
+
+function createMockTask() {
+  var _ref;
+
+  var running = true;
+  var _result = undefined,
+      _error = undefined;
+
+  return _ref = {}, _ref[TASK] = true, _ref.isRunning = function isRunning() {
+    return running;
+  }, _ref.result = function result() {
+    return _result;
+  }, _ref.error = function error() {
+    return _error;
+  }, _ref.setRunning = function setRunning(b) {
+    return running = b;
+  }, _ref.setResult = function setResult(r) {
+    return _result = r;
+  }, _ref.setError = function setError(e) {
+    return _error = e;
+  }, _ref;
+}
+
+function autoInc() {
+  var seed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+  return function () {
+    return ++seed;
+  };
+}
+
+var uid = /*#__PURE__*/exports.uid = autoInc();
+
+var kThrow = function kThrow(err) {
+  throw err;
+};
+var kReturn = function kReturn(value) {
+  return { value: value, done: true };
+};
+function makeIterator(next) {
+  var thro = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : kThrow;
+  var name = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+  var isHelper = arguments[3];
+
+  var iterator = { name: name, next: next, throw: thro, return: kReturn };
+
+  if (isHelper) {
+    iterator[HELPER] = true;
+  }
+  if (typeof Symbol !== 'undefined') {
+    iterator[Symbol.iterator] = function () {
+      return iterator;
+    };
+  }
+  return iterator;
+}
+
+/**
+  Print error in a useful way whether in a browser environment
+  (with expandable error stack traces), or in a node.js environment
+  (text-only log output)
+ **/
+function log(level, message) {
+  var error = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+
+  /*eslint-disable no-console*/
+  if (typeof window === 'undefined') {
+    console.log('redux-saga ' + level + ': ' + message + '\n' + (error && error.stack || error));
+  } else {
+    console[level](message, error);
+  }
+}
+
+function deprecate(fn, deprecationWarning) {
+  return function () {
+    log('warn', deprecationWarning);
+    return fn.apply(undefined, arguments);
+  };
+}
+
+var updateIncentive = exports.updateIncentive = function updateIncentive(deprecated, preferred) {
+  return deprecated + ' has been deprecated in favor of ' + preferred + ', please update your code';
+};
+
+var internalErr = exports.internalErr = function internalErr(err) {
+  return new Error('\n  redux-saga: Error checking hooks detected an inconsistent state. This is likely a bug\n  in redux-saga code and not yours. Thanks for reporting this in the project\'s github repo.\n  Error: ' + err + '\n');
+};
+
+var createSetContextWarning = exports.createSetContextWarning = function createSetContextWarning(ctx, props) {
+  return (ctx ? ctx + '.' : '') + 'setContext(props): argument ' + props + ' is not a plain object';
+};
+
+var wrapSagaDispatch = exports.wrapSagaDispatch = function wrapSagaDispatch(dispatch) {
+  return function (action) {
+    return dispatch(Object.defineProperty(action, SAGA_ACTION, { value: true }));
+  };
+};
+
+var cloneableGenerator = exports.cloneableGenerator = function cloneableGenerator(generatorFunc) {
+  return function () {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var history = [];
+    var gen = generatorFunc.apply(undefined, args);
+    return {
+      next: function next(arg) {
+        history.push(arg);
+        return gen.next(arg);
+      },
+      clone: function clone() {
+        var clonedGen = cloneableGenerator(generatorFunc).apply(undefined, args);
+        history.forEach(function (arg) {
+          return clonedGen.next(arg);
+        });
+        return clonedGen;
+      },
+      return: function _return(value) {
+        return gen.return(value);
+      },
+      throw: function _throw(exception) {
+        return gen.throw(exception);
+      }
+    };
+  };
+};
+
+/***/ }),
+
+/***/ "./node_modules/redux-saga/es/utils.js":
+/*!*********************************************!*\
+  !*** ./node_modules/redux-saga/es/utils.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _utils = __webpack_require__(/*! ./internal/utils */ "./node_modules/redux-saga/es/internal/utils.js");
+
+Object.defineProperty(exports, 'TASK', {
+  enumerable: true,
+  get: function get() {
+    return _utils.TASK;
+  }
+});
+Object.defineProperty(exports, 'SAGA_ACTION', {
+  enumerable: true,
+  get: function get() {
+    return _utils.SAGA_ACTION;
+  }
+});
+Object.defineProperty(exports, 'noop', {
+  enumerable: true,
+  get: function get() {
+    return _utils.noop;
+  }
+});
+Object.defineProperty(exports, 'is', {
+  enumerable: true,
+  get: function get() {
+    return _utils.is;
+  }
+});
+Object.defineProperty(exports, 'deferred', {
+  enumerable: true,
+  get: function get() {
+    return _utils.deferred;
+  }
+});
+Object.defineProperty(exports, 'arrayOfDeffered', {
+  enumerable: true,
+  get: function get() {
+    return _utils.arrayOfDeffered;
+  }
+});
+Object.defineProperty(exports, 'createMockTask', {
+  enumerable: true,
+  get: function get() {
+    return _utils.createMockTask;
+  }
+});
+Object.defineProperty(exports, 'cloneableGenerator', {
+  enumerable: true,
+  get: function get() {
+    return _utils.cloneableGenerator;
+  }
+});
+
+var _io = __webpack_require__(/*! ./internal/io */ "./node_modules/redux-saga/es/internal/io.js");
+
+Object.defineProperty(exports, 'asEffect', {
+  enumerable: true,
+  get: function get() {
+    return _io.asEffect;
+  }
+});
+
+var _proc = __webpack_require__(/*! ./internal/proc */ "./node_modules/redux-saga/es/internal/proc.js");
+
+Object.defineProperty(exports, 'CHANNEL_END', {
+  enumerable: true,
+  get: function get() {
+    return _proc.CHANNEL_END;
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/redux/es/redux.js":
+/*!****************************************!*\
+  !*** ./node_modules/redux/es/redux.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createStore = exports.compose = exports.combineReducers = exports.bindActionCreators = exports.applyMiddleware = exports.__DO_NOT_USE__ActionTypes = undefined;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _symbolObservable = __webpack_require__(/*! symbol-observable */ "./node_modules/symbol-observable/es/index.js");
+
+var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * These are private action types reserved by Redux.
+ * For any unknown actions, you must return the current state.
+ * If the current state is undefined, you must return the initial state.
+ * Do not reference these action types directly in your code.
+ */
+var randomString = function randomString() {
+  return Math.random().toString(36).substring(7).split('').join('.');
+};
+
+var ActionTypes = {
+  INIT: "@@redux/INIT" + randomString(),
+  REPLACE: "@@redux/REPLACE" + randomString(),
+  PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
+    return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
+  }
+};
+
+/**
+ * @param {any} obj The object to inspect.
+ * @returns {boolean} True if the argument appears to be a plain object.
+ */
+function isPlainObject(obj) {
+  if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) !== 'object' || obj === null) return false;
+  var proto = obj;
+
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return Object.getPrototypeOf(obj) === proto;
+}
+
+/**
+ * Creates a Redux store that holds the state tree.
+ * The only way to change the data in the store is to call `dispatch()` on it.
+ *
+ * There should only be a single store in your app. To specify how different
+ * parts of the state tree respond to actions, you may combine several reducers
+ * into a single reducer function by using `combineReducers`.
+ *
+ * @param {Function} reducer A function that returns the next state tree, given
+ * the current state tree and the action to handle.
+ *
+ * @param {any} [preloadedState] The initial state. You may optionally specify it
+ * to hydrate the state from the server in universal apps, or to restore a
+ * previously serialized user session.
+ * If you use `combineReducers` to produce the root reducer function, this must be
+ * an object with the same shape as `combineReducers` keys.
+ *
+ * @param {Function} [enhancer] The store enhancer. You may optionally specify it
+ * to enhance the store with third-party capabilities such as middleware,
+ * time travel, persistence, etc. The only store enhancer that ships with Redux
+ * is `applyMiddleware()`.
+ *
+ * @returns {Store} A Redux store that lets you read the state, dispatch actions
+ * and subscribe to changes.
+ */
+
+function createStore(reducer, preloadedState, enhancer) {
+  var _ref2;
+
+  if (typeof preloadedState === 'function' && typeof enhancer === 'function' || typeof enhancer === 'function' && typeof arguments[3] === 'function') {
+    throw new Error("It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function.");
+  }
+
+  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+    enhancer = preloadedState;
+    preloadedState = undefined;
+  }
+
+  if (typeof enhancer !== 'undefined') {
+    if (typeof enhancer !== 'function') {
+      throw new Error('Expected the enhancer to be a function.');
+    }
+
+    return enhancer(createStore)(reducer, preloadedState);
+  }
+
+  if (typeof reducer !== 'function') {
+    throw new Error('Expected the reducer to be a function.');
+  }
+
+  var currentReducer = reducer;
+  var currentState = preloadedState;
+  var currentListeners = [];
+  var nextListeners = currentListeners;
+  var isDispatching = false;
+  /**
+   * This makes a shallow copy of currentListeners so we can use
+   * nextListeners as a temporary list while dispatching.
+   *
+   * This prevents any bugs around consumers calling
+   * subscribe/unsubscribe in the middle of a dispatch.
+   */
+
+  function ensureCanMutateNextListeners() {
+    if (nextListeners === currentListeners) {
+      nextListeners = currentListeners.slice();
+    }
+  }
+  /**
+   * Reads the state tree managed by the store.
+   *
+   * @returns {any} The current state tree of your application.
+   */
+
+  function getState() {
+    if (isDispatching) {
+      throw new Error("You may not call store.getState() while the reducer is executing. The reducer has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store.");
+    }
+
+    return currentState;
+  }
+  /**
+   * Adds a change listener. It will be called any time an action is dispatched,
+   * and some part of the state tree may potentially have changed. You may then
+   * call `getState()` to read the current state tree inside the callback.
+   *
+   * You may call `dispatch()` from a change listener, with the following
+   * caveats:
+   *
+   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+   * If you subscribe or unsubscribe while the listeners are being invoked, this
+   * will not have any effect on the `dispatch()` that is currently in progress.
+   * However, the next `dispatch()` call, whether nested or not, will use a more
+   * recent snapshot of the subscription list.
+   *
+   * 2. The listener should not expect to see all state changes, as the state
+   * might have been updated multiple times during a nested `dispatch()` before
+   * the listener is called. It is, however, guaranteed that all subscribers
+   * registered before the `dispatch()` started will be called with the latest
+   * state by the time it exits.
+   *
+   * @param {Function} listener A callback to be invoked on every dispatch.
+   * @returns {Function} A function to remove this change listener.
+   */
+
+  function subscribe(listener) {
+    if (typeof listener !== 'function') {
+      throw new Error('Expected the listener to be a function.');
+    }
+
+    if (isDispatching) {
+      throw new Error("You may not call store.subscribe() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store.getState() in the callback to access the latest state. See https://redux.js.org/api-reference/store#subscribelistener for more details.");
+    }
+
+    var isSubscribed = true;
+    ensureCanMutateNextListeners();
+    nextListeners.push(listener);
+    return function unsubscribe() {
+      if (!isSubscribed) {
+        return;
+      }
+
+      if (isDispatching) {
+        throw new Error("You may not unsubscribe from a store listener while the reducer is executing. See https://redux.js.org/api-reference/store#subscribelistener for more details.");
+      }
+
+      isSubscribed = false;
+      ensureCanMutateNextListeners();
+      var index = nextListeners.indexOf(listener);
+      nextListeners.splice(index, 1);
+      currentListeners = null;
+    };
+  }
+  /**
+   * Dispatches an action. It is the only way to trigger a state change.
+   *
+   * The `reducer` function, used to create the store, will be called with the
+   * current state tree and the given `action`. Its return value will
+   * be considered the **next** state of the tree, and the change listeners
+   * will be notified.
+   *
+   * The base implementation only supports plain object actions. If you want to
+   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+   * wrap your store creating function into the corresponding middleware. For
+   * example, see the documentation for the `redux-thunk` package. Even the
+   * middleware will eventually dispatch plain object actions using this method.
+   *
+   * @param {Object} action A plain object representing “what changed”. It is
+   * a good idea to keep actions serializable so you can record and replay user
+   * sessions, or use the time travelling `redux-devtools`. An action must have
+   * a `type` property which may not be `undefined`. It is a good idea to use
+   * string constants for action types.
+   *
+   * @returns {Object} For convenience, the same action object you dispatched.
+   *
+   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+   * return something else (for example, a Promise you can await).
+   */
+
+  function dispatch(action) {
+    if (!isPlainObject(action)) {
+      throw new Error("Actions must be plain objects. Use custom middleware for async actions.");
+    }
+
+    if (typeof action.type === 'undefined') {
+      throw new Error("Actions may not have an undefined \"type\" property. Have you misspelled a constant?");
+    }
+
+    if (isDispatching) {
+      throw new Error('Reducers may not dispatch actions.');
+    }
+
+    try {
+      isDispatching = true;
+      currentState = currentReducer(currentState, action);
+    } finally {
+      isDispatching = false;
+    }
+
+    var listeners = currentListeners = nextListeners;
+
+    for (var i = 0; i < listeners.length; i++) {
+      var listener = listeners[i];
+      listener();
+    }
+
+    return action;
+  }
+  /**
+   * Replaces the reducer currently used by the store to calculate the state.
+   *
+   * You might need this if your app implements code splitting and you want to
+   * load some of the reducers dynamically. You might also need this if you
+   * implement a hot reloading mechanism for Redux.
+   *
+   * @param {Function} nextReducer The reducer for the store to use instead.
+   * @returns {void}
+   */
+
+  function replaceReducer(nextReducer) {
+    if (typeof nextReducer !== 'function') {
+      throw new Error('Expected the nextReducer to be a function.');
+    }
+
+    currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
+    // Any reducers that existed in both the new and old rootReducer
+    // will receive the previous state. This effectively populates
+    // the new state tree with any relevant data from the old one.
+
+    dispatch({
+      type: ActionTypes.REPLACE
+    });
+  }
+  /**
+   * Interoperability point for observable/reactive libraries.
+   * @returns {observable} A minimal observable of state changes.
+   * For more information, see the observable proposal:
+   * https://github.com/tc39/proposal-observable
+   */
+
+  function observable() {
+    var _ref;
+
+    var outerSubscribe = subscribe;
+    return _ref = {
+      /**
+       * The minimal observable subscription method.
+       * @param {Object} observer Any object that can be used as an observer.
+       * The observer object should have a `next` method.
+       * @returns {subscription} An object with an `unsubscribe` method that can
+       * be used to unsubscribe the observable from the store, and prevent further
+       * emission of values from the observable.
+       */
+      subscribe: function subscribe(observer) {
+        if ((typeof observer === 'undefined' ? 'undefined' : _typeof(observer)) !== 'object' || observer === null) {
+          throw new TypeError('Expected the observer to be an object.');
+        }
+
+        function observeState() {
+          if (observer.next) {
+            observer.next(getState());
+          }
+        }
+
+        observeState();
+        var unsubscribe = outerSubscribe(observeState);
+        return {
+          unsubscribe: unsubscribe
+        };
+      }
+    }, _ref[_symbolObservable2.default] = function () {
+      return this;
+    }, _ref;
+  } // When a store is created, an "INIT" action is dispatched so that every
+  // reducer returns their initial state. This effectively populates
+  // the initial state tree.
+
+
+  dispatch({
+    type: ActionTypes.INIT
+  });
+  return _ref2 = {
+    dispatch: dispatch,
+    subscribe: subscribe,
+    getState: getState,
+    replaceReducer: replaceReducer
+  }, _ref2[_symbolObservable2.default] = observable, _ref2;
+}
+
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */
+function warning(message) {
+  /* eslint-disable no-console */
+  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+    console.error(message);
+  }
+  /* eslint-enable no-console */
+
+  try {
+    // This error was thrown as a convenience so that if you enable
+    // "break on all exceptions" in your console,
+    // it would pause the execution at this line.
+    throw new Error(message);
+  } catch (e) {} // eslint-disable-line no-empty
+}
+
+function getUndefinedStateErrorMessage(key, action) {
+  var actionType = action && action.type;
+  var actionDescription = actionType && "action \"" + String(actionType) + "\"" || 'an action';
+  return "Given " + actionDescription + ", reducer \"" + key + "\" returned undefined. " + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.";
+}
+
+function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
+  var reducerKeys = Object.keys(reducers);
+  var argumentName = action && action.type === ActionTypes.INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+
+  if (reducerKeys.length === 0) {
+    return "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";
+  }
+
+  if (!isPlainObject(inputState)) {
+    return "The " + argumentName + " has unexpected type of \"" + {}.toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + "\". Expected argument to be an object with the following " + ("keys: \"" + reducerKeys.join('", "') + "\"");
+  }
+
+  var unexpectedKeys = Object.keys(inputState).filter(function (key) {
+    return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+  });
+  unexpectedKeys.forEach(function (key) {
+    unexpectedKeyCache[key] = true;
+  });
+  if (action && action.type === ActionTypes.REPLACE) return;
+
+  if (unexpectedKeys.length > 0) {
+    return "Unexpected " + (unexpectedKeys.length > 1 ? 'keys' : 'key') + " " + ("\"" + unexpectedKeys.join('", "') + "\" found in " + argumentName + ". ") + "Expected to find one of the known reducer keys instead: " + ("\"" + reducerKeys.join('", "') + "\". Unexpected keys will be ignored.");
+  }
+}
+
+function assertReducerShape(reducers) {
+  Object.keys(reducers).forEach(function (key) {
+    var reducer = reducers[key];
+    var initialState = reducer(undefined, {
+      type: ActionTypes.INIT
+    });
+
+    if (typeof initialState === 'undefined') {
+      throw new Error("Reducer \"" + key + "\" returned undefined during initialization. " + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
+    }
+
+    if (typeof reducer(undefined, {
+      type: ActionTypes.PROBE_UNKNOWN_ACTION()
+    }) === 'undefined') {
+      throw new Error("Reducer \"" + key + "\" returned undefined when probed with a random type. " + ("Don't try to handle " + ActionTypes.INIT + " or other actions in \"redux/*\" ") + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
+    }
+  });
+}
+/**
+ * Turns an object whose values are different reducer functions, into a single
+ * reducer function. It will call every child reducer, and gather their results
+ * into a single state object, whose keys correspond to the keys of the passed
+ * reducer functions.
+ *
+ * @param {Object} reducers An object whose values correspond to different
+ * reducer functions that need to be combined into one. One handy way to obtain
+ * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+ * undefined for any action. Instead, they should return their initial state
+ * if the state passed to them was undefined, and the current state for any
+ * unrecognized action.
+ *
+ * @returns {Function} A reducer function that invokes every reducer inside the
+ * passed object, and builds a state object with the same shape.
+ */
+
+function combineReducers(reducers) {
+  var reducerKeys = Object.keys(reducers);
+  var finalReducers = {};
+
+  for (var i = 0; i < reducerKeys.length; i++) {
+    var key = reducerKeys[i];
+
+    {
+      if (typeof reducers[key] === 'undefined') {
+        warning("No reducer provided for key \"" + key + "\"");
+      }
+    }
+
+    if (typeof reducers[key] === 'function') {
+      finalReducers[key] = reducers[key];
+    }
+  }
+
+  var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
+  // keys multiple times.
+
+  var unexpectedKeyCache;
+
+  {
+    unexpectedKeyCache = {};
+  }
+
+  var shapeAssertionError;
+
+  try {
+    assertReducerShape(finalReducers);
+  } catch (e) {
+    shapeAssertionError = e;
+  }
+
+  return function combination(state, action) {
+    if (state === undefined) {
+      state = {};
+    }
+
+    if (shapeAssertionError) {
+      throw shapeAssertionError;
+    }
+
+    {
+      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
+
+      if (warningMessage) {
+        warning(warningMessage);
+      }
+    }
+
+    var hasChanged = false;
+    var nextState = {};
+
+    for (var _i = 0; _i < finalReducerKeys.length; _i++) {
+      var _key = finalReducerKeys[_i];
+      var reducer = finalReducers[_key];
+      var previousStateForKey = state[_key];
+      var nextStateForKey = reducer(previousStateForKey, action);
+
+      if (typeof nextStateForKey === 'undefined') {
+        var errorMessage = getUndefinedStateErrorMessage(_key, action);
+        throw new Error(errorMessage);
+      }
+
+      nextState[_key] = nextStateForKey;
+      hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+    }
+
+    hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
+    return hasChanged ? nextState : state;
+  };
+}
+
+function bindActionCreator(actionCreator, dispatch) {
+  return function () {
+    return dispatch(actionCreator.apply(this, arguments));
+  };
+}
+/**
+ * Turns an object whose values are action creators, into an object with the
+ * same keys, but with every function wrapped into a `dispatch` call so they
+ * may be invoked directly. This is just a convenience method, as you can call
+ * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
+ *
+ * For convenience, you can also pass an action creator as the first argument,
+ * and get a dispatch wrapped function in return.
+ *
+ * @param {Function|Object} actionCreators An object whose values are action
+ * creator functions. One handy way to obtain it is to use ES6 `import * as`
+ * syntax. You may also pass a single function.
+ *
+ * @param {Function} dispatch The `dispatch` function available on your Redux
+ * store.
+ *
+ * @returns {Function|Object} The object mimicking the original object, but with
+ * every action creator wrapped into the `dispatch` call. If you passed a
+ * function as `actionCreators`, the return value will also be a single
+ * function.
+ */
+
+function bindActionCreators(actionCreators, dispatch) {
+  if (typeof actionCreators === 'function') {
+    return bindActionCreator(actionCreators, dispatch);
+  }
+
+  if ((typeof actionCreators === 'undefined' ? 'undefined' : _typeof(actionCreators)) !== 'object' || actionCreators === null) {
+    throw new Error("bindActionCreators expected an object or a function, instead received " + (actionCreators === null ? 'null' : typeof actionCreators === 'undefined' ? 'undefined' : _typeof(actionCreators)) + ". " + "Did you write \"import ActionCreators from\" instead of \"import * as ActionCreators from\"?");
+  }
+
+  var boundActionCreators = {};
+
+  for (var key in actionCreators) {
+    var actionCreator = actionCreators[key];
+
+    if (typeof actionCreator === 'function') {
+      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
+    }
+  }
+
+  return boundActionCreators;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    keys.push.apply(keys, Object.getOwnPropertySymbols(object));
+  }
+
+  if (enumerableOnly) keys = keys.filter(function (sym) {
+    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+  });
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+/**
+ * Composes single-argument functions from right to left. The rightmost
+ * function can take multiple arguments as it provides the signature for
+ * the resulting composite function.
+ *
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */
+function compose() {
+  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (funcs.length === 0) {
+    return function (arg) {
+      return arg;
+    };
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+
+  return funcs.reduce(function (a, b) {
+    return function () {
+      return a(b.apply(undefined, arguments));
+    };
+  });
+}
+
+/**
+ * Creates a store enhancer that applies middleware to the dispatch method
+ * of the Redux store. This is handy for a variety of tasks, such as expressing
+ * asynchronous actions in a concise manner, or logging every action payload.
+ *
+ * See `redux-thunk` package as an example of the Redux middleware.
+ *
+ * Because middleware is potentially asynchronous, this should be the first
+ * store enhancer in the composition chain.
+ *
+ * Note that each middleware will be given the `dispatch` and `getState` functions
+ * as named arguments.
+ *
+ * @param {...Function} middlewares The middleware chain to be applied.
+ * @returns {Function} A store enhancer applying the middleware.
+ */
+
+function applyMiddleware() {
+  for (var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++) {
+    middlewares[_key] = arguments[_key];
+  }
+
+  return function (createStore) {
+    return function () {
+      var store = createStore.apply(undefined, arguments);
+
+      var _dispatch = function dispatch() {
+        throw new Error("Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.");
+      };
+
+      var middlewareAPI = {
+        getState: store.getState,
+        dispatch: function dispatch() {
+          return _dispatch.apply(undefined, arguments);
+        }
+      };
+      var chain = middlewares.map(function (middleware) {
+        return middleware(middlewareAPI);
+      });
+      _dispatch = compose.apply(undefined, chain)(store.dispatch);
+      return _objectSpread2({}, store, {
+        dispatch: _dispatch
+      });
+    };
+  };
+}
+
+/*
+ * This is a dummy function to check if the function name has been altered by minification.
+ * If the function has been minified and NODE_ENV !== 'production', warn the user.
+ */
+
+function isCrushed() {}
+
+if (typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+  warning("You are currently using minified code outside of NODE_ENV === \"production\". This means that you are running a slower development build of Redux. You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) to ensure you have the correct code for your production build.");
+}
+
+exports.__DO_NOT_USE__ActionTypes = ActionTypes;
+exports.applyMiddleware = applyMiddleware;
+exports.bindActionCreators = bindActionCreators;
+exports.combineReducers = combineReducers;
+exports.compose = compose;
+exports.createStore = createStore;
+
+/***/ }),
+
+/***/ "./node_modules/regenerator-runtime/runtime-module.js":
+/*!************************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = function () {
+  return this;
+}() || {Function: Function,Boolean: Boolean,Object: Object,Number: Number,Array: Array,Date: Date,String: String,Symbol: Symbol,Error: Error,TypeError: TypeError,Map: Map,Set: Set,WeakMap: WeakMap,WeakSet: WeakSet,ArrayBuffer: ArrayBuffer,Math: Math,Promise: Promise,RegExp: RegExp,DataView: DataView,isFinite: isFinite,parseInt: parseInt,parseFloat: parseFloat,Float32Array: Float32Array,Float64Array: Float64Array,Int8Array: Int8Array,Int16Array: Int16Array,Int32Array: Int32Array,Uint8Array: Uint8Array,Uint16Array: Uint16Array,Uint32Array: Uint32Array,Uint8ClampedArray: Uint8ClampedArray,setTimeout: setTimeout,clearTimeout: clearTimeout,setInterval: setInterval,clearInterval: clearInterval};
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime && Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch (e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!function (global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = ( false ? undefined : _typeof(module)) === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function (method) {
+      prototype[method] = function (arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function (genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor ? ctor === GeneratorFunction ||
+    // For the native GeneratorFunction constructor, the best we can
+    // do is to check its .name property.
+    (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+  };
+
+  runtime.mark = function (genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function (arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value && (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object" && hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function (value) {
+            invoke("next", value, resolve, reject);
+          }, function (err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function (unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration. If the Promise is rejected, however, the
+          // result for this iteration will be rejected with the same
+          // reason. Note that rejections of yielded Promises are not
+          // thrown back into the generator function, as is the case
+          // when an awaited Promise is rejected. This difference in
+          // behavior between yield and await is important, because it
+          // allows the consumer to decide what to do with the yielded
+          // rejection (swallow it and continue, manually .throw it back
+          // into the generator, abandon iteration, whatever). With
+          // await, by contrast, there is no opportunity to examine the
+          // rejection reason outside the generator function, so the
+          // only option is to throw it from the await expression, and
+          // let the generator function handle the exception.
+          result.value = unwrapped;
+          resolve(result);
+        }, reject);
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function (resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+      // If enqueue has been called before, then we want to wait until
+      // all previous Promises have been resolved before calling invoke,
+      // so that results are always delivered in the correct order. If
+      // enqueue has not been called before, then it is important to
+      // call invoke immediately, without waiting on a callback to fire,
+      // so that the async generator function has the opportunity to do
+      // any necessary setup in a predictable way. This predictability
+      // is why the Promise constructor synchronously invokes its
+      // executor callback, and why async functions synchronously
+      // execute code before the first await. Since we implement simple
+      // async functions in terms of async generators, it is especially
+      // important to get this right, even though it requires care.
+      previousPromise ? previousPromise.then(callInvokeWithMethodAndArg,
+      // Avoid propagating failures to Promises returned by later
+      // invocations of the iterator.
+      callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function (innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList));
+
+    return runtime.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
+    : iter.next().then(function (result) {
+      return result.done ? result.value : iter.next();
+    });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done ? GenStateCompleted : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError("The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (!info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function () {
+    return this;
+  };
+
+  Gp.toString = function () {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function (object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1,
+            next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function reset(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function stop() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function dispatchException(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !!caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function abrupt(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function complete(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" || record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function finish(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function _catch(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+}(
+// In sloppy mode, unbound `this` refers to the global object, fallback to
+// Function constructor if we're in global strict mode. That is sadly a form
+// of indirect eval which violates Content Security Policy.
+function () {
+  return this;
+}() || {Function: Function,Boolean: Boolean,Object: Object,Number: Number,Array: Array,Date: Date,String: String,Symbol: Symbol,Error: Error,TypeError: TypeError,Map: Map,Set: Set,WeakMap: WeakMap,WeakSet: WeakSet,ArrayBuffer: ArrayBuffer,Math: Math,Promise: Promise,RegExp: RegExp,DataView: DataView,isFinite: isFinite,parseInt: parseInt,parseFloat: parseFloat,Float32Array: Float32Array,Float64Array: Float64Array,Int8Array: Int8Array,Int16Array: Int16Array,Int32Array: Int32Array,Uint8Array: Uint8Array,Uint16Array: Uint16Array,Uint32Array: Uint32Array,Uint8ClampedArray: Uint8ClampedArray,setTimeout: setTimeout,clearTimeout: clearTimeout,setInterval: setInterval,clearInterval: clearInterval});
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "./node_modules/symbol-observable/es/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/symbol-observable/es/index.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global, module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ponyfill = __webpack_require__(/*! ./ponyfill */ "./node_modules/symbol-observable/es/ponyfill.js");
+
+var _ponyfill2 = _interopRequireDefault(_ponyfill);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var root; /* global window */
+
+
+if (typeof self !== 'undefined') {
+  root = self;
+} else if (typeof window !== 'undefined') {
+  root = window;
+} else if (typeof global !== 'undefined') {
+  root = global;
+} else if (true) {
+  root = module;
+} else {}
+
+var result = (0, _ponyfill2.default)(root);
+exports.default = result;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
+
+/***/ }),
+
+/***/ "./node_modules/symbol-observable/es/ponyfill.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/symbol-observable/es/ponyfill.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = symbolObservablePonyfill;
+function symbolObservablePonyfill(root) {
+  var result;
+  var _Symbol = root.Symbol;
+
+  if (typeof _Symbol === 'function') {
+    if (_Symbol.observable) {
+      result = _Symbol.observable;
+    } else {
+      result = _Symbol('observable');
+      _Symbol.observable = result;
+    }
+  } else {
+    result = '@@observable';
+  }
+
+  return result;
+};
+
+/***/ }),
+
+/***/ "./node_modules/warning/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/warning/browser.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2014-2015, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning = function warning() {};
+
+{
+  warning = function warning(condition, format, args) {
+    var len = arguments.length;
+    args = new Array(len > 2 ? len - 2 : 0);
+    for (var key = 2; key < len; key++) {
+      args[key - 2] = arguments[key];
+    }
+    if (format === undefined) {
+      throw new Error("`warning(condition, format, ...args)` requires a warning message argument");
+    }
+
+    if (format.length < 10 || /^[s\W]*$/.test(format)) {
+      throw new Error("The warning format should be able to uniquely identify this warning. Please, use a more descriptive format than: " + format);
+    }
+
+    if (!condition) {
+      var argIndex = 0;
+      var message = 'Warning: ' + format.replace(/%s/g, function () {
+        return args[argIndex++];
+      });
+      if (typeof console !== 'undefined') {
+        console.error(message);
+      }
+      try {
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch (x) {}
+    }
+  };
+}
+
+module.exports = warning;
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (module) {
+  if (!module.webpackPolyfill) {
+    module.deprecate = function () {};
+    module.paths = [];
+    // module.parent = undefined by default
+    if (!module.children) module.children = [];
+    Object.defineProperty(module, "loaded", {
+      enumerable: true,
+      get: function get() {
+        return module.l;
+      }
+    });
+    Object.defineProperty(module, "id", {
+      enumerable: true,
+      get: function get() {
+        return module.i;
+      }
+    });
+    module.webpackPolyfill = 1;
+  }
+  return module;
+};
+
+/***/ }),
+
+/***/ "./src/app.scss":
+/*!**********************!*\
+  !*** ./src/app.scss ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/app.tsx":
+/*!*********************!*\
+  !*** ./src/app.tsx ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.tsx?taro&type=script&parse=ENTRY& */ "./src/app.tsx?taro&type=script&parse=ENTRY&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+
+/***/ }),
+
+/***/ "./src/app.tsx?taro&type=script&parse=ENTRY&":
+/*!***************************************************!*\
+  !*** ./src/app.tsx?taro&type=script&parse=ENTRY& ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./app.tsx?taro&type=script&parse=ENTRY& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/app.tsx?taro&type=script&parse=ENTRY&");
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_app_tsx_taro_type_script_parse_ENTRY___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./src/models/index.ts":
+/*!*****************************!*\
+  !*** ./src/models/index.ts ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _poetryDetail = __webpack_require__(/*! ../pages/model/poetryDetail */ "./src/pages/model/poetryDetail.ts");
+
+var _poetryDetail2 = _interopRequireDefault(_poetryDetail);
+
+var _author = __webpack_require__(/*! ../pages/model/author */ "./src/pages/model/author.ts");
+
+var _author2 = _interopRequireDefault(_author);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var list = [_poetryDetail2.default, _author2.default];
+exports.default = list;
+
+/***/ }),
+
+/***/ "./src/pages/model/author.ts":
+/*!***********************************!*\
+  !*** ./src/pages/model/author.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ "./node_modules/babel-runtime/regenerator/index.js");
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _cloudFn = __webpack_require__(/*! ../../utils/cloudFn */ "./src/utils/cloudFn.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  namespace: 'author',
+  state: {
+    authorInfo: {},
+    hasAuthor: false
+  },
+  effects: {
+    authorApi: /*#__PURE__*/_regenerator2.default.mark(function authorApi(_ref, _ref2) {
+      var payload = _ref.payload,
+          callback = _ref.callback;
+      var call = _ref2.call,
+          put = _ref2.put;
+      return _regenerator2.default.wrap(function authorApi$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              (0, _cloudFn.requestCloud)({
+                clounFnName: 'poetry',
+                controller: 'poetry',
+                action: payload.action,
+                data: payload.data
+              }).then(function (res) {
+                callback(res);
+              });
+
+            case 1:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, authorApi, this);
+    }),
+    searchAuthor: /*#__PURE__*/_regenerator2.default.mark(function searchAuthor(_ref3, _ref4) {
+      var payload = _ref3.payload,
+          callback = _ref3.callback;
+      var call = _ref4.call,
+          put = _ref4.put;
+      var getGuthorFn, res;
+      return _regenerator2.default.wrap(function searchAuthor$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              getGuthorFn = function getGuthorFn() {
+                return (0, _cloudFn.requestCloud)({
+                  clounFnName: 'poetry',
+                  controller: 'poetry',
+                  action: 'searchAuthor',
+                  data: payload.data
+                });
+              };
+
+              _context2.next = 3;
+              return call(getGuthorFn, payload.data);
+
+            case 3:
+              res = _context2.sent;
+
+              if (!(res.data.length > 0)) {
+                _context2.next = 7;
+                break;
+              }
+
+              _context2.next = 7;
+              return put({
+                type: 'save',
+                payload: {
+                  authorInfo: res.data[0],
+                  hasAuthor: true
+                }
+              });
+
+            case 7:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, searchAuthor, this);
+    })
+  },
+  reducers: {
+    save: function save(state, _ref5) {
+      var payload = _ref5.payload;
+
+      return _extends({}, state, payload);
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./src/pages/model/poetryDetail.ts":
+/*!*****************************************!*\
+  !*** ./src/pages/model/poetryDetail.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ "./node_modules/babel-runtime/regenerator/index.js");
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _cloudFn = __webpack_require__(/*! ../../utils/cloudFn */ "./src/utils/cloudFn.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  namespace: 'poetryDetail',
+  state: {
+    poetryInfo: {}
+  },
+  effects: {
+    poetryApi: /*#__PURE__*/_regenerator2.default.mark(function poetryApi(_ref, _ref2) {
+      var payload = _ref.payload,
+          callback = _ref.callback;
+      var call = _ref2.call,
+          put = _ref2.put;
+      return _regenerator2.default.wrap(function poetryApi$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              (0, _cloudFn.requestCloud)({
+                clounFnName: 'poetry',
+                controller: 'poetry',
+                action: payload.action,
+                data: payload.data
+              }).then(function (res) {
+                callback(res);
+              });
+
+            case 1:
+            case 'end':
+              return _context.stop();
+          }
+        }
+      }, poetryApi, this);
+    })
+  },
+  reducers: {
+    save: function save(state, _ref3) {
+      var payload = _ref3.payload;
+
+      return _extends({}, state, payload);
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./src/utils/cloudFn.ts":
+/*!******************************!*\
+  !*** ./src/utils/cloudFn.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.requestCloud = requestCloud;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _showToast = __webpack_require__(/*! ./showToast */ "./src/utils/showToast.ts");
+
+var _showToast2 = _interopRequireDefault(_showToast);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function requestCloud(params) {
+  return new Promise(function (resolve) {
+    var clounFnName = params.clounFnName,
+        controller = params.controller,
+        action = params.action,
+        data = params.data;
+
+    _taroWeapp2.default.cloud.callFunction({
+      name: clounFnName,
+      data: {
+        controller: controller,
+        action: action,
+        data: data
+      }
+    }).then(function (res) {
+      if (res.result.code === 0) {
+        resolve(res.result);
+      } else {
+        (0, _showToast2.default)({ title: res.result.msg });
+      }
+    }).catch(function (err) {
+      (0, _showToast2.default)({ title: err.message });
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./src/utils/dva.ts":
+/*!**************************!*\
+  !*** ./src/utils/dva.ts ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _dvaCore = __webpack_require__(/*! dva-core */ "./node_modules/dva-core/dist/index.esm.js");
+
+var _dvaLoading = __webpack_require__(/*! dva-loading */ "./node_modules/dva-loading/dist/index.esm.js");
+
+var _dvaLoading2 = _interopRequireDefault(_dvaLoading);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var app = void 0;
+var store = void 0;
+var dispatch = void 0;
+var registered = void 0;
+var createApp = function createApp(opt) {
+  app = (0, _dvaCore.create)(opt);
+  app.use((0, _dvaLoading2.default)({}));
+  if (!registered) opt.models.forEach(function (model) {
+    return app.model(model);
+  });
+  registered = true;
+  app.start();
+  var store = app._store;
+  app.getStore = function () {
+    return store;
+  };
+  var dispatch = store.dispatch;
+  app.dispatch = dispatch;
+  return app;
+};
+exports.default = {
+  createApp: createApp,
+  getDispatch: function getDispatch() {
+    return app.dispatch;
+  },
+  getStore: function getStore() {
+    return app.getStore();
+  }
+};
+
+/***/ })
+
+},[["./src/app.tsx","runtime","vendors","common"]]]);;

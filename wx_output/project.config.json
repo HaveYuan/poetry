@@ -1,97 +1,103 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"projectname": "poetry",
-	"description": "诗词大全",
-	"appid": "wx7d89fb9bf7c9b9ea",
-	"setting": {
-		"urlCheck": true,
-		"es6": false,
-		"enhance": false,
-		"postcss": false,
-		"preloadBackgroundData": false,
-		"minified": false,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"bundle": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"cloudfunctionRoot": "cloudfunctions/",
-	"compileType": "miniprogram",
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"libVersion": "2.14.1",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "列表",
-					"pathName": "pages/poetryList/poetryList",
-					"query": "tag=yuanqu&__key_=16074952907251&name=元曲&is_share=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "作者",
-					"pathName": "pages/author/authorIndex/authorIndex",
-					"query": "tag=yuanqu&__key_=16074952907251&name=元曲",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/my/my",
-					"query": "tag=yuanqu&__key_=16074952907251&name=元曲",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "诗词详情",
-					"pathName": "pages/detailPage/detailPage",
-					"query": "tag=yuanqu&_id=bbccc59f5fc61d1e000b3df11b00dc6b",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "作者详情",
-					"pathName": "pages/author/authorInfo/authorInfo",
-					"query": "author=李白&is_share=1",
-					"scene": null
-				}
-			]
-		}
-	}
+  "miniprogramRoot": "miniprogram/",
+  "projectname": "poetry",
+  "description": "诗词大全",
+  "appid": "wx7d89fb9bf7c9b9ea",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "enhance": false,
+    "postcss": false,
+    "preloadBackgroundData": false,
+    "minified": false,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "cloudfunctionRoot": "cloudfunctions/",
+  "compileType": "miniprogram",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "libVersion": "2.14.1",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "列表",
+          "pathName": "pages/poetryList/poetryList",
+          "query": "tag=yuanqu&__key_=16074952907251&name=元曲&is_share=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "作者",
+          "pathName": "pages/author/authorIndex/authorIndex",
+          "query": "tag=yuanqu&__key_=16074952907251&name=元曲",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/my/my",
+          "query": "tag=yuanqu&__key_=16074952907251&name=元曲",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "诗词详情",
+          "pathName": "pages/detailPage/detailPage",
+          "query": "tag=yuanqu&_id=bbccc59f5fc61d1e000b3df11b00dc6b",
+          "scene": null
+        },
+        {
+          "id": 4,
+          "name": "作者详情",
+          "pathName": "pages/author/authorInfo/authorInfo",
+          "query": "author=李白&is_share=1",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
